@@ -2,6 +2,8 @@ package lab1;
 
 import java.util.Scanner;
 
+// Реализовать алгоритм бинарного поиска двумя способами.
+
 public class RequiredTask {
     public static void main(String[] args) {
         int arr[] = {64, 34, 25, 12, 22, 11, 90, 65, 3, 21};
