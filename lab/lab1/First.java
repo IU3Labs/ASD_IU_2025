@@ -1,39 +1,49 @@
-// Основное задание. Задание оценивается в 0 баллов, но является обязательным.
-//        Реализовать алгоритм бинарного поиска двумя способами.
-
 import java.util.Scanner;
 
-public class First // класс основного задания
+public class First // класс 1-ой лабы задания
 {
     private static Scanner in = new Scanner(System.in);
+    // main
     public static void main (String[] args) {
-        // задаем значения для работы (на обе версии)
-        // System.out.println("Enter finding value: ");
-        // int finding = in.nextInt();
-        // in.nextLine();
-        // int minn = 0;
-        // int maxx = 100;
-        // вызов вариантов решений
-
-        // BazaVar1(finding, minn, maxx);
-        // System.out.println("\n");
-        // BazaVar2(finding, minn, maxx);
-        // System.out.println("\n");
-
-        // FirstDopTask();
-        ThirdDopTask();
+        startZero(); // во второй реализации управления знаками "<", ">" нет для экономии времени
+        firstDopTask();
+        secondDopTask();
+        thirdDopTask();
 
         in.close();
     }
-    // алгоритм 1 (прямой)
-    public static void BazaVar1 (int val, int mi, int ma) {
-        // int num = in.nextInt(); 
-        System.out.println(" ------------ Starting Baza_var_1 ------------");
-        // объявление констант
+    // --------------- запуск 0-ой задачи ---------------
+    public static void startZero () {
+        // ЗАДАНИЕ:
+        // Реализовать алгоритм бинарного поиска двумя способами.
+
+        //ввод
+        System.out.println(" --------------- Base (0) task ---------------");
+        System.out.print("Finding value - ");
+        int finding = inNumber();
+        System.out.print("Min value -  ");
+        int minn = inNumber();
+        System.out.print("Max value - ");
+        int maxx = inNumber();
+        in.nextLine();
+
+        // вызов вариантов решений
+        bazaVar1(finding, minn, maxx);
+        System.out.println("\n");
+        bazaVar2(finding, minn, maxx);
+        System.out.println("\n");
+    }
+    // алгоритм 1 для 0 задачи (прямой)
+    public static void bazaVar1 (int val, int mi, int ma) {
+
+        System.out.println(" ------------ Starting bazaVar1 ------------");
+
+        // объявление переменных
         int finding = val;
         int minn = mi;
         int maxx = ma;
         int coursore = (maxx - minn)/2;
+
         // сам алгоритм 1 (деревянный)
         while (coursore != finding) {
             System.out.println("< or > than " + coursore + "?");
@@ -45,66 +55,67 @@ public class First // класс основного задания
                 maxx = coursore - 1;
             }
             coursore = (maxx - minn) / 2 + minn;
-            // System.out.println(minn + " " + " " + maxx); // дебагер своего рода
         }
         System.out.println(coursore);
-        System.out.println("FOUND!!");
-        System.out.println(" ------------ Ending Baza_var_1 ------------");
+        System.out.println("Found.");
+        System.out.println(" ------------ Ending bazaVar1 ------------");
 
     }
     // метод вызова рекурсии и красивого вывода
-    public static void BazaVar2 (int val, int mi, int ma) {
-        System.out.println(" ------------ Starting Baza_var_2 ------------");
+    public static void bazaVar2 (int val, int mi, int ma) {
+        System.out.println(" ------------ Starting bazaVar2 ------------");
+        // объявление переменных
         int maxx = ma;
         int minn = mi;
         int finding = val;
-        Rec((maxx - minn)/2, minn, maxx, finding);
-        System.out.println("FOUND!!");
-        System.out.println(" ------------ Ending Baza_var_2 ------------");
+
+        // вызов рекурсии
+        rec((maxx - minn)/2, minn, maxx, finding);
+        System.out.println("Found.");
+        System.out.println(" ------------ Ending bazaVar2 ------------");
     }
-    // алгоритм 2 (рекурсивный)
-    public static int Rec (int coursore, int minn, int maxx, int real ) {
+    // алгоритм 2 для 0 задачи (рекурсия)
+    public static int rec (int coursore, int minn, int maxx, int real ) {
         System.out.println("Min = " + minn + ", Current = " + coursore + ", Finding = " + real + ", Max = " + maxx);
-        if (coursore == real) { 
+        if (coursore == real) { // выход в случае успеха
             return real;
         }
-        if (coursore > real) {
+        if (coursore > real) { 
             maxx = coursore - 1;
         }
         if (coursore < real) {
             minn = coursore + 1;
         }
-        if (minn > maxx) {
+        if (minn > maxx) { // выход в случае ошибки
             System.out.println("Out of range");
             return -1;
         }
-        coursore = (maxx - minn) / 2 + minn;
-        return Rec(coursore, minn, maxx, real);
+        coursore = (maxx - minn) / 2 + minn; // обновляем среднее значение
+        return rec(coursore, minn, maxx, real); 
     }
 
     // метод перевода дв. в дес.
-    public static int BoolToInt (int[] psevdo_bool_list, int len) {
+    public static int boolToInt (int[] psevdoBoolList, int len) {
         // len нужно чтобы обрезать лишние битики из массива (даже если там нули, они влияют)
         int result = 0;
         for (byte i = 0; i < len; i++) {
-            result += psevdo_bool_list[i] * (Math.pow(2, len - i - 1)); // формулка
-            // System.out.println(psevdo_bool_list[i] + " " + result + " " + len);
+            result += psevdoBoolList[i] * (Math.pow(2, len - i - 1)); // формулка
         }
         return result;
     }
     // методы вывода массива
-    public static void Print (boolean[] massive) {
+    public static void print (boolean[] massive) {
         for (int i=0; i<massive.length; i++) {
             System.out.print(massive[i]+ " ");
         }
     }
-    public static void Print (byte[] massive) {
+    public static void print (byte[] massive) {
         for (int i=0; i<massive.length; i++) {
             System.out.print(massive[i]+ " ");
         }
     }
     // метод ввода бин. массива
-    public static byte[] InData () {
+    public static byte[] inData () {
         System.out.println("Massive's lenth: ");
         int lenn = in.nextInt();
         System.out.println("Enter elements: ");
@@ -115,15 +126,16 @@ public class First // класс основного задания
         return inputt;
     }
     // метод ввода числа n
-    public static int InNumber () {
+    public static int inNumber () {
         System.out.println("Enter n: ");
         int n = in.nextInt();
         return n;
     }
 
-    // 1-ое доп. задание
-    public static void FirstDopTask () {
+    // --------------- 1-ое доп. задание ---------------
+    public static void firstDopTask () {
 
+        // ЗАДАНИЕ:
         // Дан массив целых чисел, представляющий двоичное число.
         // Пример, дан массив bi_arr = [1, 1, 0]. Этот массив в десятичной системе
         // выглядит так: arr = [1, 3, 6]. То есть:
@@ -136,24 +148,28 @@ public class First // класс основного задания
         // так: [false, false, true].
         // Примечание. Делитель тоже необходимо ввести с клавиатуры.
 
-        byte[] inputt = InData();
-        int n = InNumber();
+
+        System.out.println(" --------------- First task ---------------");
+        // объявление переменных
+        byte[] inputt = inData();
+        int n = inNumber();
         int[] nums = new int[inputt.length]; // переведенный дес. массив 
-        int[] bool_each_num = new int[inputt.length]; // массив для перевода каждого двоич. числа
+        int[] boolEachNum = new int[inputt.length]; // массив для перевода каждого двоич. числа
         boolean[] answer = new boolean[inputt.length];
         for (byte i = 0; i < inputt.length; i++) {
-            bool_each_num[i] = inputt[i]; // берем новый элемент списка
-            // System.out.println(bool_el);
-            int num_el = BoolToInt(bool_each_num, i+1); // переводим в дес.
-            System.out.println("NUM RES = " + num_el);
-            nums[i] = num_el; // массив дес. чисел nums (на примере -- [1, 3, 6])  
-            answer[i] = (num_el % n == 0);
+            boolEachNum[i] = inputt[i]; // берем новый элемент списка
+            int numEl = boolToInt(boolEachNum, i+1); // переводим в дес.
+            System.out.println("NUM RES = " + numEl);
+            nums[i] = numEl; // массив дес. чисел nums (на примере -- [1, 3, 6])  
+            answer[i] = (numEl % n == 0);
         }
-        Print(answer);
+        print(answer);
+        System.out.println("");
+
     }
 
     // методы проверки элемента на наличие в списке
-    public static boolean IsElInList (byte[] massive, byte el) {
+    public static boolean isElInList (byte[] massive, byte el) {
         for (int j = 0; j < massive.length; j++) {
             if (massive[j] == el) {
                 return true;
@@ -161,7 +177,7 @@ public class First // класс основного задания
         }
         return false;
     }
-    public static int IsElInListWithId (byte[] massive, int el) {
+    public static int isElInListWithId (byte[] massive, int el) {
         for (int j = 0; j < massive.length; j++) {
             if (massive[j] == el) {
                 return j;
@@ -170,46 +186,61 @@ public class First // класс основного задания
         return -1;
     }
     
-    // 2-ое доп. задание
-    public static void SecondDopTask () {
-        byte[] inputt = InData();
-        // byte[] inputt = new byte[] {4, 2, 8, 5, 4, 90, 1, 2, 3, 6, 4, 7, 4};
-        byte[] simple_nums = new byte[inputt.length];
-        byte[] meet_counter = new byte[inputt.length];
+    // --------------- 2-ое доп. задание ---------------
+    public static void secondDopTask () {
+
+        // ЗАДАНИЕ:
+        // Дан целочисленный массив. Верните число, частота встречи которого в
+        // массиве равна его значению. Если таких чисел нет, вернуть «-1». Если
+        // таких чисел несколько, вернуть наибольшее.
+
+        System.out.println(" --------------- Second task ---------------");
+        byte[] inputt = inData();
+        byte[] simpleNums = new byte[inputt.length];
+        byte[] meetCounter = new byte[inputt.length];
         byte next_empty = 0;
         byte answer2 = 0;
         for (int i = 0; i < inputt.length; i++) {
-            // Print(simple_nums);
-            // System.out.println("\n");
-            if (!(IsElInList(simple_nums, inputt[i]))) {
-                simple_nums[next_empty] = inputt[i];
-                meet_counter[next_empty] = 0;
+            if (!(isElInList(simpleNums, inputt[i]))) {
+                simpleNums[next_empty] = inputt[i];
+                meetCounter[next_empty] = 0;
                 for (int j = 0; j < inputt.length; j++) {
-                    if (simple_nums[next_empty] == inputt[j]) {
-                        meet_counter[next_empty]++;
+                    if (simpleNums[next_empty] == inputt[j]) {
+                        meetCounter[next_empty]++;
                     }
                 }
                 next_empty++;
             } 
         }        
-        for (int i = 0; i < simple_nums.length; i++) {
-            if ((simple_nums[i] == meet_counter[i]) && (simple_nums[i] > answer2)) {
-                answer2 = simple_nums[i];
+        for (int i = 0; i < simpleNums.length; i++) {
+            if ((simpleNums[i] == meetCounter[i]) && (simpleNums[i] > answer2)) {
+                answer2 = simpleNums[i];
             }
         }
 
-        Print(simple_nums);
+        print(simpleNums);
         System.out.println("");
-        Print(meet_counter);
+        print(meetCounter);
         System.out.println("");
         System.out.println("Answer = " + answer2);
 
     }
 
-    // 3-е доп. задание
-    public static int ThirdDopTask () {
-        byte[] massive3 = InData();
-        int n = InNumber();
+    // --------------- 3-е доп. задание ---------------
+    public static int thirdDopTask () {
+
+        // ЗАДАНИЕ:
+        // Дан массив целых чисел и целое число. Реализовать метод, который
+        // возвращает индексы тех двух чисел массива, которые дают сумму
+        // заданного числа. Индексы вернуть в любом порядке. Один элемент в сумме
+        // использовать дважды нельзя.
+        // Примечание. Задача должна быть решена со сложностью меньше, чем
+        // ( !). В комментариях кода привести доказательство, что сложность
+        // меньше.
+
+        System.out.println(" --------------- Third task ---------------");
+        byte[] massive3 = inData(); // ввод
+        int n = inNumber(); // ввод 
         for (int i = 0; i < massive3.length; i++ ) {
             for (int j = 0; (j < massive3.length && j != i); j++ ) { // сложность меньше, тк во 2-м цикле мы пробегаемся по n - 1 элементам
                 if (massive3[i] + massive3[j] == n) {
@@ -217,6 +248,8 @@ public class First // класс основного задания
                 }
             }
         }
+        System.out.println("-1");
+    
     return 0;
     }
 }
