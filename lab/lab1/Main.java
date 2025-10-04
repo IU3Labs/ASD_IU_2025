@@ -23,5 +23,6 @@ public class Main{
             OutputUtils.printSearchResult(target, BinarySearch.recursiveSearch(SorterArrays.sort(array), target));
         }
         scan.close();
+//        wdwd
     }
 }
