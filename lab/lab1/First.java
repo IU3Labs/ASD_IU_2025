@@ -11,8 +11,8 @@ public class First // класс основного задания
         // System.out.println("Enter finding value: ");
         // int finding = in.nextInt();
         // in.nextLine();
-        int minn = 0;
-        int maxx = 100;
+        // int minn = 0;
+        // int maxx = 100;
         // вызов вариантов решений
 
         // BazaVar1(finding, minn, maxx);
@@ -20,7 +20,8 @@ public class First // класс основного задания
         // BazaVar2(finding, minn, maxx);
         // System.out.println("\n");
 
-        FirstDopTask();
+        // FirstDopTask();
+        SecondDopTask();
 
         in.close();
     }
@@ -91,8 +92,13 @@ public class First // класс основного задания
         }
         return result;
     }
-    // метод вывода массива
+    // методы вывода массива
     public static void Print (boolean[] massive) {
+        for (int i=0; i<massive.length; i++) {
+            System.out.print(massive[i]+ " ");
+        }
+    }
+    public static void Print (byte[] massive) {
         for (int i=0; i<massive.length; i++) {
             System.out.print(massive[i]+ " ");
         }
@@ -109,7 +115,7 @@ public class First // класс основного задания
         return inputt;
     }
     // метод ввода числа n
-        public static int InNumber () {
+    public static int InNumber () {
         System.out.println("Enter n: ");
         int n = in.nextInt();
         return n;
@@ -146,5 +152,52 @@ public class First // класс основного задания
         Print(answer);
     }
 
+    // метод проверки элемента на наличие в списке
+    public static boolean IsElInList (byte[] massive, byte el) {
+        for (int j = 0; j < massive.length; j++) {
+            if (massive[j] == el) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    // 2-ое доп. задание
+    public static void SecondDopTask () {
+        byte[] inputt = InData();
+        // byte[] inputt = new byte[] {4, 2, 8, 5, 4, 90, 1, 2, 3, 6, 4, 7, 4};
+        byte[] simple_nums = new byte[inputt.length];
+        byte[] meet_counter = new byte[inputt.length];
+        byte next_empty = 0;
+        byte answer2 = 0;
+        for (int i = 0; i < inputt.length; i++) {
+            // Print(simple_nums);
+            // System.out.println("\n");
+            if (!(IsElInList(simple_nums, inputt[i]))) {
+                simple_nums[next_empty] = inputt[i];
+                meet_counter[next_empty] = 0;
+                for (int j = 0; j < inputt.length; j++) {
+                    if (simple_nums[next_empty] == inputt[j]) {
+                        meet_counter[next_empty]++;
+                    }
+                }
+                next_empty++;
+            } 
+        }        
+        for (int i = 0; i < simple_nums.length; i++) {
+            if ((simple_nums[i] == meet_counter[i]) && (simple_nums[i] > answer2)) {
+                answer2 = simple_nums[i];
+            }
+        }
 
+        Print(simple_nums);
+        System.out.println("");
+        Print(meet_counter);
+        System.out.println("");
+        System.out.println("Answer = " + answer2);
+
+    }
 }
+
+
+
