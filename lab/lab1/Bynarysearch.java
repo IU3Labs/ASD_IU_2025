@@ -17,7 +17,7 @@ public class Bynarysearch {
         }
 
 
-        BubbleSort(arr);
+        bubbleSort(arr);
 
 
         System.out.print("Отсортированный массив: ");
@@ -36,7 +36,7 @@ public class Bynarysearch {
         scanner.close();
     }
 
-    public static void BubbleSort(int[] arr) {
+    public static void bubbleSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
@@ -55,7 +55,7 @@ public class Bynarysearch {
         System.out.println();
     }
 
-    public static void binary(int[] arr, int element) {
+    public static int binary(int[] arr, int element) {
         int left = 0;
         int right = arr.length - 1;
         boolean found = false;
@@ -69,7 +69,7 @@ public class Bynarysearch {
             if (current == element) {
                 System.out.println("Место элемента: "  + middle);
                 found = true;
-                break;
+                return middle;
             }
 
             if (current > element) {
@@ -82,6 +82,7 @@ public class Bynarysearch {
         if (!found) {
             System.out.println("Элемент " + element + " не найден в массиве");
         }
+        return -1;
     }
 
 

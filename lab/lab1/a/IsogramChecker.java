@@ -21,9 +21,10 @@ public class IsogramChecker {
       scanner.close();
     }
     public static boolean isIsogram(String input) {
-        for (int i = 0; i < input.length(); i++) {
-            for (int j = i + 1; j < input.length(); j++) {
-                if (input.charAt(i) == input.charAt(j)) {
+        String lowerInput = input.toLowerCase();
+        for (int i = 0; i < lowerInput.length(); i++) {
+            for (int j = i + 1; j < lowerInput.length(); j++) {
+                if (input.charAt(i) == lowerInput.charAt(j)) {
                     return false;
                 }
             }

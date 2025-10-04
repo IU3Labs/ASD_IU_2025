@@ -5,9 +5,9 @@ package lab1.b;
 таких чисел несколько, вернуть наибольшее. */
 
 import java.util.Scanner;
+import lab1.Arrays;
 
-
-public class frequentNumber {
+public class FrequentNumber {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class frequentNumber {
         int arrayLength = input.nextInt();
         int[] array = new int[arrayLength];
         System.out.println("Введите элементы массива");
-        inputArray(array);
+        Arrays.inputArray(array);
         System.out.println("Частый элемент" + findFrequentNumber(array));
     }
     static int findFrequentNumber(int [] array){
@@ -41,10 +41,6 @@ public class frequentNumber {
         }
         return count;
     }
-    static void inputArray(int[] array){
-        for (int i = 0; i < array.length; i++) {
-            array[i] = input.nextInt();
-        }
-    }
+
 
 }
