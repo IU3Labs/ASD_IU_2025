@@ -21,7 +21,7 @@ public class First // класс основного задания
         // System.out.println("\n");
 
         // FirstDopTask();
-        SecondDopTask();
+        ThirdDopTask();
 
         in.close();
     }
@@ -152,7 +152,7 @@ public class First // класс основного задания
         Print(answer);
     }
 
-    // метод проверки элемента на наличие в списке
+    // методы проверки элемента на наличие в списке
     public static boolean IsElInList (byte[] massive, byte el) {
         for (int j = 0; j < massive.length; j++) {
             if (massive[j] == el) {
@@ -160,6 +160,14 @@ public class First // класс основного задания
             }
         }
         return false;
+    }
+    public static int IsElInListWithId (byte[] massive, int el) {
+        for (int j = 0; j < massive.length; j++) {
+            if (massive[j] == el) {
+                return j;
+            }
+        }
+        return -1;
     }
     
     // 2-ое доп. задание
@@ -196,6 +204,20 @@ public class First // класс основного задания
         System.out.println("");
         System.out.println("Answer = " + answer2);
 
+    }
+
+    // 3-е доп. задание
+    public static int ThirdDopTask () {
+        byte[] massive3 = InData();
+        int n = InNumber();
+        for (int i = 0; i < massive3.length; i++ ) {
+            for (int j = 0; (j < massive3.length && j != i); j++ ) { // сложность меньше, тк во 2-м цикле мы пробегаемся по n - 1 элементам
+                if (massive3[i] + massive3[j] == n) {
+                    System.out.println("Индексы: " + i + ", " + j);
+                }
+            }
+        }
+    return 0;
     }
 }
 
