@@ -253,6 +253,3 @@ public class First // класс 1-ой лабы задания
     return 0;
     }
 }
-
-
-
