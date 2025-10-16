@@ -1,21 +1,17 @@
-// Реализовать LRU Cashe, прокомментировать логику
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class LruCache<K, V> {
+    private final int capacity;
+    private final Map<K, Node<K, V>> cache;
+    private Node<K, V> head; // Самый недавно использованный
+    private Node<K, V> tail; // Наименее недавно использованный
 
-    private final int capacity;  // Максимальная вместимость кэша
-    private final Map<K, Node<K, V>> cache; // Хеш-таблица для быстрого доступа к узлам по ключу
-    private Node<K, V> head; // Указатель на "голову" двусвязного списка (самый недавно использованный элемент)
-    private Node<K, V> tail; // Указатель на "хвост" двусвязного списка (наименее недавно использованный элемент)
-
-    // Внутренний класс для представления узла в двусвязном списке
     private static class Node<K, V> {
-        K key;    // Ключ элемента
-        V value;  // Значение элемента
-        Node<K, V> prev; // Указатель на предыдущий узел
-        Node<K, V> next; // Указатель на следующий узел
+        K key;
+        V value;
+        Node<K, V> prev;
+        Node<K, V> next;
 
         Node(K key, V value) {
             this.key = key;
@@ -24,76 +20,97 @@ public class LruCache<K, V> {
     }
 
     public LruCache(int capacity) {
+        if (capacity <= 0) {
+            System.out.println("Введена неположительная ёмкость");
+        }
         this.capacity = capacity;
-        this.cache = new HashMap<>(capacity);
+        this.cache = new HashMap<>(Math.max(16, capacity));
         this.head = null;
         this.tail = null;
     }
 
-    // Получение значения из кэша по ключу
     public V get(K key) {
-        Node<K, V> node = cache.get(key);
-        if (node == null) {
-            return null; // Ключ отсутствует в кэше
+        if (key == null) {
+            System.out.println("Ключ не должен иметь нулевое значение");
+            return null;
         }
 
-        moveToHead(node); // Перемещаем узел в "голову" списка, т.к. он был использован
+        Node<K, V> node = cache.get(key);
+        if (node == null) {
+            return null;
+        }
+
+        moveToHead(node);
         return node.value;
     }
 
-    // Добавление элемента в кэш
     public void put(K key, V value) {
-        if (cache.containsKey(key)) {
-            // Ключ уже существует, обновляем значение и перемещаем в "голову"
-            Node<K, V> node = cache.get(key);
+        if (key == null) {
+            throw new NullPointerException("Ключ не должен иметь нулевое значение");
+        }
+        if (value == null) {
+            throw new NullPointerException("Значение не должно быть нулевым");
+        }
+
+        Node<K, V> node = cache.get(key);
+        if (node != null) {
+            // Ключ уже существует, обновляем значение и перемещаем в голову
             node.value = value;
             moveToHead(node);
         } else {
-            // Ключа нет в кэше, добавляем новый узел
+            // Создаем новый узел
             Node<K, V> newNode = new Node<>(key, value);
             cache.put(key, newNode);
             addToHead(newNode);
 
             if (cache.size() > capacity) {
-                // Кэш переполнен, удаляем наименее недавно использованный элемент (из "хвоста")
-                Node<K, V> tailNode = removeTail();
-                cache.remove(tailNode.key);
+                removeTail();
             }
         }
     }
 
-    // Перемещение узла в "голову" списка
-    private void moveToHead(Node<K, V> node) {
-        if (node == head) {
-            return; // Узел уже в "голове"
+    public boolean containsKey(K key) {
+        if (key == null) {
+            return false;
         }
-
-        // Удаляем узел из текущей позиции
-        if (node.prev != null) {
-            node.prev.next = node.next;
-        }
-        if (node.next != null) {
-            node.next.prev = node.prev;
-        }
-
-        if (node == tail) {
-            tail = node.prev; // Если удаляем "хвост", обновляем указатель tail
-        }
-
-        // Добавляем узел в "голову"
-        node.next = head;
-        node.prev = null;
-        if (head != null) {
-            head.prev = node;
-        }
-        head = node;
-
-        if (tail == null) {
-            tail = head; // Если список был пуст, обновляем tail
-        }
+        return cache.containsKey(key);
     }
 
-    // Добавление нового узла в "голову" списка
+    public int size() {
+        return cache.size();
+    }
+
+    private void moveToHead(Node<K, V> node) {
+        if (node == head) {
+            return; // Узел и есть head
+        }
+
+        // Перемещаем узел в head
+        removeNode(node);
+        addToHead(node);
+    }
+
+    private void removeNode(Node<K, V> node) {
+        // Обновляем связи соседних узлов
+        if (node.prev != null) {
+            node.prev.next = node.next;
+        } else {
+            // node был головой
+            head = node.next;
+        }
+
+        if (node.next != null) {
+            node.next.prev = node.prev;
+        } else {
+            // node был хвостом
+            tail = node.prev;
+        }
+
+        // Очищаем связи узла
+        node.prev = null;
+        node.next = null;
+    }
+
     private void addToHead(Node<K, V> node) {
         node.next = head;
         node.prev = null;
@@ -101,33 +118,34 @@ public class LruCache<K, V> {
         if (head != null) {
             head.prev = node;
         }
-
         head = node;
 
+        // Если список был пуст, обновляем tail
         if (tail == null) {
-            tail = head; // Если список был пуст, обновляем tail
+            tail = head;
         }
     }
 
-    // Удаление узла из "хвоста" списка
-    private Node<K, V> removeTail() {
+    private void removeTail() {
         if (tail == null) {
-            return null; // Список пуст
+            return;
         }
 
         Node<K, V> tailNode = tail;
-        tail = tail.prev;
 
+        // Удаляем из списка
+        tail = tail.prev;
         if (tail != null) {
             tail.next = null;
         } else {
             // Список стал пустым
             head = null;
         }
-        return tailNode;
+
+        // Удаляем из кэша
+        cache.remove(tailNode.key);
     }
 
-    // вывод содержимого кэша
     public void printCache() {
         Node<K, V> current = head;
         System.out.print("Cache: ");
@@ -138,7 +156,7 @@ public class LruCache<K, V> {
         System.out.println();
     }
 
-
+    // Тестирование
     public static void main(String[] args) {
         LruCache<Integer, String> cache = new LruCache<>(3);
 

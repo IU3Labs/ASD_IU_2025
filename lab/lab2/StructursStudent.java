@@ -41,8 +41,8 @@ public class StructursStudent {
     public static void main(String[] args) {
         MyArrayList<Student> arrayList = new MyArrayList<>();
         MyLinkedList<Student> linkedList = new MyLinkedList<>();
-        MyHashSet<Student> hashSet = new StructursStudent().new MyHashSet<>();
-        MyHashMap<Long, Student> hashMap = new StructursStudent().new MyHashMap<>();
+        MyHashSet<Student> hashSet = new MyHashSet<>();
+        MyHashMap<Long, Student> hashMap = new MyHashMap<>();
 
         initializeStructures(arrayList, linkedList, hashSet, hashMap);
 
@@ -245,509 +245,510 @@ public class StructursStudent {
         System.out.println("Итоговый размер: " + map.size() + "\n");
     }
 
-    static class Node<Type> {
-        Node<Type> prev;
-        Node<Type> next;
-        Type data;
 
-        Node(Type data) {
-            this.data = data;
+}
+
+class Node<T> {
+    Node<T> prev;
+    Node<T> next;
+    T data;
+
+    Node(T data) {
+        this.data = data;
+    }
+}
+
+class MyArrayList<T> {
+    private T[] data;
+    private int size;
+    private static final int DEFAULT_CAPACITY = 5000000;
+
+    public MyArrayList() {
+        this.data = (T[]) new Object[DEFAULT_CAPACITY];
+        this.size = 0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        return data[index];
+    }
+
+    public void addLast(T element) {
+        if (size == data.length) {
+            ensureCapacity();
+        }
+        data[size++] = element;
+    }
+
+    public void add(int index, T element) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+
+        if (size == data.length) {
+            ensureCapacity();
+        }
+
+        for (int i = size; i > index; i--) {
+            data[i] = data[i - 1];
+        }
+
+        data[index] = element;
+        size++;
+    }
+
+    public void addMiddle(T element) {
+        int middle = size / 2;
+        add(middle, element);
+    }
+
+    public void addFirst(T element) {
+        add(0, element);
+    }
+
+    public T remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        T removedElement = data[index];
+
+        for (int i = index; i < size - 1; i++) {
+            data[i] = data[i + 1];
+        }
+
+        data[--size] = null;
+        return removedElement;
+    }
+
+    private void ensureCapacity() {
+        int newCapacity = data.length * 2;
+        T[] newData = (T[]) new Object[newCapacity];
+
+        for (int i = 0; i < data.length; i++) {
+            newData[i] = data[i];
+        }
+
+        data = newData;
+    }
+
+    public void printArrayList() {
+        for (T element: data) {
+            System.out.println(element);
         }
     }
 
-    static class MyArrayList<Type> {
-        private Type[] data;
-        private int size;
-        private static final int DEFAULT_CAPACITY = 5000000;
-
-        public MyArrayList() {
-            this.data = (Type[]) new Object[DEFAULT_CAPACITY];
-            this.size = 0;
-        }
-
-        public int size() {
-            return size;
-        }
-
-        public boolean isEmpty() {
-            return size == 0;
-        }
-
-        public Type get(int index) {
-            if (index < 0 || index >= size) {
-                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-            }
-            return data[index];
-        }
-
-        public void addLast(Type element) {
-            if (size == data.length) {
-                ensureCapacity();
-            }
-            data[size++] = element;
-        }
-
-        public void add(int index, Type element) {
-            if (index < 0 || index > size) {
-                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-            }
-
-            if (size == data.length) {
-                ensureCapacity();
-            }
-
-            for (int i = size; i > index; i--) {
-                data[i] = data[i - 1];
-            }
-
-            data[index] = element;
-            size++;
-        }
-
-        public void addMiddle(Type element) {
-            int middle = size / 2;
-            add(middle, element);
-        }
-
-        public void addFirst(Type element) {
-            add(0, element);
-        }
-
-        public Type remove(int index) {
-            if (index < 0 || index >= size) {
-                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-            }
-            Type removedElement = data[index];
-
-            for (int i = index; i < size - 1; i++) {
-                data[i] = data[i + 1];
-            }
-
-            data[--size] = null;
-            return removedElement;
-        }
-
-        private void ensureCapacity() {
-            int newCapacity = data.length * 2;
-            Type[] newData = (Type[]) new Object[newCapacity];
-
-            for (int i = 0; i < data.length; i++) {
-                newData[i] = data[i];
-            }
-
-            data = newData;
-        }
-
-        public void printArrayList() {
-            for (Type element: data) {
-                System.out.println(element);
-            }
-        }
-
-        public void printArrayListReversed() {
-            int sizeArray = size();
-            for (int i = sizeArray - 1; i >= 0; i--) {
-                System.out.println(data[i]);
-            }
-        }
-    }
-
-    static class MyLinkedList<Type> {
-        private class Node {
-            Type data;
-            Node next;
-            Node prev;
-
-            Node(Type data) {
-                this.data = data;
-                this.next = null;
-                this.prev = null;
-            }
-        }
-
-        private Node head;
-        private Node tail;
-        private int size;
-
-        public MyLinkedList() {
-            this.head = null;
-            this.tail = null;
-            this.size = 0;
-        }
-
-        public int size() {
-            return size;
-        }
-
-        public boolean isEmpty() {
-            return size == 0;
-        }
-
-        public Type get(int index) {
-            if (index < 0 || index >= size) {
-                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-            }
-
-            Node current = head;
-            for (int i = 0; i < index; i++) {
-                current = current.next;
-            }
-            return current.data;
-        }
-
-        public void addLast(Type element) {
-            Node newNode = new Node(element);
-
-            if (head == null) {
-                head = newNode;
-                tail = newNode;
-            } else {
-                tail.next = newNode;
-                newNode.prev = tail;
-                tail = newNode;
-            }
-            size++;
-        }
-
-        public void add( int index, Type element) {
-            if (index < 0 || index > size) {
-                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-            }
-            Node newNode = new Node(element);
-            if (index == 0) {
-                if (head == null){
-                    head = newNode;
-                    tail = newNode;
-                } else {
-                    newNode.next = head;
-                    head.prev = newNode;
-                    head = newNode;
-                }
-
-            } else if (index == size) {
-                tail.next = newNode;
-                newNode.prev = tail;
-                tail = newNode;
-            } else {
-                Node current = head;
-                for (int i = 0; i < index - 1; i++) {
-                    current = current.next;
-                }
-
-                newNode.next = current.next;
-                newNode.prev = current;
-                current.next.prev = newNode;
-                current.next = newNode;
-            }
-            size++;
-        }
-
-        public void addMiddle(Type element) {
-            int middle = size / 2;
-            add(middle, element);
-        }
-
-        public void addFirst(Type element) {
-            add(0, element);
-        }
-
-        public Type remove(int index) {
-            if (index < 0 || index >= size) {
-                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-            }
-
-            Node removedNode;
-
-            if (index == 0) {
-                removedNode = head;
-                head = head.next;
-                if (head != null) {
-                    head.prev = null;
-                } else {
-                    tail = null;
-                }
-            } else if (index == size -1) {
-                removedNode = tail;
-                tail = tail.prev;
-                if (tail != null) {
-                    tail.next = null;
-                } else {
-                    head = null;
-                }
-            }
-            else {
-                Node current = head;
-                for (int i = 0; i < index; i++) {
-                    current = current.next;
-                }
-
-                removedNode = current;
-                current.prev.next = current.next;
-                current.next.prev = current.prev;
-            }
-
-            size--;
-            return removedNode.data;
-        }
-
-        public void printLinkedList() {
-            Node current = head;
-            for (int i = 0; i < size; i++) {
-                System.out.println(current);
-                current = current.next;
-            }
-        }
-
-        public void printLinkedListReversed() {
-            Node current = tail;
-            for (int i = 0; i < size; i++) {
-                System.out.println(current);
-                current = current.prev;
-            }
-        }
-    }
-
-    class MyHashSet<Type> {
-        private Entry<Type>[] table;
-        private int size;
-        private static final int DEFAULT_CAPACITY = 1048576;
-        private static final float LOAD_FACTOR = 0.75f;
-
-        public MyHashSet() {
-            this(DEFAULT_CAPACITY);
-        }
-
-        public MyHashSet(int capacity) {
-            table = new Entry[capacity];
-            size = 0;
-        }
-
-        // Внутренний класс для элементов цепочки
-        private static class Entry<Type> {
-            Type data;
-            Entry<Type> next;
-
-            Entry(Type data) {
-                this.data = data;
-            }
-        }
-
-        public int size() {
-            return size;
-        }
-
-        public boolean isEmpty() {
-            return size == 0;
-        }
-
-        public boolean contains(Type element) {
-            int hash = element.hashCode();
-            int index = Math.abs(hash) % table.length;
-
-            Entry<Type> current = table[index];
-            while (current != null) {
-                if (current.data.equals(element)) {
-                    return true;
-                }
-                current = current.next;
-            }
-            return false;
-        }
-
-        public boolean add(Type element) {
-            int hash = element.hashCode();
-            int index = Math.abs(hash) % table.length;
-
-            // Проверяем, нет ли уже такого элемента
-            Entry<Type> current = table[index];
-            while (current != null) {
-                if (current.data.equals(element)) {
-                    return false; // Элемент уже существует
-                }
-                current = current.next;
-            }
-
-            // Добавляем новый элемент в начало цепочки
-            Entry<Type> newEntry = new Entry<>(element);
-            newEntry.next = table[index];
-            table[index] = newEntry;
-            size++;
-
-            // Проверяем необходимость расширения
-            if ((float) size / table.length > LOAD_FACTOR) {
-                resizeTable();
-            }
-
-            return true;
-        }
-
-        public boolean remove(Type element) {
-            int hash = element.hashCode();
-            int index = Math.abs(hash) % table.length;
-
-            Entry<Type> current = table[index];
-            Entry<Type> previous = null;
-
-            while (current != null) {
-                if (current.data.equals(element)) {
-                    if (previous == null) {
-                        // Удаляем первый элемент цепочки
-                        table[index] = current.next;
-                    } else {
-                        // Удаляем из середины/конца цепочки
-                        previous.next = current.next;
-                    }
-                    size--;
-                    return true;
-                }
-                previous = current;
-                current = current.next;
-            }
-            return false;
-        }
-
-        private void resizeTable() {
-            int newCapacity = table.length * 2;
-            Entry<Type>[] newTable = new Entry[newCapacity];
-
-            for (int i = 0; i < table.length; i++) {
-                Entry<Type> current = table[i];
-                while (current != null) {
-                    Entry<Type> next = current.next;
-
-                    int newHash = current.data.hashCode();
-                    int newIndex = Math.abs(newHash) % newCapacity;
-
-                    // Вставляем в начало цепочки новой таблицы
-                    current.next = newTable[newIndex];
-                    newTable[newIndex] = current;
-
-                    current = next;
-                }
-            }
-
-            table = newTable;
-        }
-    }
-
-    class MyHashMap<Key, Value> {
-        private static final int DEFAULT_CAPACITY = 16;
-        private static final float LOAD_FACTOR = 0.75f;
-
-        private Entry<Key, Value>[] table;
-        private int size;
-
-        public MyHashMap() {
-            this(DEFAULT_CAPACITY);
-        }
-
-        public MyHashMap(int capacity) {
-            table = new Entry[capacity];
-            size = 0;
-        }
-
-        public int size() {
-            return size;
-        }
-
-        public boolean isEmpty() {
-            return size == 0;
-        }
-
-        static class Entry<Key, Value> {
-            Key key;
-            Value value;
-            Entry<Key, Value> next;
-
-            Entry(Key key, Value value) {
-                this.key = key;
-                this.value = value;
-            }
-        }
-
-        public Value get(Key key) {
-            int hash = key.hashCode();
-            int index = Math.abs(hash) % table.length;
-
-            Entry<Key, Value> current = table[index];
-
-            while (current != null) {
-                if (current.key.equals(key)) {
-                    return current.value;
-                }
-                current = current.next;
-            }
-            return null;
-        }
-
-        public void put(Key key, Value value) {
-            int hash = key.hashCode();
-            int index = Math.abs(hash) % table.length;
-
-            Entry<Key, Value> newEntry = new Entry<>(key, value);
-
-            if (table[index] == null) {
-                table[index] = newEntry;
-            } else {
-                newEntry.next = table[index];
-                table[index] = newEntry;
-            }
-            size++;
-
-            if ((float)size / table.length > LOAD_FACTOR) {
-                resizeTable();
-            }
-        }
-
-        public Value remove(Key key) {
-            int hash = key.hashCode();
-            int index = Math.abs(hash) % table.length;
-
-            Entry<Key, Value> current = table[index];
-            Entry<Key, Value> previous = null;
-
-            while (current != null) {
-                if (current.key.equals(key)) {
-                    if (previous == null) {
-                        table[index] = current.next;
-                    } else {
-                        previous.next = current.next;
-                    }
-                    size--;
-                    return current.value;
-                }
-                previous = current;
-                current = current.next;
-            }
-            return null;
-        }
-
-        private void resizeTable() {
-            int newCapacity = table.length * 2;
-            Entry<Key, Value>[] newTable = new Entry[newCapacity];
-
-            for (int i = 0; i < table.length; i++) {
-                Entry<Key, Value> current = table[i];
-                while (current != null) {
-                    Entry<Key, Value> next = current.next;
-                    int newIndex = Math.abs(current.key.hashCode()) % newCapacity;
-
-                    if (newTable[newIndex] == null) {
-                        newTable[newIndex] = current;
-                        current.next = null;
-                    } else {
-                        current.next = newTable[newIndex];
-                        newTable[newIndex] = current;
-                    }
-                    current = next;
-                }
-            }
-
-            table = newTable;
+    public void printArrayListReversed() {
+        int sizeArray = size();
+        for (int i = sizeArray - 1; i >= 0; i--) {
+            System.out.println(data[i]);
         }
     }
 }
 
+class MyLinkedList<T> {
+    private class Node {
+        T data;
+        Node next;
+        Node prev;
+
+        Node(T data) {
+            this.data = data;
+            this.next = null;
+            this.prev = null;
+        }
+    }
+
+    private Node head;
+    private Node tail;
+    private int size;
+
+    public MyLinkedList() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+
+        Node current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
+    public void addLast(T element) {
+        Node newNode = new Node(element);
+
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+        }
+        size++;
+    }
+
+    public void add( int index, T element) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        Node newNode = new Node(element);
+        if (index == 0) {
+            if (head == null){
+                head = newNode;
+                tail = newNode;
+            } else {
+                newNode.next = head;
+                head.prev = newNode;
+                head = newNode;
+            }
+
+        } else if (index == size) {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+        } else {
+            Node current = head;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+
+            newNode.next = current.next;
+            newNode.prev = current;
+            current.next.prev = newNode;
+            current.next = newNode;
+        }
+        size++;
+    }
+
+    public void addMiddle(T element) {
+        int middle = size / 2;
+        add(middle, element);
+    }
+
+    public void addFirst(T element) {
+        add(0, element);
+    }
+
+    public T remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+
+        Node removedNode;
+
+        if (index == 0) {
+            removedNode = head;
+            head = head.next;
+            if (head != null) {
+                head.prev = null;
+            } else {
+                tail = null;
+            }
+        } else if (index == size -1) {
+            removedNode = tail;
+            tail = tail.prev;
+            if (tail != null) {
+                tail.next = null;
+            } else {
+                head = null;
+            }
+        }
+        else {
+            Node current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+
+            removedNode = current;
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
+        }
+
+        size--;
+        return removedNode.data;
+    }
+
+    public void printLinkedList() {
+        Node current = head;
+        for (int i = 0; i < size; i++) {
+            System.out.println(current);
+            current = current.next;
+        }
+    }
+
+    public void printLinkedListReversed() {
+        Node current = tail;
+        for (int i = 0; i < size; i++) {
+            System.out.println(current);
+            current = current.prev;
+        }
+    }
+}
+
+class MyHashSet<T> {
+    private Entry<T>[] table;
+    private int size;
+    private static final int DEFAULT_CAPACITY = 1048576;
+    private static final float LOAD_FACTOR = 0.75f;
+
+    public MyHashSet() {
+        this(DEFAULT_CAPACITY);
+    }
+
+    public MyHashSet(int capacity) {
+        table = new Entry[capacity];
+        size = 0;
+    }
+
+    // Внутренний класс для элементов цепочки
+    private static class Entry<T> {
+        T data;
+        Entry<T> next;
+
+        Entry(T data) {
+            this.data = data;
+        }
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean contains(T element) {
+        int hash = element.hashCode();
+        int index = Math.abs(hash) % table.length;
+
+        Entry<T> current = table[index];
+        while (current != null) {
+            if (current.data.equals(element)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    public boolean add(T element) {
+        int hash = element.hashCode();
+        int index = Math.abs(hash) % table.length;
+
+        // Проверяем, нет ли уже такого элемента
+        Entry<T> current = table[index];
+        while (current != null) {
+            if (current.data.equals(element)) {
+                return false; // Элемент уже существует
+            }
+            current = current.next;
+        }
+
+        // Добавляем новый элемент в начало цепочки
+        Entry<T> newEntry = new Entry<>(element);
+        newEntry.next = table[index];
+        table[index] = newEntry;
+        size++;
+
+        // Проверяем необходимость расширения
+        if ((float) size / table.length > LOAD_FACTOR) {
+            resizeTable();
+        }
+
+        return true;
+    }
+
+    public boolean remove(T element) {
+        int hash = element.hashCode();
+        int index = Math.abs(hash) % table.length;
+
+        Entry<T> current = table[index];
+        Entry<T> previous = null;
+
+        while (current != null) {
+            if (current.data.equals(element)) {
+                if (previous == null) {
+                    // Удаляем первый элемент цепочки
+                    table[index] = current.next;
+                } else {
+                    // Удаляем из середины/конца цепочки
+                    previous.next = current.next;
+                }
+                size--;
+                return true;
+            }
+            previous = current;
+            current = current.next;
+        }
+        return false;
+    }
+
+    private void resizeTable() {
+        int newCapacity = table.length * 2;
+        Entry<T>[] newTable = new Entry[newCapacity];
+
+        for (int i = 0; i < table.length; i++) {
+            Entry<T> current = table[i];
+            while (current != null) {
+                Entry<T> next = current.next;
+
+                int newHash = current.data.hashCode();
+                int newIndex = Math.abs(newHash) % newCapacity;
+
+                // Вставляем в начало цепочки новой таблицы
+                current.next = newTable[newIndex];
+                newTable[newIndex] = current;
+
+                current = next;
+            }
+        }
+
+        table = newTable;
+    }
+}
+
+class MyHashMap<K, V> {
+    private static final int DEFAULT_CAPACITY = 16;
+    private static final float LOAD_FACTOR = 0.75f;
+
+    private Entry<K, V>[] table;
+    private int size;
+
+    public MyHashMap() {
+        this(DEFAULT_CAPACITY);
+    }
+
+    public MyHashMap(int capacity) {
+        table = new Entry[capacity];
+        size = 0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    static class Entry<K, V> {
+        K K;
+        V V;
+        Entry<K, V> next;
+
+        Entry(K K, V V) {
+            this.K = K;
+            this.V = V;
+        }
+    }
+
+    public V get(K K) {
+        int hash = K.hashCode();
+        int index = Math.abs(hash) % table.length;
+
+        Entry<K, V> current = table[index];
+
+        while (current != null) {
+            if (current.K.equals(K)) {
+                return current.V;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    public void put(K K, V V) {
+        int hash = K.hashCode();
+        int index = Math.abs(hash) % table.length;
+
+        Entry<K, V> newEntry = new Entry<>(K, V);
+
+        if (table[index] == null) {
+            table[index] = newEntry;
+        } else {
+            newEntry.next = table[index];
+            table[index] = newEntry;
+        }
+        size++;
+
+        if ((float)size / table.length > LOAD_FACTOR) {
+            resizeTable();
+        }
+    }
+
+    public V remove(K K) {
+        int hash = K.hashCode();
+        int index = Math.abs(hash) % table.length;
+
+        Entry<K, V> current = table[index];
+        Entry<K, V> previous = null;
+
+        while (current != null) {
+            if (current.K.equals(K)) {
+                if (previous == null) {
+                    table[index] = current.next;
+                } else {
+                    previous.next = current.next;
+                }
+                size--;
+                return current.V;
+            }
+            previous = current;
+            current = current.next;
+        }
+        return null;
+    }
+
+    private void resizeTable() {
+        int newCapacity = table.length * 2;
+        Entry<K, V>[] newTable = new Entry[newCapacity];
+
+        for (int i = 0; i < table.length; i++) {
+            Entry<K, V> current = table[i];
+            while (current != null) {
+                Entry<K, V> next = current.next;
+                int newIndex = Math.abs(current.K.hashCode()) % newCapacity;
+
+                if (newTable[newIndex] == null) {
+                    newTable[newIndex] = current;
+                    current.next = null;
+                } else {
+                    current.next = newTable[newIndex];
+                    newTable[newIndex] = current;
+                }
+                current = next;
+            }
+        }
+
+        table = newTable;
+    }
+}
 //Результаты для 5.000.000 строк данных:
 //
 //        === MyArrayList Performance Test (время в наносекундах) ===
