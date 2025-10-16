@@ -1,3 +1,24 @@
+//Создать класс Student с полями:
+//        1 Long id
+//        2 String name
+//        В методе main:
+//        1 Создать ArrayList, который хранит объекты класса Student
+//        (ArrayList<Student>).
+//        2 Создать LinkedList, который хранит объекты класса Student
+//        (LinkedList <Student>).
+//        3 Создать Set, который хранит объекты класса Student (HashSet
+//        <Student>).
+//        4 Создать HashMap, который хранит объекты класса Student (HashMap
+//        <Long, Student>).
+//        В каждую структуру данных добавить 10 000 000 объектов.
+//        После этого для каждой структуры данных измерить время в нс:
+//        1 Добавление 1 несуществующего элемента в конец (id = 10 000 001).
+//        2 Добавление 1 несуществующего элемента в начало.
+//        3 Удаление последнего элемента
+//        4 Удаление первого элемента
+//        5 Взятие (Get) центрального элемента (id = 5 000 000)
+//        6 Взятие (Get) последнего элемента (id = 9 999 999).
+
 import java.util.*;
 
 public class StudentTask{
@@ -38,7 +59,7 @@ public class StudentTask{
 
         // 1. Добавление в конец
         long startTime = System.nanoTime();
-        list.add(newEndStudent);
+        list.addLast(newEndStudent);
         long endTime = System.nanoTime();
         System.out.println("Добавление в конец: " + (endTime - startTime));
 
@@ -75,7 +96,6 @@ public class StudentTask{
         System.out.println("Его ID: " + last.getId());
     }
 
-    // Методы для тестирования LinkedList
     private static void testLinkedListOperations(List<Student> list, int size) {
         // 1. Добавление в конец
         long startTime = System.nanoTime();
@@ -116,18 +136,15 @@ public class StudentTask{
         System.out.println("Его ID: " + last.getId());
     }
 
-    // Методы для тестирования HashSet
     private static void testHashSetOperations(Set<Student> set, int size) {
-        // 1. Добавление элемента (аналог "в конец" - для Set нет понятия начала/конца)
+        // 1, 2. Добавление элемента
         long startTime = System.nanoTime();
         set.add(newEndStudent);
         long endTime = System.nanoTime();
         System.out.println("Добавление элемента: " + (endTime - startTime));
 
-        // 2. Добавление в начало - для Set не применимо
 
-        // 3. Удаление последнего элемента - для Set не применимо
-        // Вместо этого удалим произвольный элемент
+        // 3, 4. Удаление элемента
         startTime = System.nanoTime();
         set.remove(newEndStudent);
         endTime = System.nanoTime();
@@ -146,18 +163,15 @@ public class StudentTask{
         System.out.println("Наличие последнего элемента: " + (endTime - startTime));
     }
 
-    // Методы для тестирования HashMap
     private static void testHashMapOperations(Map<Long, Student> map, int size) {
 
-        // 1. Добавление элемента
+        // 1, 2. Добавление элемента
         long startTime = System.nanoTime();
         map.put(newEndStudent.getId(), newEndStudent);
         long endTime = System.nanoTime();
         System.out.println("Добавление элемента: " + (endTime - startTime));
 
-        // 2. Добавление в начало - для HashMap не применимо
-
-        // 3. Удаление элемента элемента
+        // 3, 4. Удаление элемента элемента
         startTime = System.nanoTime();
         map.remove(newEndStudent.getId());
         endTime = System.nanoTime();
@@ -165,18 +179,16 @@ public class StudentTask{
 
         // 5. Получение центрального элемента
         startTime = System.nanoTime();
-        map.get(centerStudent.getId());
+        Student centerFromMap = map.get(centerStudent.getId());
         endTime = System.nanoTime();
         System.out.println("Получение центрального элемента: " + (endTime - startTime));
 
         // 6. Получение последнего элемента
         startTime = System.nanoTime();
-        map.get(endStudent.getId());
+        Student lastFromMap = map.get(endStudent.getId());
         endTime = System.nanoTime();
         System.out.println("Получение последнего элемента: " + (endTime - startTime));
     }
-
-
 
         public static void main(String[] args)  {
 
@@ -191,57 +203,49 @@ public class StudentTask{
                 hashMap.put(i, new Student(i, "Student_" + i));
             }
 
-            // 1. ArrayList операции
-            System.out.println("\n--- ArrayList ---");
+            System.out.println("\nArrayList - ");
             testArrayListOperations(arrayList, SIZE);
 
-            // 2. LinkedList операции
-            System.out.println("\n--- LinkedList ---");
+            System.out.println("\nLinkedList -");
             testLinkedListOperations(linkedList, SIZE);
 
-            // 3. HashSet операции
-            System.out.println("\n--- HashSet ---");
+            System.out.println("\nHashSet -");
             testHashSetOperations(hashSet, SIZE);
 
-            // 4. HashMap операции
-            System.out.println("\n--- HashMap ---");
+            System.out.println("\nHashMap -");
             testHashMapOperations(hashMap, SIZE);
         }
     }
 
-//ArrayList:
-
-//Добавление в конец: 7600
-//Удаление последнего элемента: 6000
-//Добавление в начало: 51846000
-//Удаление первого элемента: 39433700
-//Получение центрального элемента: 17800
+//ArrayList - (в нс)
+//Добавление в конец: 12200
+//Удаление последнего элемента: 12000
+//Добавление в начало: 4949300
+//Удаление первого элемента: 4526600
+//Получение центрального элемента: 19800
 //Его ID: 2500000
-//Получение последнего элемента: 1100
+//Получение последнего элемента: 3400
 //Его ID: 4999999
 
-//LinkedList
-
-//Добавление в конец: 1800
-//Удаление последнего элемента: 7600
-//Добавление в начало: 5600
-//Удаление первого элемента: 3300
-//Получение центрального элемента: 22842300
+//LinkedList - (в нс)
+//Добавление в конец: 12100
+//Удаление последнего элемента: 14100
+//Добавление в начало: 10600
+//Удаление первого элемента: 7700
+//Получение центрального элемента: 40161500
 //Его ID: 2500000
-//Получение последнего элемента: 2300
+//Получение последнего элемента: 5000
 //Его ID: 4999999
 
-//HashSet
+//HashSet - (в нс)
+//Добавление элемента: 48400
+//Удаление элемента: 20500
+//Наличие центрального элемента: 29600
+//Наличие последнего элемента: 8800
 
-//Добавление элемента: 14600
-//Удаление элемента: 8200
-//Наличие центрального элемента: 9100
-//Наличие последнего элемента: 3300
-
-//HashMap
-
-//Добавление элемента: 7500
-//Удаление элемента: 5400
-//Получение центрального элемента: 12900
-//Получение последнего элемента: 1000
+//HashMap - (в нс)
+//Добавление элемента: 40300
+//Удаление элемента: 14300
+//Получение центрального элемента: 32200
+//Получение последнего элемента: 2500
 
