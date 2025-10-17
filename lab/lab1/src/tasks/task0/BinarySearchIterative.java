@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class BinarySearchIterative {
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void SorterAsc(double[] array) {
+    public static void sorterAsc(double[] array) {
         double arrayLength = array.length;
         for (int i = 1; i < arrayLength; i++) {
             boolean isSorted = true;
@@ -26,7 +26,7 @@ public class BinarySearchIterative {
     }
 
 
-    public static boolean BinarySearchIterative(double[] array, double number) {
+    public static boolean binarySearchIterative(double[] array, double number) {
         int highIdxOfElement = array.length - 1;
         int lowIdxOfElement = 0;
         while (lowIdxOfElement <= highIdxOfElement) {
@@ -54,8 +54,8 @@ public class BinarySearchIterative {
         System.out.print("Какое число ищем, мой господин? -> ");
         double numberToFind = Double.parseDouble(reader.readLine());
 
-        SorterAsc(array);
-        if (BinarySearchIterative(array, numberToFind)){
+        sorterAsc(array);
+        if (binarySearchIterative(array, numberToFind)){
             System.out.println("Хвала богам, мы нашли его!");
         } else System.out.println("Увы, не получилось.");
 
