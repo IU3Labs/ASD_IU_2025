@@ -5,7 +5,7 @@ package groupa;
 
 import java.util.Scanner;
 
-public class SieveOfEratosthenes {
+public class Eratosphen {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
