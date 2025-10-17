@@ -28,5 +28,3 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-lab/*
-!lab/lab2/
