@@ -95,19 +95,32 @@ public class QueueCycle {
         int size = sc.nextInt();
 
         QueueCycle queue = new QueueCycle(size);
+
+        // Заполняем очередь
         queue.fillQueue();
-
         queue.printQueue();
-        System.out.println("Первый элемент: " + queue.peek());
 
+        // Удаляем пару элементов чтобы освободить место в начале массива
+        System.out.println("Удаляем два элемента...");
+        queue.dequeue();
         queue.dequeue();
         queue.printQueue();
 
-        System.out.print("Введите число для добавления в очередь: ");
+        // Добавляем новые элементы, чтобы показать замыкание
+        System.out.println("Добавляем новые элементы (должны попасть в начало массива):");
+        queue.enqueue(99);
+        queue.enqueue(100);
+        queue.printQueue();
+
+        System.out.println("Первый элемент в очереди: " + queue.peek());
+
+        // Пытаемся добавить ещё один элемент когда очередь уже полная
+        System.out.print("Введите число для добавления (проверим переполнение): ");
         int newValue = sc.nextInt();
         queue.enqueue(newValue);
 
         queue.printQueue();
+
         System.out.println("Текущий первый элемент: " + queue.peek());
     }
 }
