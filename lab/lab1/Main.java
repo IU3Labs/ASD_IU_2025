@@ -27,7 +27,7 @@ public class Main {
                 groupa.RomanToArabic.main(args);
                 break;
             case 4:
-                groupa.Eratosphen.main(args);
+                groupa.SieveOfEratosthenes.main(args);
                 break;
             case 5:
                 groupb.FrequencyNumber.main(args);
