@@ -18,34 +18,10 @@
 //        4 Удаление первого элемента
 //        5 Взятие (Get) центрального элемента (id = 5 000 000)
 //        6 Взятие (Get) последнего элемента (id = 9 999 999).
-
+import student.Student;
 import java.util.*;
 
 public class StudentTask{
-    public static class Student {
-        private final Long id;
-        private final String name;
-
-        public Student(Long id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        public Long getId() {
-            return id;
-        }
-
-        public String getName() {
-            return name;
-        }
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Student student = (Student) o;
-            return Objects.equals(id, student.id);
-        }
-    }
 
     private static final int SIZE = 5_000_000;
 

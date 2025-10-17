@@ -65,6 +65,11 @@ public class LRUCache<K, V> {
                     middleNode.next.prev = middleNode.prev;
                 }
             }
+            if (getElem(key)==null){
+                System.out.println("Удаление элемента прошло успешно");
+            } else {
+                System.out.println("УДАЛЕНИЕ НЕ УДАЛОСЬ");
+            }
             return middleNode.value;
         } else {
             return null;
