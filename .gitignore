@@ -1,0 +1,14 @@
+### IntelliJ IDEA ###
+.idea/
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+.kotlin
+
+### System files ###
+.DS_Store
+
+### Ignore other labs ###
+lab/lab1/
+lab/lab3/
+lab/lab4/
