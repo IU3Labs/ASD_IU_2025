@@ -1,35 +1,39 @@
 package tasks;
+
 import utils.InputManager;
 
 import java.util.Scanner;
 
 public class Isogram {
-    public static void main(String[] args){
-        Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) {
+        Scanner scan = InputManager.getScanner();
         System.out.println("Введите слово: ");
         String word = InputManager.readWord(scan);
-        checkisogram(isIsogram(word));
-        scan.close();
+        checkIsogram(isIsogram(word));
     }
 
-    private static boolean isIsogram(String word){
+    private static boolean isIsogram(String word) {
+        if (word == null || word.isEmpty()) {
+            return true;
+        }
         String upperStr = word.toUpperCase();
-        boolean[] seenLetters = new boolean[26];
-
-        for (int i = 0; i < upperStr.length(); i++){
+        boolean[] seenCharacters = new boolean[65536];
+        for (int i = 0; i < upperStr.length(); i++) {
             char currentChar = upperStr.charAt(i);
-            int index = currentChar - 'A';
-            if (seenLetters[index]) {
+            int index = currentChar;
+            if (seenCharacters[index]) {
                 return false;
             }
-            seenLetters[index] = true;
+            seenCharacters[index] = true;
         }
         return true;
     }
-    private static void checkisogram(boolean flag){
-        if (flag){
-            System.out.println("Это изгорамма.");
+
+    private static void checkIsogram(boolean flag) {
+        if (flag) {
+            System.out.println("Это изограмма.");
+        } else {
+            System.out.println("Это не изограмма.");
         }
-        else{System.out.println("Это не изгорамма.");}
     }
 }

@@ -8,9 +8,12 @@ public class OutputUtils {
             System.out.println("Искомое число " + number + " не найдено в отсортированном массиве");
         }
     }
-    public static void printArray(int[] array){
-        for (int i = 0; i<array.length; i++){
-            System.out.print(array[i]);
+
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
         }
+        System.out.println();
     }
 }
+
