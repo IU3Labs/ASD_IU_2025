@@ -88,16 +88,28 @@ public class CircularQueue extends BaseQueue {
     }
 
     public static void main(String[] args) {
-        CircularQueue queue = new CircularQueue(3);
+        CircularQueue queue = new CircularQueue(4);
 
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
-        queue.printQueue(); // Очередь: [1 ← 2 ← 3] (размер: 3/3)
+        System.out.println("=== Демонстрация циклической очереди ===");
 
-        queue.dequeue();
-        queue.enqueue(4);
-        System.out.println("После удаления элемента в начале (1) и добавления 4 в конец:");
-        queue.printQueue(); // Очередь: [2 ← 3 ← 4] (размер: 3/3)
+        // Заполняем очередь
+        for (int i = 1; i <= 4; i++) {
+            queue.enqueue(i * 10);
+        }
+        queue.printQueue();
+
+        // Освобождаем место в начале
+        System.out.println("\n--- Освобождаем начало ---");
+        queue.dequeue(); // 10
+        queue.dequeue(); // 20
+        queue.printQueue();
+
+        // Добавляем новые элементы
+        System.out.println("\n--- Добавляем в 'освободившееся' начало ---");
+        queue.enqueue(50);
+        queue.enqueue(60);
+        queue.printQueue();
+
+        System.out.println("rear теперь меньше front: " + (queue.rear < queue.front));
     }
 }
