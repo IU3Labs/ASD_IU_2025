@@ -4,10 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import helper.ArrayTools;
+
+
 public class BinarySearchRecursive {
     private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public static boolean binarySearchRecursion(double[] array, double number, int lowIdxOfElement, int highIdxOfElement){
+    public static boolean binarySearchRecursion(double[] array, double number, int lowIdxOfElement, int highIdxOfElement) {
         if (highIdxOfElement == lowIdxOfElement) {
             return array[lowIdxOfElement] == number;
         }
@@ -22,18 +25,13 @@ public class BinarySearchRecursive {
     }
 
     public static void binarySearch() throws IOException {
-        System.out.print("Добро пожаловать, мой господин!\nВведите размер массива: ");
-        int sizeOfArray = Integer.parseInt(reader.readLine());
-        double[] array = new double[sizeOfArray];
-        for (int i = 0; i < sizeOfArray; i++) {
-            System.out.print("Введите " + (i + 1) + " элемент массива: ");
-            array[i] = Double.parseDouble(reader.readLine());
-        }
+        double[] array = ArrayTools.createDoubleArray();
         System.out.print("Какое число ищем, мой господин? -> ");
         double numberToFind = Double.parseDouble(reader.readLine());
-
-        if (binarySearchRecursion(array, numberToFind, 0, array.length - 1)){
+        if (binarySearchRecursion(array, numberToFind, 0, array.length - 1)) {
             System.out.println("Хвала богам, мы нашли его!");
-        } else System.out.println("Увы, не получилось.");
+        } else {
+            System.out.println("Увы, не получилось.");
+        }
     }
 }
