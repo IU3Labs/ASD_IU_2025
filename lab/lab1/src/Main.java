@@ -1,10 +1,12 @@
-import tasks.task0.BinarySearch;
+import tasks.task0.BinarySearchIterative;
+import tasks.task0.BinarySearchRecursive;
 
 import java.io.IOException;
 
 
 
 void main() throws IOException {
-        BinarySearch.binarySearch();
+    BinarySearchIterative.binarySearch();
+    BinarySearchRecursive.binarySearch();
 }
 

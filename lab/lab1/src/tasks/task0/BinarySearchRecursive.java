@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class BinarySearch {
+public class BinarySearchRecursive {
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void SorterAsc(double[] array) {
         double arrayLength = array.length;
@@ -25,21 +26,6 @@ public class BinarySearch {
     }
 
 
-    public static boolean BinarySearchIterative(double[] array, double number) {
-        int highIdxOfElement = array.length - 1;
-        int lowIdxOfElement = 0;
-        while (lowIdxOfElement <= highIdxOfElement) {
-            int middleIdxOfElement = lowIdxOfElement + (highIdxOfElement - lowIdxOfElement) / 2;
-            if (array[middleIdxOfElement] < number) {
-                lowIdxOfElement = middleIdxOfElement + 1;
-            } else if (array[middleIdxOfElement] > number) {
-                highIdxOfElement = middleIdxOfElement - 1;
-            } else if (array[middleIdxOfElement] == number) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public static boolean BinarySearchRecursion(double[] array, double number, int lowIdxOfElement, int highIdxOfElement){
         if (highIdxOfElement == lowIdxOfElement) {
@@ -57,7 +43,6 @@ public class BinarySearch {
 
     public static void binarySearch() throws IOException {
         System.out.print("Добро пожаловать, мой господин!\nВведите размер массива: ");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int sizeOfArray = Integer.parseInt(reader.readLine());
         double[] array = new double[sizeOfArray];
         for (int i = 0; i < sizeOfArray; i++) {
@@ -68,9 +53,6 @@ public class BinarySearch {
         double numberToFind = Double.parseDouble(reader.readLine());
 
         SorterAsc(array);
-        if (BinarySearchIterative(array, numberToFind)){
-            System.out.println("Хвала богам, мы нашли его!");
-        } else System.out.println("Увы, не получилось.");
         if (BinarySearchRecursion(array, numberToFind, 0, array.length - 1)){
             System.out.println("Хвала богам, мы нашли его!");
         } else System.out.println("Увы, не получилось.");

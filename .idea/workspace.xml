@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5076c0a4-e224-468b-bb1d-f204e43e51f7" name="Changes" comment="Изменила структуру проекта" />
+    <list default="true" id="5076c0a4-e224-468b-bb1d-f204e43e51f7" name="Changes" comment="Изменила структуру проекта">
+      <change afterPath="$PROJECT_DIR$/lab/lab1/src/tasks/task0/BinarySearchRecursive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab1/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab1/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab1/src/tasks/task0/BinarySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab1/src/tasks/task0/BinarySearchIterative.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,6 +86,9 @@
     &quot;accountId&quot;: &quot;4928972f-9904-4dfd-87e9-b841ec294aad&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -114,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760685538117</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Изменила структуру проекта">
+      <option name="closed" value="true" />
+      <created>1760686110035</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1760686110035</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
