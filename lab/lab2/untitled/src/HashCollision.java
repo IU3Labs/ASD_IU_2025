@@ -26,15 +26,21 @@ public class HashCollision {
         BadHashKey key1 = new BadHashKey("key1");
         BadHashKey key2 = new BadHashKey("key2");
         BadHashKey key3 = new BadHashKey("key3");
+        BadHashKey key4 = new BadHashKey("key4");
+        BadHashKey key5 = new BadHashKey("key5");
 
         System.out.println("Хэш-коды ключей:");
 
         map.put(key1, "value1");
         map.put(key2, "value2");
         map.put(key3, "value3");
+        map.put(key4, "value4");
+        map.put(key5, "value5");
         System.out.println("key1 hash: " + key1.hashCode() + ". map value: "+ map.get(key1));
         System.out.println("key2 hash: " + key2.hashCode() + ". map value: "+ map.get(key2));
         System.out.println("key3 hash: " + key3.hashCode() + ". map value: "+ map.get(key3));
+        System.out.println("key4 hash: " + key4.hashCode() + ". map value: "+ map.get(key4));
+        System.out.println("key5 hash: " + key5.hashCode() + ". map value: "+ map.get(key5));
 
         System.out.println("Размер HashMap: " + map.size());
     }
