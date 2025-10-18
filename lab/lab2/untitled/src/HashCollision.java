@@ -37,6 +37,5 @@ public class HashCollision {
         System.out.println("key3 hash: " + key3.hashCode() + ". map value: "+ map.get(key3));
 
         System.out.println("Размер HashMap: " + map.size());
-        System.out.println("Все элементы успешно добавлены, несмотря на коллизии!");
     }
 }
