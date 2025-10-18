@@ -39,9 +39,11 @@ public class CircularQueue {
 
     public void print() {
         System.out.print("[");
-        if (size > 0) System.out.print(data[front]);
-        for (int i = correctIndex(front + 1); i != rear; i = correctIndex(i + 1)) {
-            System.out.print(", " + data[i]);
+        if (size > 0) {
+            System.out.print(data[front]);
+            for (int i = correctIndex(front + 1); i != rear; i = correctIndex(i + 1)) {
+                System.out.print(", " + data[i]);
+            }
         }
         System.out.println("]");
     }
@@ -49,9 +51,12 @@ public class CircularQueue {
 
     public void printRevers() {
         System.out.print("[");
-        if (size > 0) System.out.print(data[correctIndex(rear - 1)]);
-        for (int i = correctIndex(rear - 2); i != correctIndex(front - 1); i = correctIndex(i - 1)) {
-            System.out.print(", " + data[i]);
+        if (size > 0) {
+            System.out.print(data[correctIndex(rear - 1)]);
+
+            for (int i = correctIndex(rear - 2); i != correctIndex(front - 1); i = correctIndex(i - 1)) {
+                System.out.print(", " + data[i]);
+            }
         }
         System.out.println("]");
     }
