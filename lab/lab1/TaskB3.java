@@ -7,17 +7,17 @@ public class TaskB3 {
             return -1;
         }
         
-        int firstMin = -1;
-        int secondMin = -1;
-
-        for (int num : arr) {
-            if (num > 0) {
-                if (num < firstMin) {
+        int firstMin = Integer.MAX_VALUE;
+        int secondMin = Integer.MAX_VALUE;
+        int n = arr.length;
+        for (int num = 0; num < n; num++) {
+            if (arr[num] > 0) {
+                if (arr[num] < firstMin) {
                     secondMin = firstMin;
-                    firstMin = num;     
+                    firstMin = arr[num];
                 } 
-                else if (num < secondMin) {
-                    secondMin = num;     
+                else if (arr[num] < secondMin) {
+                    secondMin = arr[num];
                 }
             }
         }
