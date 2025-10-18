@@ -2,7 +2,7 @@ package lab1;
 
 import java.util.Scanner;
 
-public class ThirdDop extends Zero {
+public class ThirdDopTask extends FunctionsLab1 {
         private static final Scanner in = new Scanner(System.in);
         public static void main (String[] args) {
             thirdDopTask();
@@ -20,7 +20,7 @@ public class ThirdDop extends Zero {
         // меньше.
 
         System.out.println(" --------------- Third task ---------------");
-        byte[] massive3 = inData(); // ввод
+        byte[] massive3 = inByteList(); // ввод
         int n = inNumber(); // ввод
         for (int i = 0; i < massive3.length; i++ ) {
             for (int j = 0; (j < massive3.length && j != i); j++ ) { // сложность меньше, тк во 2-м цикле мы пробегаемся по n - 1 элементам

@@ -2,7 +2,7 @@ package lab1;
 
 import java.util.Scanner;
 
-public class SecondDop extends Zero {
+public class SecondDopTask extends FunctionsLab1 {
     private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class SecondDop extends Zero {
         // таких чисел несколько, вернуть наибольшее.
 
         System.out.println(" --------------- Second task ---------------");
-        byte[] inputt = inData();
+        byte[] inputt = inByteList();
         byte[] simpleNums = new byte[inputt.length];
         byte[] meetCounter = new byte[inputt.length];
         byte next_empty = 0;

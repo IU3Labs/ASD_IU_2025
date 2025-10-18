@@ -2,7 +2,7 @@ package lab1;
 
 import java.util.Scanner;
 
-public class FirstDop extends Zero {
+public class FirstDopTask extends FunctionsLab1 {
     private static Scanner in = new Scanner(System.in);
     public static void main (String[] args) {
         firstDopTask();
@@ -26,7 +26,7 @@ public class FirstDop extends Zero {
 
         System.out.println(" --------------- First task ---------------");
         // объявление переменных
-        byte[] inputt = inData();
+        byte[] inputt = inByteList();
         int n = inNumber();
         int[] nums = new int[inputt.length]; // Переведенный дес. Массив
         int[] boolEachNum = new int[inputt.length]; // массив для перевода каждого двоич. числа
