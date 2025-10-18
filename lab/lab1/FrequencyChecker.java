@@ -4,7 +4,7 @@ import java.util.Scanner;
 //таких чисел несколько, вернуть наибольшее.
 public class FrequencyChecker {
 
-    public static void checkFrequency(int[] numbers, int size) {
+    private static void checkFrequency(int[] numbers, int size) {
         int result = -1;
 
         for (int j = 0; j < size; j++) {

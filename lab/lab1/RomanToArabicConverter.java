@@ -2,7 +2,7 @@ import java.util.Scanner;
 //2 Реализуйте перевод из римских чисел в арабские.
 public class RomanToArabicConverter {
 
-    public static int romanToValue(char romanChar) {
+    private static int romanToValue(char romanChar) {
         switch (romanChar) {
             case 'I': return 1;
             case 'V': return 5;

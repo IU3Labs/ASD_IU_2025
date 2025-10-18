@@ -34,7 +34,7 @@ public class ArrayMultiplication {
         return trimmedResult;
     }
 
-    public static int[] stringToDigitsArray(String numberStr) {
+    private static int[] stringToDigitsArray(String numberStr) {
         int[] digits = new int[numberStr.length()];
         for (int i = 0; i < numberStr.length(); i++) {
             digits[i] = numberStr.charAt(i) - '0';
