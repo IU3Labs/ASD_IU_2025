@@ -11,4 +11,8 @@ public class utils {
         }
         return result;
     }
+    public static Integer random100(){
+        Random random = new Random();
+        return random.nextInt(100);
+    }
 }
