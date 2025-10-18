@@ -4,5 +4,5 @@ public class CircularQueue {
 }
 
 class TestCircularQueue{
-    void main()
+    void main(){}
 }
