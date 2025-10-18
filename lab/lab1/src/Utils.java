@@ -52,4 +52,33 @@ public class Utils {
         return arr;
     }
 
+    public static int jumpingSearch(int[] arr, int target){
+        int jump = (int) Math.sqrt(arr.length);
+        int high = 0;
+
+        for (int i = 0; i <= arr.length; i += jump){
+            if (arr[i] >= target){
+                high = i;
+                break;
+            }
+        }
+
+        if (high - jump >= 0){
+            for (int i = high - jump; i <= high; i++){
+                if (arr[i] == target){
+                    return i;
+                }
+            }
+        }
+        else {
+            for (int i = 0; i <= high; i++){
+                if (arr[i] == target){
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
+
 }
