@@ -24,7 +24,7 @@ public class MinStack {
     }
 
     public Integer pop(){
-        if (size == 0) throw new RuntimeException("Стек пуст");
+        if (size == 0) throw new RuntimeException("MinStack empty");
         if (!minStack.empty() && minStack.peek() == stack.peek()){
             minStack.pop();
         }
@@ -33,11 +33,11 @@ public class MinStack {
     }
 
     public Integer peek(){
-        if (size == 0) throw new RuntimeException("Стек пуст");
+        if (size == 0) throw new RuntimeException("MinStack empty");
         return stack.peek();
     }
     public Integer peekMin(){
-        if (size == 0) throw new RuntimeException("Стек пуст");
+        if (size == 0) throw new RuntimeException("MinStack empty");
         return minStack.peek();
     }
     public Integer size(){
