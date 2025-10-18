@@ -1,13 +1,11 @@
 // Группа А, Задача 2
 // Реализуйте перевод из римских чисел в арабские.
 
-package algorithms;
-
 import java.util.Scanner;
 
 public class RomanToArabic {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String roman = readString(scanner);
         int arabic_value = convertRomanToArabic(roman);
@@ -15,7 +13,7 @@ public class RomanToArabic {
         scanner.close();
     }
 
-    private static String readString(Scanner scanner){
+    private static String readString(Scanner scanner) {
         System.out.println("Введите римское число");
         return scanner.nextLine();
     }
@@ -32,14 +30,13 @@ public class RomanToArabic {
         int total = 0;
         int prevNum = 0;
 
-        for (int i = roman.length()-1; i >= 0; i--){
+        for (int i = roman.length() - 1; i >= 0; i--) {
             char letter = roman.charAt(i);
             int value = getValue(symbols, values, letter);
 
-            if (value < prevNum){
+            if (value < prevNum) {
                 total -= value;
-            }
-            else {
+            } else {
                 total += value;
             }
             prevNum = value;
@@ -48,21 +45,20 @@ public class RomanToArabic {
         return total;
     }
 
-    private static int getValue(char[] symbols,int[] values, char letter ) {
+    private static int getValue(char[] symbols, int[] values, char letter) {
 
-        for (int i = 0; i <= symbols.length - 1; i++){
-            if (letter == symbols[i]){
+        for (int i = 0; i <= symbols.length - 1; i++) {
+            if (letter == symbols[i]) {
                 return values[i];
             }
         }
         return -1;
     }
 
-    private static void printResult(int arabic_value){
-        if (arabic_value < 0){
+    private static void printResult(int arabic_value) {
+        if (arabic_value < 0) {
             System.out.println("Введено некорректное число");
-        }
-        else {
+        } else {
             System.out.println(arabic_value);
         }
     }

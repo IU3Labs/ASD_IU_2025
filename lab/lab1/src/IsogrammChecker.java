@@ -3,8 +3,6 @@
 // Реализуйте функцию, которая определяет, является ли строка изограммой.
 // Пустая строка является изограммой.
 
-package algorithms;
-
 import java.util.Scanner;
 
 public class IsogrammChecker {
@@ -24,7 +22,7 @@ public class IsogrammChecker {
 
     public static boolean isIsogram(String s) {
         s = s.toLowerCase();
-        boolean[] seen = new boolean[256];
+        boolean[] seen = new boolean[1104];
 
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
