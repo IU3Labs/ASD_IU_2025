@@ -1,11 +1,11 @@
 //Реализовать «Циклическую очередь» (Circular Queue). Прокомментировать
 //логику.
 public class CircularQueue {
-    private int[] queue;
+    private final int[] queue;
     private int headIndex;
     private int tailIndex;
     private int elementsCount;//текущее количество элементов
-    private int maxSize;//максимальное количество
+    private final int maxSize;//максимальное количество
 
     public CircularQueue(int queueSize) {
         maxSize = queueSize;
@@ -25,13 +25,16 @@ public class CircularQueue {
 
     public void addElement(int value) {
         if (isFull()) {
-            System.out.println("Очередь заполнена");
-            return;
+            queue[tailIndex] = value;
+            tailIndex = (tailIndex + 1) % maxSize;
+            headIndex = (headIndex + 1) % maxSize;
         }
 
-        queue[tailIndex] = value;//добавляем элемент в текущую позицию
-        tailIndex = (tailIndex + 1) % maxSize;//перемещаем нашу позицию
-        elementsCount++;
+        else{
+            queue[tailIndex] = value;//добавляем элемент в текущую позицию
+            tailIndex = (tailIndex + 1) % maxSize;//перемещаем нашу позицию
+            elementsCount++;
+        }
     }
 
     public void removeElement() {

@@ -21,7 +21,7 @@
 
 import java.util.*;
 
-public class Students {
+class StudentsArray {
     public static class Student {
 
         private final Long id;
@@ -50,14 +50,14 @@ public class Students {
         }
     }
 
-    private static final int N = 7000000;
+    static long N = 7000000;
 
-    private static final Student addStudent = new Student((long) N, "add");
-    private static final Student firstStudent = new Student((long) -1, "first");
-    private static final Student middleStudent = new Student((long) N / 2, "middle");
-    private static final Student lastStudent = new Student((long) N - 1, "last");
+    private static final Student addStudent = new Student( N, "add");
+    private static final Student firstStudent = new Student((long)-1, "first");
+    private static final Student middleStudent = new Student( N / 2, "middle");
+    private static final Student lastStudent = new Student(N - 1, "last");
 
-    private static void arrayListPerformances(List<Student> list) {
+    static void arrayListPerformances(List<Student> list) {
 
         long start = System.nanoTime();
         list.addLast(addStudent);
@@ -80,19 +80,19 @@ public class Students {
         System.out.println("Удаление первого элемента: " + (end - start));
 
         start = System.nanoTime();
-        Student center = list.get(Students.N / 2);
+        Student center = list.get((int)StudentsArray.N / 2);
         end = System.nanoTime();
         System.out.println("Получение центрального элемента: " + (end - start));
         System.out.println("ID центрального элемента: " + center.getId());
 
         start = System.nanoTime();
-        Student last = list.get(Students.N - 1);
+        Student last = list.get((int)StudentsArray.N - 1);
         end = System.nanoTime();
         System.out.println("Получение последнего элемента: " + (end - start));
         System.out.println("ID последнего элемента: " + last.getId());
     }
 
-    private static void linkedListPerformance(List<Student> list) {
+    static void linkedListPerformance(List<Student> list) {
 
         long start = System.nanoTime();
         list.add(addStudent);
@@ -115,19 +115,19 @@ public class Students {
         System.out.println("Удаление первого элемента: " + (end - start));
 
         start = System.nanoTime();
-        Student center = list.get(Students.N / 2);
+        Student center = list.get((int)StudentsArray.N / 2);
         end = System.nanoTime();
         System.out.println("Получение центрального элемента: " + (end - start));
         System.out.println("ID центрального элемента: " + center.getId());
 
         start = System.nanoTime();
-        Student last = list.get(Students.N - 1);
+        Student last = list.get((int)StudentsArray.N - 1);
         end = System.nanoTime();
         System.out.println("Получение последнего элемента: " + (end - start));
         System.out.println("ID последнего элемента: " + last.getId());
     }
 
-    private static void setPerformance(Set<Student> set) {
+    static void setPerformance(Set<Student> set) {
 
         long start = System.nanoTime();
         set.add(addStudent);
@@ -150,7 +150,7 @@ public class Students {
         System.out.println("Проверка на наличие последнего элемента: " + (end - start));
     }
 
-    private static void mapPerformance(Map<Long, Student> map) {
+    static void mapPerformance(Map<Long, Student> map) {
 
         long start = System.nanoTime();
         map.put(addStudent.getId(), addStudent);
@@ -172,34 +172,36 @@ public class Students {
         end = System.nanoTime();
         System.out.println("Получение последнего элемента: " + (end - start));
     }
+}
 
+public class Students{
     public static void main() {
 
-        List<Student> arrayList = new ArrayList<>();
-        List<Student> linkedList = new LinkedList<>();
-        Set<Student> hashSet = new HashSet<>();
-        Map<Long, Student> hashMap = new HashMap<>();
-        for (long i = 0; i < N; i++) {
-            arrayList.add(new Student(i, "Name"));
-            linkedList.add(new Student(i, "Name"));
-            hashSet.add(new Student(i, "Name"));
-            hashMap.put(i, new Student(i, "Name"));
+        List<StudentsArray.Student> arrayList = new ArrayList<>();
+        List<StudentsArray.Student> linkedList = new LinkedList<>();
+        Set<StudentsArray.Student> hashSet = new HashSet<>();
+        Map<Long, StudentsArray.Student> hashMap = new HashMap<>();
+        for (long i = 0; i < StudentsArray.N; i++) {
+            arrayList.add(new StudentsArray.Student(i, "Name"));
+            linkedList.add(new StudentsArray.Student(i, "Name"));
+            hashSet.add(new StudentsArray.Student(i, "Name"));
+            hashMap.put(i, new StudentsArray.Student(i, "Name"));
         }
 
         System.out.println("\nArrayList:");
-        arrayListPerformances(arrayList);
+        StudentsArray.arrayListPerformances(arrayList);
 
         System.out.println("\nLinkedList:");
-        linkedListPerformance(linkedList);
+        StudentsArray.linkedListPerformance(linkedList);
 
         System.out.println("\nHashSet:");
-        setPerformance(hashSet);
+        StudentsArray.setPerformance(hashSet);
 
         System.out.println("\nHashMap:");
-        mapPerformance(hashMap);
+        StudentsArray.mapPerformance(hashMap);
     }
-}
 
+}
 //ArrayList:
 //Добавление последнего элемента: 11700
 //Удаление последнего элемента: 10000

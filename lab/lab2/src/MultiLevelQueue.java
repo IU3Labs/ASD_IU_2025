@@ -4,7 +4,7 @@
 
 public class MultiLevelQueue {
 
-    //реализуем обычную очередь через динамический массив
+    //реализуем обычную очередь через массив
     private static class Queue {
         private int[] elements;
         private int size;
