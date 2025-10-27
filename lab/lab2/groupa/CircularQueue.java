@@ -48,14 +48,27 @@ public class CircularQueue {
 
     public static void main(String[] args) {
         CircularQueue queue = new CircularQueue(3);
-        queue.enQueue(1);
-        queue.enQueue(2);
-        queue.enQueue(3);
-        System.out.println(queue.enQueue(4));
-        System.out.println(queue.Rear());
-        System.out.println(queue.isFull());
-        queue.deQueue();
-        queue.enQueue(4);
-        System.out.println(queue.Rear());
+
+        System.out.println("Добавляем 1, 2, 3:");
+        System.out.println("enQueue(1): " + queue.enQueue(1));
+        System.out.println("enQueue(2): " + queue.enQueue(2));
+        System.out.println("enQueue(3): " + queue.enQueue(3));
+
+        System.out.println("\nПытаемся добавить 4 в заполненную очередь:");
+        System.out.println("enQueue(4): " + queue.enQueue(4) + " (должен быть false)");
+
+        System.out.println("\nСостояние очереди:");
+        System.out.println("isFull(): " + queue.isFull());
+        System.out.println("Rear(): " + queue.Rear());
+        System.out.println("Front(): " + queue.Front());
+
+        System.out.println("\nУдаляем один элемент и добавляем 4:");
+        System.out.println("deQueue(): " + queue.deQueue());
+        System.out.println("enQueue(4): " + queue.enQueue(4));
+
+        System.out.println("\nФинальное состояние:");
+        System.out.println("Rear(): " + queue.Rear());
+        System.out.println("Front(): " + queue.Front());
+        System.out.println("isFull(): " + queue.isFull());
     }
 }

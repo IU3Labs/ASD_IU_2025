@@ -15,6 +15,7 @@ public class Main {
         System.out.println("3 - Circular Queue");
         System.out.println("4 - LRU Cache");
         System.out.println("5 - Stack с undo/redo");
+        System.out.println("999 - Исследование capacity HashMap");
 
         int choice = scanner.nextInt();
 
@@ -33,6 +34,9 @@ public class Main {
                 break;
             case 5:
                 runUndoRedoStackDemo();
+                break;
+            case 999:
+                groupb.HashMapCapacityDemo.main(args);
                 break;
             default:
                 System.out.println("Неверный выбор");
