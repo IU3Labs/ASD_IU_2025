@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5076c0a4-e224-468b-bb1d-f204e43e51f7" name="Changes" comment="Добавлено решение задачи В1">
-      <change afterPath="$PROJECT_DIR$/lab/lab1/src/tasks/task2/TaskB3.java" afterDir="false" />
+    <list default="true" id="5076c0a4-e224-468b-bb1d-f204e43e51f7" name="Changes" comment="Добавлено решение задачи В3">
+      <change afterPath="$PROJECT_DIR$/lab/lab1/src/tasks/task3/TaskB2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab1/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab1/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab/lab1/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab1/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab1/src/tasks/task0/BinarySearchIterative.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab1/src/tasks/task0/BinarySearchIterative.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab1/src/tasks/task0/BinarySearchRecursive.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab1/src/tasks/task0/BinarySearchRecursive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab1/src/tasks/task1/TaskB1.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab1/src/tasks/task1/TaskB1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab1/src/tasks/task2/TaskB3.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab1/src/tasks/task2/TaskB3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ASD_IU_2025/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ASD_IU_2025/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ASD_IU_2025/tasks/task0/BinarySearchIterative.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ASD_IU_2025/tasks/task0/BinarySearchIterative.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ASD_IU_2025/tasks/task0/BinarySearchRecursive.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ASD_IU_2025/tasks/task0/BinarySearchRecursive.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ASD_IU_2025/tasks/task1/TaskB1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ASD_IU_2025/tasks/task1/TaskB1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ASD_IU_2025/tasks/task2/TaskB3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ASD_IU_2025/tasks/task2/TaskB3.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +110,7 @@
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.Main.executor": "Run",
+    "Application.TaskB2.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -177,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760737851306</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Добавлено решение задачи В3">
+      <option name="closed" value="true" />
+      <created>1760742269898</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760742269898</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -194,7 +212,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Изменила структуру проекта" />
     <MESSAGE value="Добавлено решение задачи В1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлено решение задачи В1" />
+    <MESSAGE value="Добавлено решение задачи В3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлено решение задачи В3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Lab1$Main.ic" NAME="Main Coverage Results" MODIFIED="1760689547165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

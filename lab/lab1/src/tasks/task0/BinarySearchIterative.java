@@ -1,3 +1,4 @@
+//Алгоритм бинарного поиска, реализованный итеративным методом
 package tasks.task0;
 
 import java.io.BufferedReader;
