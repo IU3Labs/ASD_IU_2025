@@ -78,7 +78,7 @@ public class MultiLayerQueue {
     }
 
     public static void main(String[] args) {
-        System.out.println("Демонстрация: ");
+        System.out.println("Демонстрация:  ");
         System.out.println();
 
         MultiLayerQueue mlq = new MultiLayerQueue(3); // 3 уровня приоритетов

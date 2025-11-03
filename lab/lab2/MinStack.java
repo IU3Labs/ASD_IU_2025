@@ -110,7 +110,7 @@ public class MinStack {
     }
 
     public static void main(String[] args) {
-        System.out.println("Демонстрация: ");
+        System.out.println("Демонстрация:  ");
         MinStack stack = new MinStack();
 
         System.out.println("\n1) Добавляет в конец:");

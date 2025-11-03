@@ -112,7 +112,7 @@ public class CircularQueue {
     }
 
     public static void main(String[] args) {
-        System.out.println("Демонстрация:");
+        System.out.println("Демонстрация: ");
         CircularQueue q = new CircularQueue(5);
 
         System.out.println("\n1) Добавление элементов:");

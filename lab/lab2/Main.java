@@ -198,7 +198,7 @@ public class Main {
     }
 
     private static void measureHashMap(HashMap<Long, Student> map, int N, long idStart, long idEnd, long idMid, long idLast) {
-        System.out.println("HashMap: ");
+        System.out.println("HashMap:  ");
         long timeStart, timeEnd;
 
         Student sEnd = new Student(idEnd, "NewEnd");
