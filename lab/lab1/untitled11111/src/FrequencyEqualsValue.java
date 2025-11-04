@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /*Дан целочисленный массив. Верните число, частота встречи которого в
 массиве равна его значению. Если таких чисел нет, вернуть «-1». Если
 таких чисел несколько, вернуть наибольшее.*/
@@ -7,29 +5,11 @@ import java.util.Scanner;
 public class FrequencyEqualsValue {
 
     public static void main(String[] args) {
-        int[] nums = inputArray();
+        int[] nums = Additionals.inputArray();
         int result = findNum(nums);
         System.out.println("Ответ:" + result);
     }
 
-    public static int[] inputArray() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите размер массива:");
-        int size = scanner.nextInt();
-        if (size < 5) {
-            System.out.println("Размер массива должен быть больше 5, введите еще раз:");
-            size = scanner.nextInt();
-        }
-
-        int[] arr = new int[size];
-        System.out.println("Введите элементы массива:");
-        for (int i = 0; i < size; i++) {
-            int value = scanner.nextInt();
-            arr[i] = value;
-        }
-
-        return arr;
-    }
 
     public static int findNum(int[] arr) {
         int res = -1;
