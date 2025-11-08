@@ -65,12 +65,9 @@ public class CircularQueue {
 class TestCircularQueue {
     void main() {
         CircularQueue circularQueue = new CircularQueue(10);
-        circularQueue.push(utils.random100());
-        circularQueue.push(utils.random100());
-        circularQueue.push(utils.random100());
-        circularQueue.push(utils.random100());
-        circularQueue.push(utils.random100());
-        circularQueue.push(utils.random100());
+        for (int i = 0; i < 6; i++) {
+            circularQueue.push(utils.random100());
+        }
 
         circularQueue.print();
 //        [9, 84, 10, 71, 23, 48]
@@ -78,9 +75,9 @@ class TestCircularQueue {
 //        [48, 23, 71, 10, 84, 9]
         System.out.println("size "+circularQueue.size());
 //        size 6
-        circularQueue.pop();
-        circularQueue.pop();
-        circularQueue.pop();
+        for (int i = 0; i < 3; i++) {
+            circularQueue.pop();
+        }
         circularQueue.print();
 //        [71, 23, 48]
         circularQueue.printRevers();
