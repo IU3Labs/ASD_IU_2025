@@ -9,28 +9,6 @@ public class MinStack {
     //вспомогательный стек для отслеживания текущих минимальных значений
     private final Deque<Integer> minimumTracker = new ArrayDeque();
 
-    public static void main(String[] args) {
-        MinStack stack = new MinStack();
-
-        //проверка добавления
-        stack.pushElement(11);
-        stack.pushElement(42);
-        stack.pushElement(7);
-        stack.displayStackState();
-
-        //текущий минимум
-        System.out.println("\ncurrent minimum: " + stack.getCurrentMinimum());
-
-        //удаление верхнего элемента
-        stack.popElement();
-
-        System.out.println("\nminimum after delete: " + stack.getCurrentMinimum());
-
-        System.out.println("\ntop element: " + stack.getTopElement());
-
-        System.out.println("\nstack size: " + stack.getSize());
-    }
-
     //добавление нового элемента в стек
     public void pushElement(int elementValue) {
         //всегда добавляем элемент в основной стек
@@ -91,5 +69,29 @@ public class MinStack {
         System.out.println("minimim: " + minimumTracker);
         System.out.println("current minimum: " + (minimumTracker.isEmpty() ? "нет" : getCurrentMinimum()));
         System.out.println("size: " + getSize());
+    }
+}
+
+class MinStackDemo {
+    public static void main(String[] args) {
+        MinStack stack = new MinStack();
+
+        //проверка добавления
+        stack.pushElement(11);
+        stack.pushElement(42);
+        stack.pushElement(7);
+        stack.displayStackState();
+
+        //текущий минимум
+        System.out.println("\ncurrent minimum: " + stack.getCurrentMinimum());
+
+        //удаление верхнего элемента
+        stack.popElement();
+
+        System.out.println("\nminimum after delete: " + stack.getCurrentMinimum());
+
+        System.out.println("\ntop element: " + stack.getTopElement());
+
+        System.out.println("\nstack size: " + stack.getSize());
     }
 }
