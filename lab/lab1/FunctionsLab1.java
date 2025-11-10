@@ -45,12 +45,21 @@ public class FunctionsLab1 {
         for (int i = 0; i < massive.length; i++) {
             System.out.print(massive[i] + " ");
         }
+        System.out.println('\n');
+    }
+
+    public static void print(int[] massive) {
+        for (int i = 0; i < massive.length; i++) {
+            System.out.print(massive[i] + " ");
+        }
+        System.out.println('\n');
     }
 
     public static void print(byte[] massive) {
         for (int i = 0; i < massive.length; i++) {
             System.out.print(massive[i] + " ");
         }
+        System.out.println('\n');
     }
 
     // метод ввода бин. массива

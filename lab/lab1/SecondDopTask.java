@@ -2,6 +2,7 @@ package lab1;
 
 import java.util.Scanner;
 
+
 public class SecondDopTask extends FunctionsLab1 {
     private static final Scanner in = new Scanner(System.in);
 
@@ -10,7 +11,7 @@ public class SecondDopTask extends FunctionsLab1 {
         in.close();
     }
 
-    public static void secondDopTask () {
+    public static void secondDopTask() {
 
         // ЗАДАНИЕ:
         // Дан целочисленный массив. Верните число, частота встречи которого в

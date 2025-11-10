@@ -1,7 +1,7 @@
 package lab1;
 
 
-public class BaseTask extends FunctionsLab1 // класс 1-ой лабы задания
+public class BaseTask extends FunctionsLab1 // класс 1-й лабы задания
 {
     // main
     public static void main(String[] args) {
@@ -31,19 +31,20 @@ public class BaseTask extends FunctionsLab1 // класс 1-ой лабы зад
     }
 
     // алгоритм 1 для базовой (0) задачи (прямой)
-    public static void bazaVar1(int val, int [] nums) {
+    public static int bazaVar1(int finding, int [] nums) {
 
         System.out.println(" ------------ Starting bazaVar1 ------------");
 
         // объявление переменных
-        int finding = val;
         int minn = 0;
         int maxx = nums.length-1;
         int coursore = (maxx - minn) / 2;
+        int i = -1;
 
         // сам алгоритм 1 (деревянный)
         int currentElement = nums[coursore];
         while (currentElement != finding) {
+            i++;
             currentElement = nums[coursore];
             if (finding > currentElement) {
                 minn = coursore + 1;
@@ -52,21 +53,24 @@ public class BaseTask extends FunctionsLab1 // класс 1-ой лабы зад
             }
             coursore = (maxx - minn) / 2 + minn;
             System.out.println("Min = " + nums[minn] + ", Current = " + currentElement + ", Finding = " + finding + ", Max = " + nums[maxx]);
-
+            if (nums[maxx] < finding || nums[minn] > finding) {
+                System.out.println("Netu");
+                System.out.println(" ------------ Ending bazaVar1 ------------");
+                return -1;
+            }
         }
-        System.out.println(currentElement);
-        System.out.println("Found.");
+//        System.out.println(currentElement);
+        System.out.println("Found. " + coursore);
         System.out.println(" ------------ Ending bazaVar1 ------------");
-
+        return coursore;
     }
 
     // метод вызова рекурсии и красивого вывода
-    public static void bazaVar2(int val, int [] nums) {
+    public static void bazaVar2(int finding, int [] nums) {
         System.out.println(" ------------ Starting bazaVar2 ------------");
         // объявление переменных
         int maxx = nums.length-1;
         int minn = 0;
-        int finding = val;
 
         // вызов рекурсии
         rec((maxx - minn) / 2, minn, maxx, nums, finding);

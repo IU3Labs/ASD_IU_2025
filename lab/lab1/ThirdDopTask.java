@@ -2,13 +2,15 @@ package lab1;
 
 import java.util.Scanner;
 
-public class ThirdDopTask extends FunctionsLab1 {
-        private static final Scanner in = new Scanner(System.in);
-        public static void main (String[] args) {
-            thirdDopTask();
-            in.close();
-        }
-    public static void thirdDopTask () {
+public class ThirdDopTask extends BaseTask { // тк множественное не наследуется, но нужны и методы FunctionsLab1, и бинарный поиск
+    private static final Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        thirdDopTask();
+        in.close();
+    }
+
+    public static int[] thirdDopTask() {
 
         // ЗАДАНИЕ:
         // Дан массив целых чисел и целое число. Реализовать метод, который
@@ -20,16 +22,27 @@ public class ThirdDopTask extends FunctionsLab1 {
         // меньше.
 
         System.out.println(" --------------- Third task ---------------");
-        byte[] massive3 = inByteList(); // ввод
+        int[] massive3A = inIntList(); // ввод
         int n = inNumber(); // ввод
-        for (int i = 0; i < massive3.length; i++ ) {
-            for (int j = 0; (j < massive3.length && j != i); j++ ) { // сложность меньше, тк во 2-м цикле мы пробегаемся по n - 1 элементам
-                if (massive3[i] + massive3[j] == n) {
-                    System.out.println("Индексы: " + i + ", " + j);
-                }
+        int[] massive3B = new int[n+1];
+        int diff = -1;
+        int[] ans = new int[2];
+        for (int i = 0; i < massive3A.length; i++) { // Первый цикл, сложность алгоритма = 0+n
+            if (massive3A[i] < n)
+            {
+                massive3B[massive3A[i]] = i;
             }
         }
-        System.out.println("-1");
+        print(massive3B);
 
+        for (int j = 0; j < massive3B.length / 2 + 1; j++) { // Второй цикл, сложность алгоритма = n+ n/2 => линейна
+            if (massive3B[j] != 0 & massive3B[n - j] != 0) {
+                ans[0] = massive3B[j];
+                ans[1] = massive3B[n - j];
+                System.out.println(ans[0] + " " + ans[1]);
+                return ans;
+            }
+        }
+        return ans;
     }
 }
