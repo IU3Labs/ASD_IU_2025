@@ -6,7 +6,8 @@ public class ThirdDopTask extends BaseTask { // тк множественное 
     private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-        thirdDopTask();
+        int[] answer = thirdDopTask();
+        print(answer);
         in.close();
     }
 
@@ -25,21 +26,16 @@ public class ThirdDopTask extends BaseTask { // тк множественное 
         int[] massive3A = inIntList(); // ввод
         int n = inNumber(); // ввод
         int[] massive3B = new int[n+1];
-        int diff = -1;
         int[] ans = new int[2];
         for (int i = 0; i < massive3A.length; i++) { // Первый цикл, сложность алгоритма = 0+n
-            if (massive3A[i] < n)
-            {
+            if (massive3A[i] < n) {
                 massive3B[massive3A[i]] = i;
             }
         }
-        print(massive3B);
-
         for (int j = 0; j < massive3B.length / 2 + 1; j++) { // Второй цикл, сложность алгоритма = n+ n/2 => линейна
             if (massive3B[j] != 0 & massive3B[n - j] != 0) {
                 ans[0] = massive3B[j];
                 ans[1] = massive3B[n - j];
-                System.out.println(ans[0] + " " + ans[1]);
                 return ans;
             }
         }
