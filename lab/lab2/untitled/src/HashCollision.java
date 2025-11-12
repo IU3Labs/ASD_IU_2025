@@ -54,6 +54,13 @@ public class HashCollision {
         // Размер карты равен 5, значит все ключи хранятся независимо
         // несмотря на одинаковый hashCode (т.е. коллизия успешно разрешается)
         System.out.println("Размер HashMap: " + map.size());
+
+        System.out.println("Индексы бакетов для ключей:");
+        System.out.println("key1 bucket index: " + (key1.hashCode() & (16 - 1))); // 16 - начальный капасити HashMap
+        System.out.println("key2 bucket index: " + (key2.hashCode() & (16 - 1))); // 16 - начальный капасити HashMap
+        System.out.println("key3 bucket index: " + (key3.hashCode() & (16 - 1))); // 16 - начальный капасити HashMap
+        System.out.println("key4 bucket index: " + (key4.hashCode() & (16 - 1))); // 16 - начальный капасити HashMap
+        System.out.println("key5 bucket index: " + (key5.hashCode() & (16 - 1))); // 16 - начальный капасити HashMap
     }
 }
 
@@ -65,3 +72,9 @@ public class HashCollision {
 //    key4 hash: 1. map value: value4
 //    key5 hash: 1. map value: value5
 //    Размер HashMap: 5
+//    Индексы бакетов для ключей:
+//    key1 bucket index: 1
+//    key2 bucket index: 1
+//    key3 bucket index: 1
+//    key4 bucket index: 1
+//    key5 bucket index: 1
