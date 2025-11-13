@@ -1,9 +1,14 @@
 package lab1;
 
 
-public class BaseTask extends FunctionsLab1 // класс 1-й лабы задания
+import java.util.Scanner;
+
+import static lab1.FunctionsLab1.*;
+
+public class BaseTask // класс 1-й лабы задани
 {
     // main
+    public static final Scanner in = new Scanner(System.in);
     public static void main(String[] args) {
         startZero(); // во второй реализации управления знаками "<", ">" нет для экономии времени
     }
@@ -31,7 +36,7 @@ public class BaseTask extends FunctionsLab1 // класс 1-й лабы зада
     }
 
     // алгоритм 1 для базовой (0) задачи (прямой)
-    public static int bazaVar1(int finding, int [] nums) {
+    public static void bazaVar1(int finding, int [] nums) {
 
         System.out.println(" ------------ Starting bazaVar1 ------------");
 
@@ -56,13 +61,12 @@ public class BaseTask extends FunctionsLab1 // класс 1-й лабы зада
             if (nums[maxx] < finding || nums[minn] > finding) {
                 System.out.println("Netu");
                 System.out.println(" ------------ Ending bazaVar1 ------------");
-                return -1;
+                return;
             }
         }
 //        System.out.println(currentElement);
         System.out.println("Found. " + coursore);
         System.out.println(" ------------ Ending bazaVar1 ------------");
-        return coursore;
     }
 
     // метод вызова рекурсии и красивого вывода

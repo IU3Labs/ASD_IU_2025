@@ -2,8 +2,10 @@ package lab1;
 
 import java.util.Scanner;
 
+import static lab1.FunctionsLab1.*;
 
-public class SecondDopTask extends FunctionsLab1 {
+
+public class SecondDopTask {
     private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {

@@ -2,7 +2,9 @@ package lab1;
 
 import java.util.Scanner;
 
-public class ThirdDopTask extends BaseTask { // тк множественное не наследуется, но нужны и методы FunctionsLab1, и бинарный поиск
+import static lab1.FunctionsLab1.*;
+
+public class ThirdDopTask {
     private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {

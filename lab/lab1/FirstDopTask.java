@@ -2,8 +2,10 @@ package lab1;
 
 import java.util.Scanner;
 
-public class FirstDopTask extends FunctionsLab1 {
-    private static Scanner in = new Scanner(System.in);
+import static lab1.FunctionsLab1.*;
+
+public class FirstDopTask {
+    private static final Scanner in = new Scanner(System.in);
     public static void main (String[] args) {
         firstDopTask();
         in.close();
@@ -39,7 +41,7 @@ public class FirstDopTask extends FunctionsLab1 {
             answer[i] = (numEl % n == 0);
         }
         print(answer);
-        System.out.println("");
+        System.out.println();
 
     }
 }

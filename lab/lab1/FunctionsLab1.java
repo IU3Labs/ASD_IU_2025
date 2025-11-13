@@ -10,7 +10,7 @@ public class FunctionsLab1 {
         // len нужно чтобы обрезать лишние битики из массива (даже если там нули, они влияют)
         int result = 0;
         for (byte i = 0; i < len; i++) {
-            result += psevdoBoolList[i] * (Math.pow(2, len - i - 1)); // формулка
+            result += (psevdoBoolList[i] * (Math.pow(2, len - i - 1))); // формулка
         }
         return result;
     }
