@@ -5,6 +5,7 @@
 //        Результат – число, представленное массивом.
 
 package tasks;
+
 import utils.*;
 
 import java.util.Scanner;
@@ -25,10 +26,42 @@ public class MultiplyingLists {
     }
 
     private static int[] multiplying(int[] number1, int[] number2) {
-        long num1 = transformationNumber(number1);
-        long num2 = transformationNumber(number2);
-        long result = num1 * num2;
-        return transformationArray(result);
+        if (number1.length == 0 || number2.length == 0) {
+            return new int[]{0};
+        }
+
+        int n = number1.length;
+        int m = number2.length;
+        int[] res = new int[n + m];
+
+
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = m - 1; j >= 0; j--) {
+                int product = number1[i] * number2[j];
+                int sum = product + res[i + j + 1];
+                res[i + j + 1] = sum % 10;
+                res[i + j] += sum / 10;
+            }
+        }
+
+
+        for (int i = res.length - 1; i > 0; i--) {
+            if (res[i] >= 10) {
+                res[i - 1] += res[i] / 10;
+                res[i] %= 10;
+            }
+        }
+
+        int start = 0;
+        while (start < res.length - 1 && res[start] == 0) {
+            start++;
+        }
+
+
+        int len = res.length - start;
+        int[] result = new int[len];
+        System.arraycopy(res, start, result, 0, len);
+        return result;
     }
 
     private static long transformationNumber(int[] array) {
