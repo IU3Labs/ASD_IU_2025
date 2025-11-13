@@ -1,5 +1,19 @@
+import tools.Tools;
+
+import java.util.Scanner;
+
 public class BinarySearch {
-    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] sortedArray = Tools.getArray(scanner);
+        System.out.println("Введите число: ");
+        int target1 = scanner.nextInt();
+        int result1 = binarySearchIterative(sortedArray, target1);
+        System.out.println("Итеративный метод: " + result1);
+        int result2 = binarySearchRecursive(sortedArray, target1);
+        System.out.println("Рекурсивный метод: " + result2);
+    }
+
     public static int binarySearchIterative(int[] arr, int target) {
         int left = 0;
         int right = arr.length - 1;
@@ -37,15 +51,5 @@ public class BinarySearch {
 
     public static int binarySearchRecursive(int[] arr, int target) {
         return binarySearchRecursive(arr, target, 0, arr.length - 1);
-    }
-
-    public static void main(String[] args) {
-        int[] sortedArray = {2, 5, 8, 12, 16, 23, 38, 45, 67, 89};
-        
-        int result1 = binarySearchIterative(sortedArray, 8);
-        System.out.println("Итеративный метод: " + result1);
-
-        int result2 = binarySearchRecursive(sortedArray, 67);
-        System.out.println("Рекурсивный метод: " + result2);
     }
 }

@@ -1,8 +1,15 @@
+import java.util.Scanner;
+
 public class TaskA3 {
-    
+    public static void main(String[] args) {
+        System.out.println("Input word: ");
+        Scanner scanner = new Scanner(System.in);
+        String word = scanner.nextLine();
+        System.out.println(isIsogramAlternative(word));
+    }
 
     public static boolean isIsogramAlternative(String str) {
-        if (str == null || str.isEmpty()) {
+        if (str.isEmpty()) {
             return true;
         }
         
@@ -18,12 +25,5 @@ public class TaskA3 {
         }
         
         return true;
-    }
-    
-    public static void main(String[] args) {
-        
-        System.out.println(isIsogramAlternative("baumanka"));
-        System.out.println(isIsogramAlternative("aba")); 
-        System.out.println(isIsogramAlternative("IU3"));
     }
 }

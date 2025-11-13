@@ -1,4 +1,14 @@
+import java.util.Scanner;
+
 public class TaskA1 {
+    public static void main(String[] args)
+    {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int M = scanner.nextInt();
+        System.out.println(converterFunc(N, M));
+    }
+
     public static String converterFunc(int N, int M)
     {
         if (M < 2 || M > 9)
@@ -20,8 +30,5 @@ public class TaskA1 {
         }
         return result.toString();
     }
-    public static void main(String[] args) {
-        System.out.println(converterFunc(10, 2));
-        System.out.println(converterFunc(42, 8));
-    }
+
 }

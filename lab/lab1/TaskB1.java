@@ -1,6 +1,17 @@
+import tools.Tools;
+
 import java.util.Scanner;
 
 public class TaskB1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] arr = Tools.getArray(scanner);
+
+        int result = findNumber(arr);
+        System.out.println("Результат: " + result);
+
+        scanner.close();
+    }
 
     public static int findNumber(int[] arr) {
         if (arr == null || arr.length == 0) {
@@ -49,20 +60,5 @@ public class TaskB1 {
         }
     }
     
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите размер массива: ");
-        int size = scanner.nextInt();
-        int[] arr = new int[size];
-        System.out.println("Введите элементы массива:");
 
-        for (int i = 0; i < size; i++) {
-            arr[i] = scanner.nextInt();
-        }
-        
-        int result = findNumber(arr);
-        System.out.println("Результат: " + result);
-        
-        scanner.close();
-    }
 }

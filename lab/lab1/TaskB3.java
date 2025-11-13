@@ -1,6 +1,15 @@
+import tools.Tools;
+
 import java.util.Scanner;
 
 public class TaskB3 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] arr = Tools.getArray(scanner);
+
+        System.out.println(sumOfTwoSmallestPositive(arr));
+    }
 
     public static int sumOfTwoSmallestPositive(int[] arr) {
         if (arr.length < 5) {
@@ -9,15 +18,13 @@ public class TaskB3 {
         
         int firstMin = Integer.MAX_VALUE;
         int secondMin = Integer.MAX_VALUE;
-        int n = arr.length;
-        for (int num = 0; num < n; num++) {
-            if (arr[num] > 0) {
-                if (arr[num] < firstMin) {
+        for (int i : arr) {
+            if (i > 0) {
+                if (i < firstMin) {
                     secondMin = firstMin;
-                    firstMin = arr[num];
-                } 
-                else if (arr[num] < secondMin) {
-                    secondMin = arr[num];
+                    firstMin = i;
+                } else if (i < secondMin) {
+                    secondMin = i;
                 }
             }
         }
@@ -27,23 +34,5 @@ public class TaskB3 {
         }
         
         return firstMin + secondMin;
-    }
-    
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Введите размер массива: ");
-        int size = scanner.nextInt();
-        
-        int[] arr = new int[size];
-        System.out.println("Введите элементы массива:");
-        for (int i = 0; i < size; i++) {
-            arr[i] = scanner.nextInt();
-        }
-        
-        int result = sumOfTwoSmallestPositive(arr);
-        System.out.println(result);
-        
-        scanner.close();
     }
 }
