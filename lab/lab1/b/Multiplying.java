@@ -5,20 +5,20 @@ package lab1.b;
 //Пример, [1, 2, 3, 4] * [1, 1] = [1, 3, 5, 7, 4].
 //Результат – число, представленное массивом.
 import java.util.Scanner;
+import lab1.InputArray;
+import lab1.PrintArray;
 
 public class Multiplying {
     static Scanner input = new Scanner(System.in);
 
-    static int[] inputArray() {
-        System.out.print("Введите длину массива: ");
-        int arrayLength = input.nextInt();
-        int[] array = new int[arrayLength];
-        System.out.print("Введите элементы массива: ");
-        for (int i = 0; i < arrayLength; i++) {
-            array[i] = input.nextInt();
-        }
-        return array;
+
+    public static void main(String[] args) {
+        int[] firstArray = InputArray.inputArray();
+        int[] secondArray = InputArray.inputArray();
+        System.out.print("Перемноженные массивы: ");
+        PrintArray.printArray(multiplyArrays(firstArray, secondArray));
     }
+
 
     public static int[] numToArray(int number) {
         if (number == 0) {
@@ -51,21 +51,6 @@ public class Multiplying {
     public static int[] multiplyArrays(int[] arr1, int[] arr2) {
         int result = arrayToNum(arr1) * arrayToNum(arr2);
         return numToArray(result);
-    }
-
-    static void printArray(int[] array) {
-        System.out.print("[");
-        for (int i = 0; i < array.length - 1; i++) {
-            System.out.print(array[i] + ", ");
-        }
-        System.out.print(array[array.length - 1] + "]");
-    }
-
-    public static void main(String[] args) {
-        int[] firstArray = inputArray();
-        int[] secondArray = inputArray();
-        System.out.print("Перемноженные массивы: ");
-        printArray(multiplyArrays(firstArray, secondArray));
     }
 }
 

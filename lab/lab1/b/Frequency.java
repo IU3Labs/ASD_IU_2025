@@ -1,9 +1,24 @@
 package lab1.b;
 
 import java.util.Scanner;
+import lab1.FillArray;
 
 public class Frequency {
 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите количество элементов массива: ");
+        int count = scanner.nextInt();
+        int[] array = new int[count];
+
+        FillArray.fillArray(array);
+
+        int result = findNumberWithFrequencyEqualToValue(array);
+        System.out.println("Искомый элемент: " + result);
+
+        scanner.close();
+    }
     public static int findNumberWithFrequencyEqualToValue(int[] numbers) {
         int maxNumber = -1;
 
@@ -28,29 +43,5 @@ public class Frequency {
         }
 
         return count;
-    }
-
-    public static void fillArray(int[] array) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите элементы массива: ");
-
-        for (int i = 0; i < array.length; i++) {
-            array[i] = scanner.nextInt();
-        }
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Введите количество элементов массива: ");
-        int count = scanner.nextInt();
-        int[] array = new int[count];
-
-        fillArray(array);
-
-        int result = findNumberWithFrequencyEqualToValue(array);
-        System.out.println("Искомый элемент: " + result);
-
-        scanner.close();
     }
 }
