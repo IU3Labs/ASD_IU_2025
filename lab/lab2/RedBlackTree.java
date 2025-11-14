@@ -1,6 +1,3 @@
-//rotateLeft rotateRight поменять переменные
-//insert insertHelper поменять название методов
-
 public static final int RED = 0;
 public static final int BLACK = 1;
 
@@ -161,7 +158,7 @@ public static class RedBlackTree {
 void main() {
     RedBlackTree tree = new RedBlackTree();
 
-    // Вставляем несколько значений для проверки
+
     int[] values = {10, 20, 30, 15, 25, 5, 1, 24, 53, 19};
     for (int val : values) {
         tree.insertNode(val);

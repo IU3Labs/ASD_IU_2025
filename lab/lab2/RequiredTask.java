@@ -21,21 +21,20 @@ public class RequiredTask {
             hashMap.put(i, student);
         }
 
-        System.out.println("=== ArrayList ===");
+        System.out.println("--- ArrayList ---");
         testArrayList(arrayList);
 
-        System.out.println("=== LinkedList ===");
+        System.out.println("--- LinkedList ---");
         testLinkedList(linkedList);
 
-        System.out.println("=== HashSet ===");
+        System.out.println("--- HashSet ---");
         testHashSet(hashSet);
 
-        System.out.println("=== HashMap ===");
+        System.out.println("--- HashMap ---");
         testHashMap(hashMap);
     }
 
-
-    // ===================== ArrayList =====================
+    //ArrayList
     private static void testArrayList(ArrayList<Student> list) {
 
         long start, finish;
@@ -84,7 +83,7 @@ public class RequiredTask {
     }
 
 
-    // ===================== LinkedList =====================
+    //LinkedList
     private static void testLinkedList(LinkedList<Student> list) {
 
         long start, finish;
@@ -133,7 +132,7 @@ public class RequiredTask {
     }
 
 
-    // ===================== HashSet =====================
+    //HashSet
     private static void testHashSet(HashSet<Student> set) {
 
         long start, finish;
@@ -166,7 +165,7 @@ public class RequiredTask {
     }
 
 
-    // ===================== HashMap =====================
+    //HashMap
     private static void testHashMap(Map<Long, Student> map) {
 
         long start, finish;
@@ -202,7 +201,9 @@ public class RequiredTask {
 
         // 5 — Итерация
         start = System.nanoTime();
-        for (Map.Entry<Long, Student> entry : map.entrySet()) { break; }
+        for (Map.Entry<Long, Student> entry : map.entrySet()) {
+            break;
+        }
         finish = System.nanoTime();
         System.out.println("итерация: " + (finish - start) + " нс");
     }
