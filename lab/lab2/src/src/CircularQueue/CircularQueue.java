@@ -18,13 +18,30 @@ public class CircularQueue extends BaseQueue {
 
     // Добавляет элемент в конец очереди
     public void enqueue(int value) {
-        if (isFull()) {
-            throw new IllegalStateException("Очередь переполнена");
+        if (size < capacity) {
+            // Если есть место, добавляем обычным способом
+            rear = (rear + 1) % capacity;
+            data[rear] = value;
+            size++;
+        } else {
+            // Если очередь полная, сдвигаем все элементы
+            shiftAndAdd(value);
         }
+    }
 
-        rear = (rear + 1) % capacity; // циклическое перемещение
-        data[rear] = value;
-        size++;
+    // Сдвигает очередь влево и добавляет новый элемент в конец
+    private void shiftAndAdd(int value) {
+        // Сдвигаем все элементы влево
+        for (int i = 0; i < capacity - 1; i++) {
+            data[i] = data[i + 1];
+        }
+        // Последний элемент заменяем новым значением
+        data[capacity - 1] = value;
+
+        // Обновляем индексы
+        front = 0;
+        rear = capacity - 1;
+        // size остается тем же (capacity)
     }
 
     // Удаляет и возвращает элемент из начала очереди
@@ -61,9 +78,6 @@ public class CircularQueue extends BaseQueue {
         return size;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
 
     // Выводит содержимое очереди
     public void printQueue() {
@@ -90,7 +104,7 @@ public class CircularQueue extends BaseQueue {
     public static void main(String[] args) {
         CircularQueue queue = new CircularQueue(4);
 
-        System.out.println("=== Демонстрация циклической очереди ===");
+        System.out.println("=== Демонстрация циклической очереди с перезаписью ===");
 
         // Заполняем очередь
         for (int i = 1; i <= 4; i++) {
@@ -98,18 +112,26 @@ public class CircularQueue extends BaseQueue {
         }
         queue.printQueue();
 
-        // Освобождаем место в начале
-        System.out.println("\n--- Освобождаем начало ---");
-        queue.dequeue(); // 10
-        queue.dequeue(); // 20
+        // Добавляем 5-й элемент в полную очередь
+        System.out.println("\n--- Добавляем 50 в полную очередь ---");
+        queue.enqueue(50);
         queue.printQueue();
 
-        // Добавляем новые элементы
-        System.out.println("\n--- Добавляем в 'освободившееся' начало ---");
-        queue.enqueue(50);
+        // Добавляем еще один элемент
+        System.out.println("\n--- Добавляем 60 в полную очередь ---");
         queue.enqueue(60);
         queue.printQueue();
 
-        System.out.println("rear теперь меньше front: " + (queue.rear < queue.front));
+        // Удаляем несколько элементов
+        System.out.println("\n--- Удаляем два элемента ---");
+        queue.dequeue();
+        queue.dequeue();
+        queue.printQueue();
+
+        // Добавляем новые элементы
+        System.out.println("\n--- Добавляем 70 и 80 ---");
+        queue.enqueue(70);
+        queue.enqueue(80);
+        queue.printQueue();
     }
 }
