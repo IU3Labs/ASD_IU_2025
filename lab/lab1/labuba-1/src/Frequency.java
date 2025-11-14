@@ -1,11 +1,26 @@
+/*
+Задание:
+    Дан целочисленный массив. Верните число, частота встречи которого в
+массиве равна его значению. Если таких чисел нет, вернуть «-1». Если
+таких чисел несколько, вернуть наибольшее.
+ */
 
 import java.util.Scanner;
 
 public class Frequency {
 
     public static void main(String[] args) {
-        System.out.print("Введите длину массива: ");
         Scanner scan = new Scanner(System.in);
+
+        int[] arr = inputArray(scan);
+        sortArray(arr);
+        processFrequency(arr);
+
+        scan.close();
+    }
+
+    static int[] inputArray(Scanner scan) {
+        System.out.print("Введите длину массива: ");
         int len = scan.nextInt();
         int[] arr = new int[len];
 
@@ -13,7 +28,11 @@ public class Frequency {
             System.out.print("Введите " + (i + 1) + "-й элемент массива: ");
             arr[i] = scan.nextInt();
         }
+        return arr;
+    }
 
+    static void sortArray(int[] arr) {
+        int len = arr.length;
         for (int i = 0; i < len - 1; i++) {
             for (int j = 0; j < len - i - 1; j++) {
                 if (arr[j + 1] < arr[j]) {
@@ -23,11 +42,13 @@ public class Frequency {
                 }
             }
         }
+    }
 
+    static void processFrequency(int[] arr) {
         int number = 0;
         int result = 0;
         boolean check = false;
-        int[] answerArr = new int[len];
+        int[] answerArr = new int[arr.length];
         answerArr[0] = 1;
 
         for (int i = 1; i < arr.length; i++) {
@@ -43,7 +64,12 @@ public class Frequency {
             }
         }
 
-        for (int i = 0; i < answerArr.length; i++) {
+        printArrays(arr, answerArr);
+        printResult(check, result);
+    }
+
+    static void printArrays(int[] arr, int[] answerArr) {
+        for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
 
@@ -52,13 +78,13 @@ public class Frequency {
         for (int i = 0; i < answerArr.length; i++) {
             System.out.println(answerArr[i]);
         }
+    }
 
+    static void printResult(boolean check, int result) {
         if (check) {
             System.out.println(result);
         } else {
             System.out.println("no");
         }
-
-        scan.close();
     }
 }

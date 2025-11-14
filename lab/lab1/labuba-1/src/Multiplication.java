@@ -1,44 +1,86 @@
-
+/*
+Задание:
+    Пусть любое число – это массив его цифр слева направо. Пример, число
+1234 – это массив [1,2,3,4].
+Дан массив целых чисел. Реализовать умножение двух чисел.
+ */
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Multiplication {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        System.out.print("Введите длину первого числа: ");
-        int len1 = scan.nextInt();
-        int[] number1 = new int[len1];
-        for (int i = 0; i < len1; i++) {
-            System.out.print("Введите " + (i + 1) + "-й элемент числа: ");
-            number1[i] = scan.nextInt();
-        }
 
-        System.out.print("Введите длину второго числа: ");
-        int len2 = scan.nextInt();
-        int[] number2 = new int[len2];
-        for (int i = 0; i < len2; i++) {
-            System.out.print("Введите " + (i + 1) + "-й элемент числа: ");
-            number2[i] = scan.nextInt();
-        }
+        int[] number1 = input(scan, "первого");
 
-        double num1 = 0;
-        int degree = 0;
-        for (int i = number1.length - 1; i >= 0; i--) {
-            num1 = num1 + number1[i] * Math.pow(10, degree);
-            degree += 1;
-        }
+        int[] number2 = input(scan, "второго");
 
-        double num2 = 0;
-        degree = 0;
-        for (int i = number2.length - 1; i >= 0; i--) {
-            num2 = num2 + number2[i] * Math.pow(10, degree);
-            degree += 1;
-        }
 
-        double answer = num1 * num2;
-        System.out.println("Результат умножения: " + answer);
+        double num1 = ArrayToNumber(number1);
+        double num2 = ArrayToNumber(number2);
+
+
+        double answer = multiply(num1, num2);
+
+        int[] Arr_Answer = NumberToArray(answer);
+        System.out.println("Результат в виде массива: " + Arrays.toString(Arr_Answer));
 
         scan.close();
+    }
+
+
+    public static int[] input(Scanner scan, String numberName) {
+        System.out.print("Введите длину " + numberName + " числа: ");
+        int len = scan.nextInt();
+        int[] number = new int[len];
+
+        for (int i = 0; i < len; i++) {
+            System.out.print("Введите " + (i + 1) + "-й элемент числа: ");
+            number[i] = scan.nextInt();
+        }
+
+        return number;
+    }
+
+
+    public static double ArrayToNumber(int[] numberArray) {
+        double num = 0;
+        int degree = 0;
+
+        for (int i = numberArray.length - 1; i >= 0; i--) {
+            num = num + numberArray[i] * Math.pow(10, degree);
+            degree += 1;
+        }
+
+        return num;
+    }
+
+
+    public static double multiply(double num1, double num2) {
+        return num1 * num2;
+    }
+
+    public static int[] NumberToArray(double answer) {
+        double temp = answer;
+        int count = 0;
+
+
+        while (temp >= 1) {
+            count++;
+            temp = Math.floor(temp / 10);
+        }
+
+
+        int[] Arr_Answer = new int[count];
+
+        temp = answer;
+        for (int i = count - 1; i >= 0; i--) {
+            Arr_Answer[i] = (int)(temp % 10);
+            temp = Math.floor(temp / 10);
+        }
+
+        return Arr_Answer;
     }
 }

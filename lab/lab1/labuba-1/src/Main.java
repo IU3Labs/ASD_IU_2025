@@ -1,11 +1,26 @@
-
+/*
+Задание:
+    Реализовать алгоритм бинарного поиска двумя способами.
+ */
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.print("Введите длину массива: ");
         Scanner scan = new Scanner(System.in);
+
+        int[] sortedArr = inputArray(scan);
+        sortArray(sortedArr);
+        printArray(sortedArr);
+
+        int isc = inputSearchNumber(scan);
+        scan.close();
+
+        searchNumbers(sortedArr, isc);
+    }
+
+    static int[] inputArray(Scanner scan) {
+        System.out.print("Введите длину массива: ");
         int len = scan.nextInt();
         int[] sortedArr = new int[len];
 
@@ -13,7 +28,12 @@ public class Main {
             System.out.print("Введите " + (i + 1) + "-й элемент массива: ");
             sortedArr[i] = scan.nextInt();
         }
+        return sortedArr;
+    }
 
+
+    static void sortArray(int[] sortedArr) {
+        int len = sortedArr.length;
         for (int i = 0; i < len - 1; i++) {
             for (int j = 0; j < len - i - 1; j++) {
                 if (sortedArr[j + 1] < sortedArr[j]) {
@@ -23,15 +43,20 @@ public class Main {
                 }
             }
         }
+    }
 
-        for (int i = 0; i < len; i++) {
+    static void printArray(int[] sortedArr) {
+        for (int i = 0; i < sortedArr.length; i++) {
             System.out.println(sortedArr[i]);
         }
+    }
 
+    static int inputSearchNumber(Scanner scan) {
         System.out.print("Введите искомое число: ");
-        int isc = scan.nextInt();
-        scan.close();
+        return scan.nextInt();
+    }
 
+    static void searchNumbers(int[] sortedArr, int isc) {
         int answer = bsearch(sortedArr, isc);
         System.out.println("Искомое число находится под номером: " + (answer + 1));
 
@@ -39,7 +64,7 @@ public class Main {
         System.out.println("Искомое число находится под номером: " + (answer + 1));
     }
 
-    private static int bsearch(int[] arr, int isc) {
+    static int bsearch(int[] arr, int isc) {
         int leftBorder = 0;
         int rightBorder = arr.length - 1;
         int indicator;
@@ -60,7 +85,7 @@ public class Main {
         return -1;
     }
 
-    private static int recBinSearch(int[] arr, int isc, int leftBorder, int rightBorder) {
+    static int recBinSearch(int[] arr, int isc, int leftBorder, int rightBorder) {
         if (leftBorder > rightBorder) {
             return -1;
         }
