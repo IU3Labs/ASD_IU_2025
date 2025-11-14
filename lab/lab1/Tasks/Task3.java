@@ -1,12 +1,9 @@
-/*Дан целочисленный массив. Верните число, частота встречи которого в
-массиве равна его значению. Если таких чисел нет, вернуть «-1». Если
-таких чисел несколько, вернуть наибольшее.
- */
+//Дан целочисленный массив. Верните число, частота встречи которого в
+//массиве равна его значению. Если таких чисел нет, вернуть «-1». Если
+//таких чисел несколько, вернуть наибольшее.
+
 
 package Tasks;
-
-
-import java.util.Scanner;
 
 public class Task3 {
     public static int ArrayFrequency(int[] array) {
@@ -26,13 +23,10 @@ public class Task3 {
     }
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("введите кол-во элементов в массиве: ");
-        int num = scan.nextInt();
-        int[] array = new int[num];
+        int[] array = Main.arrayWork();
         Main.fillArray(array);
         int p = ArrayFrequency(array);
-        System.out.println("результат" + p);
+        System.out.println("результат " + p);
 
 
     }

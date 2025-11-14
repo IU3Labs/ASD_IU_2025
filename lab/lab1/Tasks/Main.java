@@ -71,12 +71,19 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static int[] arrayWork() {
         Scanner scan = new Scanner(System.in);
-
         System.out.print("Введите количество элементов в массиве: ");
         int size = scan.nextInt();
         int[] array = new int[size];
+        return array;
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        int[] array = arrayWork();
+        //добавил отдельный класс для работы с массивом
 
         fillArray(array);
         bubbleSort(array);
