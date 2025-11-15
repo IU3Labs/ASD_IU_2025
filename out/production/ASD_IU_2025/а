@@ -1,0 +1,66 @@
+private void fixDeletion(Node node) {
+        while (node != root && node.color == BLACK) {
+            if (node == node.parent.left) {
+                Node sibling = node.parent.right;
+
+                if (sibling.color == RED) { // Case 1
+                    sibling.color = BLACK;
+                    node.parent.color = RED;
+                    rotateLeft(node.parent);
+                    sibling = node.parent.right;
+                }
+
+                if ((sibling.left == null || sibling.left.color == BLACK) &&
+                    (sibling.right == null || sibling.right.color == BLACK)) { // Case 2
+                    sibling.color = RED;
+                    node = node.parent;
+                } else {
+                    if (sibling.right == null || sibling.right.color == BLACK) { // Case 3
+                        if (sibling.left != null)
+                            sibling.left.color = BLACK;
+                        sibling.color = RED;
+                        rotateRight(sibling);
+                        sibling = node.parent.right;
+                    }
+                    // Case 4
+                    sibling.color = node.parent.color;
+                    node.parent.color = BLACK;
+                    if (sibling.right != null)
+                        sibling.right.color = BLACK;
+                    rotateLeft(node.parent);
+                    node = root;
+                }
+            } else { // симметрично
+                Node sibling = node.parent.left;
+
+                if (sibling.color == RED) {
+                    sibling.color = BLACK;
+                    node.parent.color = RED;
+                    rotateRight(node.parent);
+                    sibling = node.parent.left;
+                }
+
+                if ((sibling.left == null || sibling.left.color == BLACK) &&
+                    (sibling.right == null || sibling.right.color == BLACK)) {
+                    sibling.color = RED;
+                    node = node.parent;
+                } else {
+                    if (sibling.left == null || sibling.left.color == BLACK) {
+                        if (sibling.right != null)
+                            sibling.right.color = BLACK;
+                        sibling.color = RED;
+                        rotateLeft(sibling);
+                        sibling = node.parent.left;
+                    }
+
+                    sibling.color = node.parent.color;
+                    node.parent.color = BLACK;
+                    if (sibling.left != null)
+                        sibling.left.color = BLACK;
+                    rotateRight(node.parent);
+                    node = root;
+                }
+            }
+        }
+        node.color = BLACK;
+    }
