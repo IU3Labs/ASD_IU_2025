@@ -4,21 +4,21 @@
 
 import java.util.*;
 
-public class FrequentNums {
+public class TopKFrequentNums {
 
     static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        FrequentNums_C1 nums1 = new FrequentNums_C1();
+        TopKFrequentNums nums1 = new TopKFrequentNums();
         int[] nums = ArrayUtil.inputArray();
 
         System.out.println("Введите k:");
         int k1 = scanner.nextInt();
 
-        System.out.println("Вывод: " + Arrays.toString(nums1.FrequentNums(nums, k1)));
+        System.out.println("Вывод: " + Arrays.toString(nums1.FindFrequentNums(nums, k1)));
     }
 
-    public int[] FrequentNums(int[] nums, int k) {
+    public int[] FindFrequentNums(int[] nums, int k) {
         // Сортировка массива - O(n log n)
         Arrays.sort(nums);
 
@@ -58,3 +58,4 @@ public class FrequentNums {
 // = [Используем правило игнорирования констант] = O(n*log n)
 
 // --> Сложность алгоритма = O(n*log n)
+
