@@ -33,11 +33,13 @@ public class ThirdDopTask {
         }
         int[] ans = new int[2];
         for (int i = 0; i < massive3A.length; i++) { // Первый цикл, сложность алгоритма = 0+n
-            if (massive3A[i] < n) {
+            if (massive3A[i] <= n) {
                 massive3B[massive3A[i]] = i;
             }
         }
-        for (int j = 0; j < massive3B.length / 2 + 1; j++) { // Второй цикл, сложность алгоритма = n+ n/2 => линейна
+        for (int j = 0; j < massive3B.length; j++) {
+            // Второй цикл, сложность алгоритма = n+ n/2 => линейна
+//            print(massive3B);
             if (massive3B[j] != -1 & massive3B[n - j] != -1) {
                 ans[0] = massive3B[j];
                 ans[1] = massive3B[n - j];
