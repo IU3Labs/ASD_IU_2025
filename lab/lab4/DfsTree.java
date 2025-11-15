@@ -10,13 +10,8 @@ public class DfsTree {
 
     public static void main() {
         System.out.println("Инициализация дерева:");
-        TreeNode root =
-                new TreeNode(15,
-                        new TreeNode(6,
-                                new TreeNode(4, null, new TreeNode(7)), new TreeNode(9)),
-                        new TreeNode(35,
-                                new TreeNode(21, new TreeNode(25), null),
-                                new TreeNode(10, new TreeNode(33), new TreeNode(52))));
+        TreeNode root = TreeNode.inputTree();
+
         System.out.println("Значение элемента, который мы ищем:");
         int target = scanner.nextInt();
         System.out.println("Рекурсивный метод: Искомый элемент " +
