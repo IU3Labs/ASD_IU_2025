@@ -28,6 +28,9 @@ public class ThirdDopTask {
         int[] massive3A = inIntList(); // ввод
         int n = inNumber(); // ввод
         int[] massive3B = new int[n+1];
+        for (int i = 0; i < n; i++) {
+            massive3B[i] = -1;
+        }
         int[] ans = new int[2];
         for (int i = 0; i < massive3A.length; i++) { // Первый цикл, сложность алгоритма = 0+n
             if (massive3A[i] < n) {
@@ -35,7 +38,7 @@ public class ThirdDopTask {
             }
         }
         for (int j = 0; j < massive3B.length / 2 + 1; j++) { // Второй цикл, сложность алгоритма = n+ n/2 => линейна
-            if (massive3B[j] != 0 & massive3B[n - j] != 0) {
+            if (massive3B[j] != -1 & massive3B[n - j] != -1) {
                 ans[0] = massive3B[j];
                 ans[1] = massive3B[n - j];
                 return ans;
