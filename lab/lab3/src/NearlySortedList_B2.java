@@ -12,6 +12,8 @@ import java.util.*;
 
 public class NearlySortedList_B2 {
 
+    private static final Scanner scanner = new Scanner(System.in);
+
     static void nearlySorted(int[] arr, int k) {
         int n = arr.length;
 
@@ -33,8 +35,20 @@ public class NearlySortedList_B2 {
     }//O(N)*6*O(logK)=6*O(NlogK)~O(NlogK)
 
     public void main(){
-        int[] arr = {2,4,1,7,8,3,6,5,10,9};
-        int k = 3;
+
+        int n;
+        System.out.println("Введите количество элементов массива");
+        n = scanner.nextInt();
+        int[] arr = new int[n];
+
+        System.out.println("Введите элементы массива: "); //2,4,1,7,8,3,6,5,10,9   к=3
+        for(int i = 0; i<n; i++){
+            arr[i]=scanner.nextInt();
+        }
+
+        System.out.print("Введите степень отсортированности списка: ");
+        int k = scanner.nextInt();
+
         nearlySorted(arr,k);
         System.out.println(Arrays.toString(arr));
 
