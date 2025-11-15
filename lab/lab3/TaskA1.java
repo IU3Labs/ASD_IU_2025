@@ -11,14 +11,14 @@ public class TaskA1 {
      */
 
     /*
-     Обычный обход массива имеет сложность O(n).
-     В нашем случае в каждую итерацию основного обхода
-     мы заново обходим подмассив, что также имеет сложность O(n).
-     Итоговая сложность - O(n^2)
+     Первый метод рассматривает все пары элементов в массиве и имеет временную сложность O(n^2).
+     Второй метод использует алгоритм сортировки слиянием и имеет временную сложность O(n*log(n)),
+     однако использует дополнительную память, имея пространственную сложность O(n).
     */
     public static void main(String[] args) {
         int[] array = readArray();
-        System.out.println(countInversions(array));
+        System.out.println("Первый способ: " + countInversions(array));
+        System.out.println("Второй способ: " + countInversionsAlt(array));
     }
 
     public static int[] readArray() {
@@ -37,6 +37,12 @@ public class TaskA1 {
         return array;
     }
 
+    /*
+     Обычный обход массива имеет сложность O(n).
+     В нашем случае в каждую итерацию основного обхода
+     мы заново обходим подмассив, что также имеет сложность O(n).
+     Итоговая сложность - O(n^2)
+    */
     private static int countInversions(int[] arr) {
         int counter = 0;
 
@@ -48,5 +54,64 @@ public class TaskA1 {
         }
 
         return counter;
+    }
+
+    /*
+     Мы используем алгоритм сортировки слиянием,
+     подсчитывая количество инверсий в процессе объединения частей массива.
+     Сортировка слиянием имеет временную сложность O(n*log(n))
+     и пространственную сложность O(n).
+    */
+    private static int countInversionsAlt(int[] arr) {
+        return mergeSortAndCount(arr, 0, arr.length - 1);
+    }
+
+    private static int mergeSortAndCount(int[] arr, int left, int right) {
+        int counter = 0;
+
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+
+            // Рекурсивно считаем инверсии в левой и правой половинах
+            counter += mergeSortAndCount(arr, left, mid);
+            counter += mergeSortAndCount(arr, mid + 1, right);
+
+            // Считаем инверсии при слиянии
+            counter += mergeAndCount(arr, left, mid, right);
+        }
+
+        return counter;
+    }
+
+    private static int mergeAndCount(int[] arr, int left, int mid, int right) {
+        int[] leftArr = new int[mid - left + 1];
+        int[] rightArr = new int[right - mid];
+
+        // Копируем данные во временные массивы
+        System.arraycopy(arr, left, leftArr, 0, leftArr.length);
+        System.arraycopy(arr, mid + 1, rightArr, 0, rightArr.length);
+
+        int i = 0, j = 0, k = left;
+        int swaps = 0;
+
+        while (i < leftArr.length && j < rightArr.length) {
+            if (leftArr[i] <= rightArr[j]) {
+                arr[k++] = leftArr[i++];
+            } else {
+                arr[k++] = rightArr[j++];
+                swaps += (mid + 1) - (left + i);
+            }
+        }
+
+        // Копируем оставшиеся элементы
+        while (i < leftArr.length) {
+            arr[k++] = leftArr[i++];
+        }
+
+        while (j < rightArr.length) {
+            arr[k++] = rightArr[j++];
+        }
+
+        return swaps;
     }
 }
