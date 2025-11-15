@@ -7,11 +7,25 @@ public class BinarySearch {
         Scanner scanner = new Scanner(System.in);
         int[] sortedArray = Tools.getArray(scanner);
         System.out.println("Введите число: ");
-        int target1 = scanner.nextInt();
-        int result1 = binarySearchIterative(sortedArray, target1);
+        int target = scanner.nextInt();
+        bubbleSort(sortedArray);
+        int result1 = binarySearchIterative(sortedArray, target);
         System.out.println("Итеративный метод: " + result1);
-        int result2 = binarySearchRecursive(sortedArray, target1);
+        int result2 = binarySearchRecursive(sortedArray, target);
         System.out.println("Рекурсивный метод: " + result2);
+    }
+
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
     }
 
     public static int binarySearchIterative(int[] arr, int target) {
