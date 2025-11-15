@@ -1,36 +1,6 @@
 import java.util.Scanner;
 
 public class EqualityOfValueAndFrequency {
-
-    public static int findLuckyNumber(int[] numbers) {
-        int maxLuckyNumber = -1;
-
-        for (int i = 0; i < numbers.length; i++) {
-            int currentNumber = numbers[i];
-            int frequency = countFrequency(numbers, currentNumber);
-
-            if (isLuckyNumber(currentNumber, frequency) && currentNumber > maxLuckyNumber) {
-                maxLuckyNumber = currentNumber;
-            }
-        }
-
-        return maxLuckyNumber;
-    }
-
-    private static int countFrequency(int[] numbers, int target) {
-        int count = 0;
-        for (int number : numbers) {
-            if (number == target) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    private static boolean isLuckyNumber(int number, int frequency) {
-        return number == frequency;
-    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -43,7 +13,7 @@ public class EqualityOfValueAndFrequency {
             numbers[i] = scanner.nextInt();
         }
 
-        int result = findLuckyNumber(numbers);
+        int result = ArrayProcessor.findLuckyNumber(numbers);
         System.out.println("Result: " + result);
 
         scanner.close();
