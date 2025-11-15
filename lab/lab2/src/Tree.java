@@ -33,7 +33,7 @@ public class Tree {
             } else {
                 current = current.right;
             }
-        } /// двигаемся по массиву. Если наш элемент больше curr, то двигаемся вправо, иначе - влево
+        } ///двигаемся по массиву. Если наш элемент больше curr, то двигаемся вправо, иначе - влево
 
         Tree newNode = new Tree(key, "RED");
         newNode.parent = parent;
@@ -48,35 +48,43 @@ public class Tree {
     }
 
     private static void balancing(Tree root, Tree node) {
-        while (node != root && node.parent != null && node.parent.color.equals("RED")) {
+        while (node != root && node.parent != null && "RED".equals(node.parent.color)) {
             Tree pa = node.parent;
             Tree grandpa = pa.parent;
-            if (grandpa == null) {
-                break;
-            }
-            Tree uncle;
-            if (grandpa.right == pa) {
-                uncle = grandpa.left;
-            } else {
-                uncle = grandpa.right;
-            }
+            if (grandpa == null) break;
 
-            if (uncle != null && uncle.color.equals("RED")) { /// если дядя красный, то просто перекрашиваем дядю и папу в черный
-                uncle.color = "BLACK";
+            Tree uncle = (grandpa.left == pa) ? grandpa.right : grandpa.left;
+
+            // красный дядя - просто перекрашиваем дядю в черный, а деда в красный
+            if (uncle != null && "RED".equals(uncle.color)) {
                 pa.color = "BLACK";
+                uncle.color = "BLACK";
                 grandpa.color = "RED";
                 node = grandpa;
-            }
-            else { /// если дядя черный, то в зависимости от того, правый ли папа или левый, выполняем соответствующие повороты
-                if (grandpa.left == pa){
+            } else {
+                // черный дядя
+                if (pa == grandpa.left) {
+                    if (node == pa.right) {
+                        rotateLeft(root, pa); //нужен, чтобы привести поддерево к случаю, где необходим правый поворот
+                        node = pa;
+                    }
+                    //собственно делаем правый поворот(когда отец - левый потомок)
                     rotateRight(root, grandpa);
-                } else if (grandpa.right == pa){
+                } else {
+                    if (node == pa.left) {
+                        rotateRight(root, pa); //аналогично в другую сторону
+                        node = pa;
+                    }
+                    // Теперь всегда прямой левый кейс
                     rotateLeft(root, grandpa);
                 }
+                // Перекрашиваем после поворота
+                pa.color = "BLACK";
+                grandpa.color = "RED";
                 break;
             }
         }
-        root.color = "BLACK";
+        root.color = "BLACK"; //учитываем случай, если делаем поворот на руте
     }
 
     private static void rotateLeft(Tree root, Tree node) {
