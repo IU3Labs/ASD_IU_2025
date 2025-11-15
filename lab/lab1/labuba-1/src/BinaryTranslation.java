@@ -57,8 +57,6 @@ public class BinaryTranslation {
                 num1 = num1 + helpArr[j] * Math.pow(2, len1 - j - degree - 1);
             }
 
-            System.out.println(num1);
-
             if (num1 % del == 0) {
                 answer[i] = true;
             } else {

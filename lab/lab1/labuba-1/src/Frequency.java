@@ -46,45 +46,28 @@ public class Frequency {
 
     static void processFrequency(int[] arr) {
         int number = 0;
-        int result = 0;
-        boolean check = false;
+        int result = -1;
         int[] answerArr = new int[arr.length];
         answerArr[0] = 1;
 
         for (int i = 1; i < arr.length; i++) {
+
             if (arr[i] == arr[i - 1]) {
                 answerArr[number] += 1;
             } else {
                 if (Math.abs(arr[i - 1]) == answerArr[number]) {
-                    result = Math.abs(arr[i - 1]);
-                    check = true;
+                    result = Math.max(result, Math.abs(arr[i - 1]));
                 }
-                number += 1;
-                answerArr[number] += 1;
+                number++;
+                answerArr[number] = 1;
             }
         }
 
-        printArrays(arr, answerArr);
-        printResult(check, result);
-    }
 
-    static void printArrays(int[] arr, int[] answerArr) {
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+        if (Math.abs(arr[arr.length - 1]) == answerArr[number]) {
+            result = Math.max(result, Math.abs(arr[arr.length - 1]));
         }
 
-        System.out.println("        ");
-
-        for (int i = 0; i < answerArr.length; i++) {
-            System.out.println(answerArr[i]);
-        }
-    }
-
-    static void printResult(boolean check, int result) {
-        if (check) {
-            System.out.println(result);
-        } else {
-            System.out.println("no");
-        }
+        System.out.println(result);
     }
 }
