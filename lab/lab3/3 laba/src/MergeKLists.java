@@ -1,3 +1,8 @@
+
+//Дан целочисленный массив nums и целое число k, верните k наиболее
+//        часто встречающихся элементов. Вернуть ответ в любом порядке.
+//        Примечание. Сложность должна быть O(n*log(n)). Докажите сложность.
+
 import java.util.*;
 
 
@@ -8,33 +13,34 @@ class ListNode {
 }
 public class MergeKLists {
 
-    // Метод использует разделяй и властвуй
-    // Общая сложность: O(N log K)
+
+
     public static ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
 
-        // На каждом уровне мы объединяем списки попарно
-        //
-        // Количество уровней = log K
-        //
-        // На каждом уровне происходит слияние всех узлов (N)
-        //
-        // N * log K = O(N log K)
-
-        int interval = 1;
-
-        while (interval < lists.length) {
-            // Сливаем каждую пару списков:
-            for (int i = 0; i + interval < lists.length; i += interval * 2) {
-
-                // merge двух отсортированных списков O(a + b)
-                lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
+        // Сбор всех значений
+        List<Integer> allValues = new ArrayList<>();
+        for (ListNode list : lists) {           // O(K) итераций по спискам
+            while (list != null) {              // O(n_i) итераций для i-го списка
+                allValues.add(list.val);        // O(1) - амортизированная сложность
+                list = list.next;               // O(1)
             }
-
-            interval *= 2; // следующий уровень (делим K на 2)
         }
+        // O(N)
 
-        return lists[0];
+        // Сортировка всех значений
+        Collections.sort(allValues);            // O(N log N)
+
+        // Создание нового отсортированного списка
+        ListNode dummy = new ListNode(0);
+        ListNode current = dummy;
+        for (int val : allValues) {             // O(N) итераций
+            current.next = new ListNode(val);   // O(1)
+            current = current.next;             // O(1)
+        }
+        // O(N)
+
+        return dummy.next;
     }
 
 
