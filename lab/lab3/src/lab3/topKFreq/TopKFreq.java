@@ -84,14 +84,14 @@ public class TopKFreq {
         List<Integer> nums1 = Arrays.asList(1, 1, 1, 2, 2, 3);
         int k1 = 2;
         System.out.println("Input: " + nums1 + ", k = " + k1);
-        System.out.println("Output: " + topKFrequent(nums1, k1));
+        System.out.println("Output: " + topKFrequent(nums1, k1)); //[1, 2]
         System.out.println();
 
 //        Список символов
         List<Character> nums2 = Arrays.asList('a', 'a', 'a', 'b', 'b', 'c', 'd', 'd', 'd', 'd');
         int k2 = 2;
         System.out.println("Input: " + nums2 + ", k = " + k2);
-        System.out.println("Output: " + topKFrequent(nums2, k2));
+        System.out.println("Output: " + topKFrequent(nums2, k2)); //[d, a]
         System.out.println();
 
 
@@ -99,7 +99,7 @@ public class TopKFreq {
         List<Integer> nums3 = new ArrayList<>();
         int k3 = 2;
         System.out.println("Input: " + nums3 + ", k = " + k3);
-        System.out.println("Output: " + topKFrequent(nums3, k3));
+        System.out.println("Output: " + topKFrequent(nums3, k3)); //[]
         System.out.println();
 
     }
