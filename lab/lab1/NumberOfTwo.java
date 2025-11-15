@@ -1,29 +1,6 @@
 import java.util.Scanner;
 
 public class NumberOfTwo {
-
-    public static int calculateNumberOfTwo(int[] array) {
-        int min1 = Integer.MAX_VALUE;
-        int min2 = Integer.MAX_VALUE;
-
-        for (int value : array) {
-            if (value > 0) {
-                if (value < min1) {
-                    min2 = min1;
-                    min1 = value;
-                } else if (value < min2) {
-                    min2 = value;
-                }
-            }
-        }
-
-        if (min2 == Integer.MAX_VALUE) {
-            return -1;
-        }
-
-        return min1 + min2;
-    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -43,7 +20,7 @@ public class NumberOfTwo {
             array[i] = scanner.nextInt();
         }
 
-        int result = calculateNumberOfTwo(array);
+        int result = ArrayProcessor.calculateNumberOfTwo(array);
         System.out.println("Result: " + result);
 
         scanner.close();
