@@ -4,7 +4,7 @@
 
 import java.util.*;
 
-public class FrequentNums_C1 {
+public class FrequentNums {
 
     static final Scanner scanner = new Scanner(System.in);
 
@@ -56,4 +56,5 @@ public class FrequentNums_C1 {
 // Сложность: O(n*log n) + O(n) + O(m) + O(m*log m) + O(k) =
 // [Выделим преобладающую сложность - O(n*log n)] = O(2*n*log n) =
 // = [Используем правило игнорирования констант] = O(n*log n)
+
 // --> Сложность алгоритма = O(n*log n)
