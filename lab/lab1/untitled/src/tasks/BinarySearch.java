@@ -1,14 +1,16 @@
 package tasks;
+
 import java.util.Scanner;
 
+import static ArrayFunc.getSortedArray;
 
 public class BinarySearch {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int[] array = sortedArray(scanner);
-        int target = searchTarget(scanner);
+        int[] array = getSortedArray(scanner);
+        int target = getSearchTarget(scanner);
 
         System.out.print("Отсортированный массив: ");
         printArray(array);
@@ -19,36 +21,6 @@ public class BinarySearch {
 
         printSearchResult("Итеративный метод", resultIterative, target);
         printSearchResult("Рекурсивный метод", resultRecursive, target);
-
-
-    }
-
-    private static int[] sortedArray(Scanner scanner) {
-        System.out.print("Введите количество элементов в массиве: ");
-        int size = scanner.nextInt();
-
-        int[] array = new int[size];
-        System.out.println("Введите " + size + " элементов массива:");
-
-        for (int i = 0; i < size; i++) {
-            array[i] = scanner.nextInt();
-        }
-
-        sortArray(array);
-        return array;
-    }
-
-    private static void sortArray(int[] array) {
-        int n = array.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    int temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-            }
-        }
     }
 
     private static void printArray(int[] array) {
@@ -62,7 +34,7 @@ public class BinarySearch {
         System.out.println("]");
     }
 
-    private static int searchTarget(Scanner scanner) {
+    private static int getSearchTarget(Scanner scanner) {
         System.out.print("Введите элемент для поиска: ");
         return scanner.nextInt();
     }
@@ -89,7 +61,7 @@ public class BinarySearch {
     }
 
     private static int binarySearchRecursive(int[] array, int target) {
-        return binarySearchRecursiveHelper(array, target, 0, array.length - 1); // декоратор
+        return binarySearchRecursiveHelper(array, target, 0, array.length - 1);
     }
 
     private static int binarySearchRecursiveHelper(int[] array, int target, int left, int right) {

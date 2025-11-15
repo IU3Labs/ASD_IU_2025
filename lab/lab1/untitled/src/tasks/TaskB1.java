@@ -1,5 +1,8 @@
 package tasks;
+
 import java.util.Scanner;
+
+import static ArrayFunc.printArray;
 /*задание Б1: Дан целочисленный массив. Верните число, частота встречи которого в
 массиве равна его значению. Если таких чисел нет, вернуть «-1». Если
 таких чисел несколько, вернуть наибольшее.*/
@@ -57,15 +60,6 @@ public class TaskB1 {
             }
         }
         return count;
-    }
-
-    private static void printArray(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i]);
-            if (i < array.length - 1) {
-                System.out.print(", ");
-            }
-        }
     }
 
     private static void printResult(int result) {
