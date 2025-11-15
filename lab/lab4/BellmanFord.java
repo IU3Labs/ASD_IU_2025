@@ -9,6 +9,23 @@ public class BellmanFord {
     private List<String> nodes;
     private String startVertex;
 
+    public static void main(String[] args) {
+        BellmanFord bellmanFord = new BellmanFord();
+
+        bellmanFord.addEdge("A", "B", 8);
+        bellmanFord.addEdge("B", "C", -2);
+        bellmanFord.addEdge("A", "C", 10);
+        bellmanFord.addEdge("C", "D", 1);
+        bellmanFord.addEdge("B", "E", 6);
+        bellmanFord.addEdge("C", "B", 3);
+        bellmanFord.addEdge("A", "D", 14);
+        bellmanFord.addEdge("C", "E", 15);
+        bellmanFord.addEdge("E", "D", -5);
+
+        boolean success = bellmanFord.findShortestPaths("A");
+
+    }
+
     public BellmanFord() {
         this.graph = new HashMap<>();
         this.nodes = new ArrayList<>();
@@ -95,22 +112,5 @@ public class BellmanFord {
 
             System.out.println(node + "\t\t\t" + distanceStr + "\t\t\t" + predStr);
         }
-    }
-    
-    public static void main(String[] args) {
-        BellmanFord bellmanFord = new BellmanFord();
-
-        bellmanFord.addEdge("A", "B", 8);
-        bellmanFord.addEdge("B", "C", -2);
-        bellmanFord.addEdge("A", "C", 10);
-        bellmanFord.addEdge("C", "D", 1);
-        bellmanFord.addEdge("B", "E", 6);
-        bellmanFord.addEdge("C", "B", 3);
-        bellmanFord.addEdge("A", "D", 14);
-        bellmanFord.addEdge("C", "E", 15);
-        bellmanFord.addEdge("E", "D", -5);
-
-        boolean success = bellmanFord.findShortestPaths("A");
-
     }
 }
