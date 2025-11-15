@@ -2,31 +2,6 @@ import java.util.Scanner;
 
 public class ChangeNumBase {
 
-    public static String convertToBase(int number, int base) {
-        if (number == 0) {
-            return "0";
-        }
-
-        boolean isNegative = number < 0;
-        if (isNegative) {
-            number = -number;
-        }
-
-        String result = "";
-
-        while (number > 0) {
-            int remainder = number % base;
-            result = remainder + result;
-            number = number / base;
-        }
-
-        if (isNegative) {
-            result = "-" + result;
-        }
-
-        return result;
-    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -40,5 +15,31 @@ public class ChangeNumBase {
         System.out.println(number + " in base " + base + " = " + result);
 
         scanner.close();
+    }
+
+
+    public static String convertToBase(int number, int base) {
+        if (number == 0) {
+            return "0";
+        }
+
+        boolean isNegative = number < 0;
+        if (isNegative) {
+            number = -number;
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        while (number > 0) {
+            int remainder = number % base;
+            result.insert(0, remainder);
+            number = number / base;
+        }
+
+        if (isNegative) {
+            result.insert(0, "-");
+        }
+
+        return result.toString();
     }
 }
