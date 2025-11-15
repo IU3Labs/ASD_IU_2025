@@ -2,23 +2,6 @@ import java.util.Scanner;
 
 public class InversionCount {
 
-    public static int countInversions(int[] arr) {
-        int count = 0; // количество инверсий
-
-        // перебираем все элементы как потенциальные первые элементы пар
-        for (int i = 0; i < arr.length-1; i++) {
-            //перебираем все элементы справа от текущего
-            for (int j = i + 1; j < arr.length; j++) {
-                // если текущий элемент больше элемента справа - это инверсия
-                if (arr[i] > arr[j]) {
-                    count++;
-                }
-            }
-        }
-
-        return count;
-    }
-
     public static void main() {
         Scanner scanner = new Scanner(System.in);
 
@@ -34,6 +17,23 @@ public class InversionCount {
         System.out.println(countInversions(arr));
 
         scanner.close();
+    }
+
+    private static int countInversions(int[] arr) {
+        int count = 0; // количество инверсий
+
+        // перебираем все элементы как потенциальные первые элементы пар
+        for (int i = 0; i < arr.length-1; i++) {
+            //перебираем все элементы справа от текущего
+            for (int j = i + 1; j < arr.length; j++) {
+                // если текущий элемент больше элемента справа - это инверсия
+                if (arr[i] > arr[j]) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 }
 

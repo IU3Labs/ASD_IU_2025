@@ -6,7 +6,27 @@ import java.util.*;
 
 public class MaxCountElements {
 
-    public int[] maxCount(int[] nums, int k) {
+    public static void main() {
+        Scanner scanner = new Scanner(System.in);
+        MaxCountElements solution = new MaxCountElements();
+
+        System.out.println("Введите элементы массива через пробел: ");
+        String[] input = scanner.nextLine().split(" ");
+        int[] nums = new int[input.length];
+        for (int i = 0; i < input.length; i++) {
+            nums[i] = Integer.parseInt(input[i]);
+        }
+
+        System.out.println("Введите число k:");
+        int k = scanner.nextInt();
+
+        int[] result = solution.maxCount(nums, k);
+        System.out.println("K наиболее часто встречающихся элементов: " + Arrays.toString(result));
+
+        scanner.close();
+    }
+
+    private int[] maxCount(int[] nums, int k) {
         if (nums.length == 0) return new int[0];
 
         // найдем диапазон значений внутри массива
@@ -74,24 +94,4 @@ public class MaxCountElements {
     4. O(k) ≤ O(n) - формирование результата
     O(n*log(n))
     */
-
-    public static void main() {
-        Scanner scanner = new Scanner(System.in);
-        MaxCountElements solution = new MaxCountElements();
-
-        System.out.println("Введите элементы массива через пробел: ");
-        String[] input = scanner.nextLine().split(" ");
-        int[] nums = new int[input.length];
-        for (int i = 0; i < input.length; i++) {
-            nums[i] = Integer.parseInt(input[i]);
-        }
-
-        System.out.println("Введите число k:");
-        int k = scanner.nextInt();
-
-        int[] result = solution.maxCount(nums, k);
-        System.out.println("K наиболее часто встречающихся элементов: " + Arrays.toString(result));
-
-        scanner.close();
-    }
 }
