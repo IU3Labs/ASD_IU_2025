@@ -7,8 +7,8 @@ public class BinarySearch {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int[] array = SortedArray(scanner);
-        int target = SearchTarget(scanner);
+        int[] array = sortedArray(scanner);
+        int target = searchTarget(scanner);
 
         System.out.print("Отсортированный массив: ");
         printArray(array);
@@ -23,7 +23,7 @@ public class BinarySearch {
 
     }
 
-    private static int[] SortedArray(Scanner scanner) {
+    private static int[] sortedArray(Scanner scanner) {
         System.out.print("Введите количество элементов в массиве: ");
         int size = scanner.nextInt();
 
@@ -62,7 +62,7 @@ public class BinarySearch {
         System.out.println("]");
     }
 
-    private static int SearchTarget(Scanner scanner) {
+    private static int searchTarget(Scanner scanner) {
         System.out.print("Введите элемент для поиска: ");
         return scanner.nextInt();
     }
