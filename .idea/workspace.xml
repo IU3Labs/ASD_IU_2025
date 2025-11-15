@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="787a4ea0-52ce-4b8a-8a51-c3d7345a7547" name="Changes" comment="init commit">
+      <change afterPath="$PROJECT_DIR$/lab/lab2/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/model/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/service/PerformanceTester.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/tasks/CircularQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/tasks/CircularQueueDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/tasks/LRUCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/tasks/LRUCacheDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/tasks/MinStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/tasks/MinStackDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/tasks/UndoRedoStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab2/tasks/UndoRedoStackDemo.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "kiruhakur"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/kiruhakur/ASD_IU_2025.git",
+    "accountId": "bcfa964e-aea6-4bd5-af6d-c21786beb4c8"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="35VSLGAGTGqCG7XVJgj9HtrPHBd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/UserHomePig777/GIT/ASD_IU_2025/lab/lab2"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\UserHomePig777\GIT\ASD_IU_2025\lab\lab2" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="787a4ea0-52ce-4b8a-8a51-c3d7345a7547" name="Changes" comment="" />
+      <created>1763193688092</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763193688092</updated>
+    </task>
+    <task id="LOCAL-00001" summary="init commit">
+      <option name="closed" value="true" />
+      <created>1763193787536</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1763193787536</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="init commit" />
+  </component>
+</project>
