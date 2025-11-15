@@ -6,7 +6,7 @@
 
 import java.util.Scanner;
 
-public class FindMinElem_A5 {
+public class FindMinElem {
     static final Scanner scanner = new Scanner(System.in);
 
     public static void main() {
@@ -41,3 +41,4 @@ public class FindMinElem_A5 {
 // Тогда мы уменьшаем n до того, пока она не станет равной 1, причём каждая
 // итерация уменьшает размер массива в 2 раза, значит: n/(2^k) = 1, отсюда
 // 2^k = n и, следовательно, k = log n
+
