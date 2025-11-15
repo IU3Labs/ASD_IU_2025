@@ -6,8 +6,8 @@ public class JumpingSearch {
         int[] arr = Utils.readArray(scanner);
         int target = takeTarget(scanner);
 
-        arr = Utils.quickSort(arr, 0, arr.length - 1);
-        int target_index = Utils.jumpingSearch(arr, target);
+        int[] sorted_arr = Utils.quickSort(arr, 0, arr.length - 1);
+        int target_index = Utils.jumpingSearch(sorted_arr, target);
         showResults(arr, target_index);
     }
 
