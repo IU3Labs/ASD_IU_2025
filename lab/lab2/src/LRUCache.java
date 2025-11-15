@@ -1,27 +1,99 @@
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.HashMap;
 
-public class LRUCache extends LinkedHashMap<Integer, Integer> {
+class Node {
+    int key;
+    int value;
+    Node prev, next;
+    Node(int key, int value) {
+        this.key = key;
+        this.value = value;
+    }
+}
+
+public class LRUCache {
     private final int capacity;
+    private final HashMap<Integer, Node> map;
+    private Node head, tail;
 
     public LRUCache(int capacity) {
-        super(capacity, 0.75f, true);
         this.capacity = capacity;
+        map = new HashMap<>();
+        head = null;
+        tail = null;
     }
 
-    @Override
-    public Integer get(Object key) {
-        return super.getOrDefault(key, null);
+    // Получить значение по ключу
+    public int get(int key) {
+        Node node = map.get(key);
+        if (node == null) {
+            return -1;
+        }
+        moveToHead(node); // перемещаем в начало
+        return node.value;
     }
 
-    @Override
-    public Integer put(Integer key, Integer value) {
-        return super.put(key, value);
+    public void put(int key, int value) {
+        Node node = map.get(key);
+        if (node != null) {
+            node.value = value;
+            moveToHead(node);
+        } else {
+            node = new Node(key, value);
+            map.put(key, node);
+            addToHead(node);
+            if (map.size() > capacity) {
+                removeTail();
+            }
+        }
     }
 
+    // перемещение элемента в хед
+    private void moveToHead(Node node) {
+        if (node == head) return;
+        // Вытаскиваем узел из его места в таблице
+        if (node.prev != null) {
+            node.prev.next = node.next;
+        }
+        if (node.next != null) {
+            node.next.prev = node.prev;
+        }
+        if (node == tail) {
+            tail = node.prev;
+        }
+        // Вставляем на место хеда
+        node.prev = null;
+        node.next = head;
+        if (head != null) {
+            head.prev = node;
+        }
+        head = node;
+        if (tail == null) {
+            tail = node;
+        }
+    }
+    // добавление нового элемента
+    private void addToHead(Node node) {
+        node.prev = null;
+        node.next = head;
+        if (head != null) {
+            head.prev = node;
+        }
+        head = node;
+        if (tail == null) {
+            tail = node;
+        }
+    }
 
-    @Override
-    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
-        return size() > capacity;
+    // нужен, чтобы удалять последний элемент
+    private void removeTail() {
+        if (tail == null) return;
+        map.remove(tail.key); // убрать из хеш-таблицы
+        if (tail.prev != null) {
+            tail = tail.prev;
+            tail.next = null;
+        } else {
+            head = null;
+            tail = null;
+        }
     }
 }
