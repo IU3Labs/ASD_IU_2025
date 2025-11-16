@@ -1,0 +1,17 @@
+Index: lab/lab2/README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lab/lab2/README.md b/lab/lab2/README.md
+--- a/lab/lab2/README.md	(revision ac3cb15c5db2a90300d243f21d83fcc32b37bcbe)
++++ b/lab/lab2/README.md	(date 1763282394455)
+@@ -1,1 +1,3 @@
+-
++Михайлова Амелия Денисовна
++ИУ3-33Б
++mikhaylova.amelia@icloud.com
+diff --git a/lab/lab.iml b/lab/lab.iml
+new file mode 100644
