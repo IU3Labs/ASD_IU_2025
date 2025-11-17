@@ -8,7 +8,7 @@
 Обоснование временной сложности:
 В findTopKFrequent() первый цикл for имеет сложность O(n), т.к.
 он проходится по массиву numbers. Во втором цикле for итерация по
-карте частот. В худшем случае в ней будет n уникальный элементов.
+карте частот. В худшем случае в ней будет n уникальных элементов.
 Для каждого из уникальных элементов выполняется операция
 добавления в кучу, которая занимает O(log(K)). Если размер кучи
 становится больше K, также выполняется операция извлечения минимума, которая
@@ -21,7 +21,10 @@
 import structures.ElementFrequency;
 import structures.MinHeap;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class TaskC1 {
 
