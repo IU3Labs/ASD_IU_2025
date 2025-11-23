@@ -10,7 +10,7 @@
 
 public class RotatedSortedArrayMinimumFinder {
 
-    static void main() {
+    public static void main(String[] args) {
         int[] list = {4, 5, 7, 9, 10, 1, 2};
         System.out.println(findMinimum(list));
     }

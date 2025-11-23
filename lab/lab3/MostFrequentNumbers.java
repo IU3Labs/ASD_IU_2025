@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class MostFrequentNumbers {
 
-    static void main() {
+    public static void main(String[] args) {
         int[] nums = {1, 1, 4, 1, 2, 2, 3, 4, 4};
         int k = 2;
         for (int number : findMostFrequentNumbers(nums, k)) {
