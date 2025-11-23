@@ -60,10 +60,8 @@ public class CircularQueue {
         }
         System.out.println("]");
     }
-}
 
-class TestCircularQueue {
-    void main() {
+    public static void main() {
         CircularQueue circularQueue = new CircularQueue(10);
         for (int i = 0; i < 6; i++) {
             circularQueue.push(utils.random100());

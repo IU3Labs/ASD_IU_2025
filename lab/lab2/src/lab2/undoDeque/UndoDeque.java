@@ -117,10 +117,7 @@ public class UndoDeque {
         Collections.reverse(list);
         System.out.println(list.toString());
     }
-}
-
-class TestUndoDeque {
-    void main(String[] args) {
+    public static void main(String[] args) {
         UndoDeque stack = new UndoDeque();
         for (int i = 0; i < 4; i++) {
             stack.push(utils.random100());

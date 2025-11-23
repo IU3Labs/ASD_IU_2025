@@ -56,9 +56,6 @@ public class MinStack {
         System.out.println("min = " + minStack.peek());
     }
 
-}
-
-class TestMinStack{
     public static void main(String[] args) {
         MinStack minStack = new MinStack();
         minStack.push(6);

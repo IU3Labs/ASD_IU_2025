@@ -1,7 +1,6 @@
 package lab2.mainTask;
 
 import lab2.utils.*;
-
 import java.util.*;
 
 public class mainTask {
@@ -23,6 +22,7 @@ public class mainTask {
             hashSet.add(student);
             hashMap.put((long) i, student);
         }
+
 
         System.out.println("\nТестирование ArrayList");
         startTime = System.nanoTime();
@@ -56,6 +56,7 @@ public class mainTask {
         System.out.println("Взятие (Get) последнего элемента: " + (endTime - startTime) + " ns");
 //        3500 ns
 
+
         System.out.println("\nТестирование LinkedList");
         startTime = System.nanoTime();
         linkedList.add(studentNew1);
@@ -88,6 +89,7 @@ public class mainTask {
         System.out.println("Взятие (Get) последнего элемента: " + (endTime - startTime) + " ns");
 //        8000 ns
 
+
         System.out.println("\nТестирование HashSet");
 //        Добавление в начало или конец в прямом смысле не возможно
         startTime = System.nanoTime();
@@ -115,13 +117,13 @@ public class mainTask {
         endTime = System.nanoTime();
         System.out.println("Взятие центрального элемент (через преобразование в список): " + (endTime - startTime) + " ns");
 //        429443500 ns
-
         startTime = System.nanoTime();
         tempList = new ArrayList<>(hashSet);
         student = tempList.getLast();
         endTime = System.nanoTime();
         System.out.println("Взятие последнего элемента (через преобразование в список): " + (endTime - startTime) + " ns");
 //        417673200 ns
+
 
         System.out.println("\nТестирование HashMap");
 //        Добавление в начало или конец в прямом смысле не возможно
@@ -136,7 +138,6 @@ public class mainTask {
         endTime = System.nanoTime();
         System.out.println("Удаление элемента: " + (endTime - startTime) + " ns");
 //        13400 ns
-
         startTime = System.nanoTime();
         is_element = hashMap.containsKey((long)5000000);;
         endTime = System.nanoTime();
@@ -149,13 +150,11 @@ public class mainTask {
         endTime = System.nanoTime();
         System.out.println("Взятие центрального элемента (через преобразование в список): " + (endTime - startTime) + " ns");
 //        219283600 ns
-
         startTime = System.nanoTime();
         entries = new ArrayList<>(hashMap.entrySet());
         student = entries.getLast().getValue();
         endTime = System.nanoTime();
         System.out.println("Взятие последнего элемента (через преобразование в список): " + (endTime - startTime) + " ns");
 //        188893900 ns
-
     }
 }

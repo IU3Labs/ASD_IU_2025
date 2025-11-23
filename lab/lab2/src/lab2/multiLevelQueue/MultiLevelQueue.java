@@ -54,10 +54,7 @@ public class MultiLevelQueue {
         }
     }
 
-}
-
-class TestMultiLevelQueue {
-    void main() {
+    public static void main() {
         MultiLevelQueue queue = new MultiLevelQueue(3,10);
         queue.push(2,5);
         queue.push(2,6);

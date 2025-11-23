@@ -87,10 +87,7 @@ public class UndoStack {
         Collections.reverse(list);
         System.out.println(list.toString());
     }
-}
-
-class TestUndoStack {
-    void main(String[] args) {
+    public static void main(String[] args) {
         UndoStack stack = new UndoStack();
         for (int i = 0; i < 4; i++) {
             stack.push(utils.random100());
