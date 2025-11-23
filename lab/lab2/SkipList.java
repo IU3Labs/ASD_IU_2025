@@ -3,18 +3,6 @@ import java.util.Random;
 
 public class SkipList {
 
-    private static class Node {
-        int key;
-        int value;
-        Node[] next;
-
-        public Node(int key, int value, int level) {
-            this.key = key;
-            this.value = value;
-            this.next = new Node[level + 1];
-        }
-    }
-
     private static final double P = 0.25;
     private static final int MAX_LEVEL = 10;
 
@@ -28,6 +16,18 @@ public class SkipList {
         this.currentMaxLevel = 0;
         this.random = new Random();
         this.size = 0;
+    }
+
+    private static class Node {
+        int key;
+        int value;
+        Node[] next;
+
+        public Node(int key, int value, int level) {
+            this.key = key;
+            this.value = value;
+            this.next = new Node[level + 1];
+        }
     }
 
     public int get(int key) {
