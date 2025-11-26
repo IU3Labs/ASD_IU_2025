@@ -55,6 +55,14 @@ public class Task0 {
         XORLinkedListMeas.measureSingleDeleteTail(XORLinkedListTest);
         XORLinkedListMeas.measureGetMiddle(XORLinkedListTest);
         XORLinkedListMeas.measureGetLast(XORLinkedListTest);
+
+
+        // LRUCache
+        LRUCache<Long, Student> lruCache = LRUCacheMeas.createLRUCache(arrayListTest, 10_000_000);
+        LRUCacheMeas.measureSinglePut(lruCache, new Student(10_000_001L, "LastStudent"), "first student");
+        LRUCacheMeas.measureGetMiddle(lruCache, new Student(5_000_000L, "Student_5000000"));
+        LRUCacheMeas.measureGetLast(lruCache);
+
     }
 
 

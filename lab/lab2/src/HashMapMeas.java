@@ -17,7 +17,7 @@ public class HashMapMeas {
 
     // Добавить элемент
     public static void measureSingleAdd(HashMap<Long, Student> map, Student newStudent, String operationName) {
-        GeneralUtil.measureNs("HashMap single adding element" + operationName, () -> map.get(newStudent.getId()));
+        GeneralUtil.measureNs("HashMap single adding element " + operationName, () -> map.get(newStudent.getId()));
     }
 
     // Получить центральный
