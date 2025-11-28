@@ -1,3 +1,7 @@
+/*
+Группа А. Алгоритмические задачи
+Реализуйте перевод из римских чисел в арабские
+ */
 import java.util.Scanner;
 
 public class GroupA_Task2 {
