@@ -4,63 +4,50 @@
 import java.util.HashMap;
 import java.util.Map;
 
-//узел двусвязного списка
-class Node {
-    int key;
-    int value;
-    Node prev;
-    Node next;
-
-    public Node(int key, int value) {
-        this.key = key;
-        this.value = value;
-    }
-}
-
 public class LRUCache {
 
     private final int capacity; //максимальная ёмкость кэша
-    private final Map<Integer, Node> cache; //хеш-таблица
-    private final Node head; //"головной" узел (начало списка)
-    private final Node tail; //"хвостовой" узел (конец списка)
+    private final Map<Integer, DoublyNode> cache; //хеш-таблица
+    private final DoublyNode head; //"головной" узел (начало списка)
+    private final DoublyNode tail; //"хвостовой" узел (конец списка)
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
         this.cache = new HashMap<>();
 
-        this.head = new Node(0, 0);
-        this.tail = new Node(0, 0);
+        this.head = new DoublyNode(0, 0);
+        this.tail = new DoublyNode(0, 0);
 
         head.next = tail;
         tail.prev = head;
     }
 
-    private void addToHead(Node node) { //добавления узла в начало списка
+    private void addToHead(DoublyNode node) { //добавления узла в начало списка
         node.prev = head; //узел ссылается на head
         node.next = head.next; //узел ссылается на бывший первый элемент
         head.next.prev = node; //бывший первый элемент теперь ссылается на новый узел
         head.next = node; //head ссылается на новый узел
     }
 
-    private void removeNode(Node node) { //удаление узла из списка
+    private void removeNode(DoublyNode node) { //удаление узла из списка
         node.prev.next = node.next; //предыдущий узел ссылается на следующий
         node.next.prev = node.prev; //следующий узел ссылается на предыдущий
     }
 
-    private void moveToHead(Node node) { //перемещение узла в начало списка
+    private void moveToHead(DoublyNode node) { //перемещение узла в начало списка
         removeNode(node);
         addToHead(node);
     }
 
-    private Node popTail() { //удаление наименее использованного узла
-        Node lastNode = tail.prev; //хвостовой узел — это последний реальный узел
+    private DoublyNode popTail() { //удаление наименее использованного узла
+        DoublyNode lastNode = tail.prev; //хвостовой узел — это последний реальный узел
         removeNode(lastNode); //удаляем его из списка
         return lastNode; //возвращаем для удаления из мапы
     }
 
 
     public int get(int key) { //получение значения по ключу
-        Node node = cache.get(key); //ищем узел в мапе
+        DoublyNode node = cache.get(key); //ищем узел в мапе
 
         if (node == null) {
             return -1;
@@ -71,15 +58,15 @@ public class LRUCache {
     }
 
     public void put(int key, int value) { //вставка нового эл-та
-        Node node = cache.get(key); //проверяем, существует ли ключ
+        DoublyNode node = cache.get(key); //проверяем, существует ли ключ
 
         if (node == null) { //если нет, то создаем новый узел
-            Node newNode = new Node(key, value);
+            DoublyNode newNode = new DoublyNode(key, value);
             cache.put(key, newNode);
             addToHead(newNode);
 
             if (cache.size() > capacity) { //проверка на переполнение
-                Node tailNode = popTail();
+                DoublyNode tailNode = popTail();
                 cache.remove(tailNode.key);
             }
         } else { //если есть то обновляем значение
