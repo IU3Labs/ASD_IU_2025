@@ -1,6 +1,8 @@
+/**
+ * Группа А. Задание 4
+ * Реализовать поиск в дереве в ширину двумя способами.
+ * */
 import java.util.*;
-
-
 public class BFS {
 
     static class Node {

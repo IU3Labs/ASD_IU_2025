@@ -1,5 +1,10 @@
+/**
+ * Группа А. Задание 1.
+ * В ориентированном взвешенном графе с отрицательными и
+ * положительными весами ребер найти кратчайший путь между
+ * двумя вершинами (Bellman--Ford algorithm).
+ * */
 import java.util.*;
-
 public class BF {
     static class Edge { // класс-структура для ребра графа: откуда, куда и какой вес
         int from, to, weight;
@@ -44,8 +49,7 @@ public class BF {
             }
 
             for (Edge e : edges) {
-                if (dist[e.from] != Integer.MAX_VALUE &&
-                        dist[e.from] + e.weight < dist[e.to]) {
+                if (dist[e.from] != Integer.MAX_VALUE && dist[e.from] + e.weight < dist[e.to]) {
                     System.out.println("Обнаружен отрицательный цикл — поиск невозможен.");
                     return;
                 }

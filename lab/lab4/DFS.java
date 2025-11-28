@@ -1,5 +1,8 @@
+/**
+ * Группа А. Задание 3
+ * Реализовать поиск в дереве в глубину двумя способами.
+ * */
 import java.util.*;
-
 public class DFS {
 
     static class Node {
