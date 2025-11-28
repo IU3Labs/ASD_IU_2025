@@ -4,14 +4,8 @@
 
 public class SumOfTwoMin {
     public static void main(String[] args){
-        int[] array = ArrayMethods.newArray();
+        int[] array = getValidArray();
 
-        int length = array.length;
-
-        if (length < 5){
-            System.out.println("Минимальное количество элементов - 5");
-            main(args);
-        }
         int sum = sum(array);
         if(sum == -1){
             System.out.println("В массиве нет двух положительных чисел");
@@ -19,7 +13,16 @@ public class SumOfTwoMin {
         else{
             System.out.println(sum);
         }
+    }
 
+    private static int[] getValidArray() {
+        int[] array = ArrayMethods.newArray();
+
+        while (array.length < 5) {
+            System.out.println("Минимальное количество элементов - 5. Повторите ввод:");
+            array = ArrayMethods.newArray();
+        }
+        return array;
     }
     private static int sum(int[] array){
         int min1 = Integer.MAX_VALUE;

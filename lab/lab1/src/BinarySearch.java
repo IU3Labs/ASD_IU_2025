@@ -15,21 +15,20 @@ public class BinarySearch {
     }
 
     public static void binarySearchIterative(int[] array, int target){
-        int left = 0;
-        int right = array.length - 1;
-        int index;
+        int startIndex = 0;
+        int endIndex = array.length - 1;
 
-        while (left <= right){
-            index = left + (right - left) / 2;
-            if (array[index] == target){
-                System.out.println("Индекс: " + index);
+        while (startIndex <= endIndex){
+            int middleIndex = startIndex + (endIndex - startIndex) / 2;
+            if (array[middleIndex] == target){
+                System.out.println("Индекс: " + middleIndex);
                 return;
             }
-            else if (array[index] < target){
-                left = index + 1;
+            else if (array[middleIndex] < target){
+                startIndex = middleIndex + 1;
             }
             else{
-                right = index - 1;
+                endIndex = middleIndex - 1;
             }
         }
         System.out.println("Элемент не найден");
@@ -39,21 +38,21 @@ public class BinarySearch {
         binarySearchRecursive(array, target, 0, array.length - 1);
     }
 
-    public static void binarySearchRecursive(int[] array, int target, int left, int right){
-        if (left > right){
+    public static void binarySearchRecursive(int[] array, int target, int startIndex, int endIndex){
+        if (startIndex > endIndex){
             System.out.println("Элемент не найден");
             return;
         }
-        int index = left + (right - left) / 2;
+        int middleIndex = startIndex + (endIndex - startIndex) / 2;
 
-        if (array[index] == target){
-            System.out.println("Индекс: " + index);
+        if (array[middleIndex] == target){
+            System.out.println("Индекс: " + middleIndex);
         }
-        else if (array[index] < target){
-            binarySearchRecursive(array, target, index + 1, right);
+        else if (array[middleIndex] < target){
+            binarySearchRecursive(array, target, middleIndex + 1, endIndex);
         }
         else{
-            binarySearchRecursive(array, target, left, index - 1);
+            binarySearchRecursive(array, target, startIndex, middleIndex - 1);
         }
     }
 
