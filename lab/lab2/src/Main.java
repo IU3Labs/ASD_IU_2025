@@ -5,8 +5,8 @@ import tasks.task3.TaskB3;
 
 void main() {
 
-    //Task0.task0();
-    //TaskB1.taskB1();
-    //TaskB2.taskB2();
+    Task0.task0();
+    TaskB1.taskB1();
+    TaskB2.taskB2();
     TaskB3.taskB3();
 }
