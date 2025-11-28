@@ -4,7 +4,7 @@ public class BinarySearchRecurtion {
 
     public static void main(String[] args) {
         int[] array = Additionals.inputArray();
-        Additionals.instertionSort(array);
+        Additionals.insertionSort(array);
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите элемент для поиска: ");
         int target = scanner.nextInt();

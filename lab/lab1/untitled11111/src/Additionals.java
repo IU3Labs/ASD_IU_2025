@@ -75,7 +75,7 @@ public class Additionals {
     }
 
 
-    public static void instertionSort(int[] arr) {
+    public static void insertionSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int current = arr[i];
             int j = i - 1;
