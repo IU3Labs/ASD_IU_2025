@@ -4,8 +4,8 @@ import java.util.Map;
  * LRU (Least Recently Used) Cache - кэш с вытеснением наименее используемых элементов
  * Реализация: двусвязный список + хеш-таблица для доступа O(1)
  */
-class LRU_Cache<K, V> {
-    public  LRU_Cache(int capacity) {
+class LRUCache<K, V> {
+    public  LRUCache(int capacity) {
         this.capacity = capacity;
         this.cache = new HashMap<>();
         this.head = new Node(null, null);
