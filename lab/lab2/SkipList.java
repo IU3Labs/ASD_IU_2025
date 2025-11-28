@@ -11,13 +11,13 @@ public class SkipList {
     private int level = 0; // текущий верхний уровень
     private final Random rnd = new Random();
 
-    // Узел списка: value и массив указателей forward по уровням
+
     private static class Node {
         int value;
         Node[] forward;
         Node(int value, int level) {
             this.value = value;
-            this.forward = new Node[level + 1]; // уровни от 0 до level
+            this.forward = new Node[level + 1];
         }
     }
 
@@ -28,12 +28,12 @@ public class SkipList {
         return lvl;
     }
 
-    // Вставка (insert). Если значение уже есть — ничего не делает.
+    // Вставка (insert)
     public void insert(int value) {
         Node[] update = new Node[MAX_LEVEL + 1];
         Node current = head;
 
-        // 1) Находим позиции (update[i]) для каждого уровня, от верхнего к 0
+
         for (int i = level; i >= 0; i--) {
             while (current.forward[i] != null && current.forward[i].value < value) {
                 current = current.forward[i];
@@ -41,19 +41,19 @@ public class SkipList {
             update[i] = current;
         }
 
-        // 2) Переходим на уровень 0 — проверяем, нет ли уже такого значения
+
         current = current.forward[0];
         if (current != null && current.value == value) return; // уже есть
 
-        // 3) Генерируем уровень для нового узла
+
         int lvl = randomLevel();
         if (lvl > level) {
-            // инициализируем update для новых уровней указанием на head
+
             for (int i = level + 1; i <= lvl; i++) update[i] = head;
             level = lvl;
         }
 
-        // 4) Вставляем новый узел, перенастраивая forward указатели
+
         Node newNode = new Node(value, lvl);
         for (int i = 0; i <= lvl; i++) {
             newNode.forward[i] = update[i].forward[i];
@@ -61,7 +61,7 @@ public class SkipList {
         }
     }
 
-    // Поиск (search). Возвращает true если значение найдено.
+    // Поиск (search)
     public boolean search(int value) {
         Node current = head;
         for (int i = level; i >= 0; i--) {
@@ -73,12 +73,12 @@ public class SkipList {
         return current != null && current.value == value;
     }
 
-    // Удаление (delete). Возвращает true если узел был удалён.
+
     public boolean delete(int value) {
         Node[] update = new Node[MAX_LEVEL + 1];
         Node current = head;
 
-        // 1) Находим update[] как при вставке
+
         for (int i = level; i >= 0; i--) {
             while (current.forward[i] != null && current.forward[i].value < value) {
                 current = current.forward[i];
@@ -86,22 +86,22 @@ public class SkipList {
             update[i] = current;
         }
 
-        // 2) Проверяем следующий узел на уровне 0
+
         current = current.forward[0];
         if (current == null || current.value != value) return false; // нет такого
 
-        // 3) Перепривязываем указатели, пропуская current
+
         for (int i = 0; i <= level; i++) {
             if (update[i].forward[i] != current) break;
             update[i].forward[i] = current.forward[i];
         }
 
-        // 4) Снижаем уровень, если верхние стали пустыми
+
         while (level > 0 && head.forward[level] == null) level--;
         return true;
     }
 
-    // Быстрая печать уровня 0 для проверки
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -113,7 +113,7 @@ public class SkipList {
         return sb.toString().trim();
     }
 
-    // Демонстрация
+
     public static void main(String[] args) {
         SkipList sl = new SkipList();
         sl.insert(10);
