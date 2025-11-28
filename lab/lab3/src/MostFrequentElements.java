@@ -9,7 +9,7 @@ public class MostFrequentElements {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int[] nums=ArrayTools.createArray();
+        int[] nums = ArrayTools.createArray();
         System.out.println("k: ");
         int k = scanner.nextInt();
 

@@ -32,4 +32,3 @@ public class ArrayTools {
         System.out.println();
     }
 }
-
