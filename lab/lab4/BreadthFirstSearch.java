@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class BreadthFirstSearch {
-    public static void main() {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Tree tree = Utility.createTree(scanner);
         int target = Utility.inputTarget(scanner);
