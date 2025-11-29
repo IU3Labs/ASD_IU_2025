@@ -1,18 +1,15 @@
 import java.util.Scanner;
+
 //2 Реализуйте перевод из римских чисел в арабские.
 public class RomanToArabicConverter {
 
-    private static int romanToValue(char romanChar) {
-        switch (romanChar) {
-            case 'I': return 1;
-            case 'V': return 5;
-            case 'X': return 10;
-            case 'L': return 50;
-            case 'C': return 100;
-            case 'D': return 500;
-            case 'M': return 1000;
-            default: return 0;
-        }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите число римскими цифрами: ");
+        String romanInput = scanner.nextLine().toUpperCase();
+
+        int arabicNumber = convertRomanToArabic(romanInput);
+        System.out.println("Число в арабской системе: " + arabicNumber);
     }
 
     public static int convertRomanToArabic(String romanNumber) {
@@ -30,12 +27,16 @@ public class RomanToArabicConverter {
         return result;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите число римскими цифрами: ");
-        String romanInput = scanner.nextLine().toUpperCase();
-
-        int arabicNumber = convertRomanToArabic(romanInput);
-        System.out.println("Число в арабской системе: " + arabicNumber);
+    private static int romanToValue(char romanChar) {
+        switch (romanChar) {
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+            default: return 0;
+        }
     }
 }

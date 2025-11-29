@@ -1,8 +1,29 @@
 import java.util.Scanner;
-//1 Дан целочисленный массив. Верните число, частота встречи которого в
-//массиве равна его значению. Если таких чисел нет, вернуть «-1». Если
-//таких чисел несколько, вернуть наибольшее.
+
+// 1. Дан целочисленный массив. Верните число, частота встречи которого в
+// массиве равна его значению. Если таких чисел нет — вернуть -1.
+// Если таких чисел несколько — вернуть наибольшее.
 public class FrequencyChecker {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите количество элементов: ");
+        int size = scanner.nextInt();
+
+        int[] numbers = readArray(size, scanner);
+
+        checkFrequency(numbers, size);
+    }
+
+    public static int[] readArray(int size, Scanner scanner) {
+        int[] numbers = new int[size];
+        for (int i = 0; i < size; i++) {
+            System.out.println("Введите элемент " + (i + 1) + ": ");
+            numbers[i] = scanner.nextInt();
+        }
+        return numbers;
+    }
 
     private static void checkFrequency(int[] numbers, int size) {
         int result = -1;
@@ -22,24 +43,5 @@ public class FrequencyChecker {
         }
 
         System.out.println("Результат: " + result);
-    }
-
-    public static int[] readArray(int size, Scanner scanner) {
-        int[] numbers = new int[size];
-        for (int i = 0; i < size; i++) {
-            System.out.println("Введите элемент " + (i + 1) + ": ");
-            numbers[i] = scanner.nextInt();
-        }
-        return numbers;
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите количество элементов: ");
-        int size = scanner.nextInt();
-
-        int[] numbers = readArray(size, scanner);
-
-        checkFrequency(numbers, size);
     }
 }

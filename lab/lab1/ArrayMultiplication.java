@@ -1,10 +1,31 @@
 import java.util.Scanner;
-//Пусть любое число – это массив его цифр слева направо. Пример, число
-//1234 – это массив [1,2,3,4].
-//Дан массив целых чисел. Реализовать умножение двух чисел.
-//Пример, [1, 2, 3, 4] * [1, 1] = [1, 3, 5, 7, 4].
-//Результат – число, представленное массивом.
+
+// Пусть любое число – это массив его цифр слева направо.
+// Пример: 1234 → [1, 2, 3, 4]
+// Реализовать умножение двух чисел, представленных массивами.
+
 public class ArrayMultiplication {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите первое число: ");
+        String firstNumberStr = scanner.nextLine();
+
+        System.out.println("Введите второе число: ");
+        String secondNumberStr = scanner.nextLine();
+
+        int[] number1 = stringToDigitsArray(firstNumberStr);
+        int[] number2 = stringToDigitsArray(secondNumberStr);
+
+        int[] product = multiplyArrays(number1, number2);
+
+        System.out.print("Результат умножения: ");
+        for (int digit : product) {
+            System.out.print(digit);
+        }
+        System.out.println();
+    }
 
     public static int[] multiplyArrays(int[] num1, int[] num2) {
         int n1 = num1.length;
@@ -40,26 +61,5 @@ public class ArrayMultiplication {
             digits[i] = numberStr.charAt(i) - '0';
         }
         return digits;
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Введите первое число: ");
-        String firstNumberStr = scanner.nextLine();
-
-        System.out.println("Введите второе число: ");
-        String secondNumberStr = scanner.nextLine();
-
-        int[] number1 = stringToDigitsArray(firstNumberStr);
-        int[] number2 = stringToDigitsArray(secondNumberStr);
-
-        int[] product = multiplyArrays(number1, number2);
-
-        System.out.print("Результат умножения: ");
-        for (int digit : product) {
-            System.out.print(digit);
-        }
-        System.out.println();
     }
 }

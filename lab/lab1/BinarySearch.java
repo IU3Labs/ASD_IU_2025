@@ -1,6 +1,29 @@
 import java.util.Scanner;
-//Реализовать алгоритм бинарного поиска двумя способами.
+
+// Реализовать алгоритм бинарного поиска двумя способами.
 public class BinarySearch {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите количество элементов массива: ");
+        int n = scanner.nextInt();
+
+        int[] array = new int[n];
+        System.out.print("Введите элементы массива по возрастанию: ");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        System.out.println("Введите положительное число: ");
+        int target = scanner.nextInt();
+
+        int idxIter = binarySearchIterative(array, target);
+        printResult(idxIter, array, "Итеративный поиск");
+
+        int idxRec = binarySearchRecursive(array, target, 0, array.length - 1);
+        printResult(idxRec, array, "Рекурсивный поиск");
+    }
 
     public static int binarySearchIterative(int[] array, int target) {
         int left = 0;
@@ -43,28 +66,5 @@ public class BinarySearch {
         } else {
             System.out.println(methodName + " — Не нашли :(");
         }
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Введите количество элементов массива: ");
-        int n = scanner.nextInt();
-
-        int[] array = new int[n];
-        System.out.print("Введите элементы массива по возрастанию: ");
-        for (int i=0; i<n; i++){
-            array[i] = scanner.nextInt();
-        }
-
-        System.out.println("Введите положительное число: ");
-        int target = scanner.nextInt();
-
-
-        int idxIter = binarySearchIterative(array, target);
-        printResult(idxIter, array, "Итеративный поиск");
-
-        int idxRec = binarySearchRecursive(array, target, 0, array.length - 1);
-        printResult(idxRec, array, "Рекурсивный поиск");
     }
 }
