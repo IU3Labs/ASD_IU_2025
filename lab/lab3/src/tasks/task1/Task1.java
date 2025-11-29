@@ -39,8 +39,7 @@ public class Task1 {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Введите элементы массива через пробел: ");
-        scanner.nextLine(); // Очистка буфера
-
+        
         String input = scanner.nextLine();
         String[] inputArray = input.split(" ");
         int[] nums = new int[inputArray.length];
