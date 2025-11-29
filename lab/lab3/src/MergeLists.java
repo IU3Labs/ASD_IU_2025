@@ -8,7 +8,7 @@ public class MergeLists {
     private static LinkedList<Integer> mergeLists(LinkedList<Integer> first, LinkedList<Integer> second){
         LinkedList<Integer> mergedList = new LinkedList<Integer>();
 
-        while ((first.peekFirst()!=null)&&(second.peekFirst()!=null)){ // Перебираем элементы поочередно, забирая по по одному => ложность O(N)
+        while ((first.peekFirst()!=null)&&(second.peekFirst()!=null)){ // Перебираем элементы поочередно, забирая по по одному => сложность O(N)
             if (first.peekFirst()>second.peekFirst()){
                 mergedList.add(second.poll());
             } else {
