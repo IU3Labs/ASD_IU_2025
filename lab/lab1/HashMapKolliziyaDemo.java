@@ -2,6 +2,9 @@ package lab1;
 
 import java.util.HashMap;
 
+// ЗАДАНИЕ:
+// "демо коллизий хэшмапы"
+
 public class HashMapKolliziyaDemo {
     public static void main(String[] args) {
 
@@ -11,6 +14,6 @@ public class HashMapKolliziyaDemo {
 
         System.out.println(map.get(1));
         System.out.println("Вот коллизия :) [Бибы нет :(((((]");
-        
+
     }
 }
