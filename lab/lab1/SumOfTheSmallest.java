@@ -9,12 +9,12 @@ public class SumOfTheSmallest {
         System.out.println("Введите количество элементов массиве: ");
         n = scanner.nextInt();
         int[] arr = new int[n];
-        array_fill(arr, n);
-        int result = min_sum(arr, n);
+        arrayFill(arr, n);
+        int result = minSum(arr, n);
         System.out.println("Результат: " + result);
     }
 
-    public static void array_fill(int[] arr, int n) {
+    public static void arrayFill(int[] arr, int n) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите элементы массива: ");
         for (int i = 0; i < n; i++) {
@@ -22,28 +22,28 @@ public class SumOfTheSmallest {
         }
     }
 
-    public static int min_sum(int[] arr, int n) {
-        int max_elem = 0;
+    public static int minSum(int[] arr, int n) {
+        int maxElem = 0;
         for (int i = 0; i < n; i++) {
-            if (arr[i] > max_elem) {
-                max_elem = arr[i];
+            if (arr[i] > maxElem) {
+                maxElem = arr[i];
             }
         }
 
-        int min_elem1 = max_elem;
+        int minElem1 = maxElem;
         for (int i = 0; i < n; i++) {
-            if (arr[i] > 0 && arr[i] < min_elem1) {
-                min_elem1 = arr[i];
+            if (arr[i] > 0 && arr[i] < minElem1) {
+                minElem1 = arr[i];
             }
         }
 
-        int min_elem2 = max_elem;
+        int minElem2 = maxElem;
         for (int i = 0; i < n; i++) {
-            if (arr[i] > 0 && arr[i] < min_elem2 && arr[i] != min_elem1) {
-                min_elem2 = arr[i];
+            if (arr[i] > 0 && arr[i] < minElem2 && arr[i] != minElem1) {
+                minElem2 = arr[i];
             }
         }
 
-        return min_elem1 + min_elem2;
+        return minElem1 + minElem2;
     }
 }

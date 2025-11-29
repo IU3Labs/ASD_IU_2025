@@ -9,12 +9,12 @@ public class Frequency {
         System.out.println("Введите количество элементов массиве: ");
         n = scanner.nextInt();
         int[] arr = new int[n];
-        array_fill(arr, n);
-        int result = num_frequency(arr, n);
+        arrayFill(arr, n);
+        int result = numFrequency(arr, n);
         System.out.println("Результат: " + result);
     }
 
-    public static void array_fill(int[] arr, int n) {
+    public static void arrayFill(int[] arr, int n) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите элементы массива: ");
         for (int i = 0; i < n; i++) {
@@ -22,7 +22,25 @@ public class Frequency {
         }
     }
 
-    public static int count(int[] arr, int n, int x) {
+    public static int numFrequency(int[] arr, int n) {
+        int[] items = new int[n];
+        int itemNum = 0;
+        for (int i = 0; i < n; i++) {
+            if (Count(arr, n, arr[i]) == arr[i]) {
+                items[itemNum] = arr[i];
+                itemNum++;
+            }
+        }
+        if (itemNum > 0) {
+            if (itemNum > 1) {
+                return maxNum(items, itemNum);
+            }
+            return items[0];
+        }
+        return -1;
+    }
+
+    public static int Count(int[] arr, int n, int x) {
         int k = 0;
         for (int i = 0; i < n; i++) {
             if (arr[i] == x) {
@@ -31,7 +49,7 @@ public class Frequency {
         }
         return k;
     }
-    public static int max_num(int[] arr, int n) {
+    public static int maxNum(int[] arr, int n) {
         int m = 0;
         for (int i = 0; i < n; i++) {
             if (arr[i] > m) {
@@ -40,23 +58,5 @@ public class Frequency {
         }
         return m;
     }
-
-    public static int num_frequency(int[] arr, int n) {
-        int[] items = new int[n];
-        int item_num = 0;
-        for (int i = 0; i < n; i++) {
-            if (count(arr, n, arr[i]) == arr[i]) {
-                items[item_num] = arr[i];
-                item_num++;
-            }
-        }
-        if (item_num > 0) {
-            if (item_num > 1) {
-                return max_num(items, item_num);
-            }
-            return items[0];
-        }
-        return -1;
-    }
-
 }
+
