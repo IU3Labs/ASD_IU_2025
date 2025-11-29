@@ -1,0 +1,34 @@
+package tasks.task2;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Класс представляющий узел дерева произвольной структуры
+ * Каждый узел содержит значение и список дочерних узлов
+ */
+public class TreeNode {
+    public int value;
+    public List<TreeNode> children;
+
+    public TreeNode(int value) {
+        this.value = value;
+        this.children = new ArrayList<>();
+    }
+
+    //Добавляет один дочерний узел
+    public void addChild(TreeNode child) {
+        this.children.add(child);
+    }
+
+    // Добавляет несколько дочерних узлов
+    public void addChildren(TreeNode... children) {
+        Collections.addAll(this.children, children);
+    }
+
+    //Возвращает строковое представление узла
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+}
