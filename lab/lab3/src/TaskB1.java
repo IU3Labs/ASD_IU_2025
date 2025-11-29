@@ -60,6 +60,26 @@ public class TaskB1 {
         return head.next;
     };
 
+    public static ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode prev = null;
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if (prev != null) {
+            prev.next = null;
+        }
+        ListNode l1 = sortList(head);
+        ListNode l2 = sortList(slow);
+        return mergeTwoLists(l1, l2);
+    }
+
     public static void printList(ListNode head) {
         if  (head == null) {
             System.out.println("Список пуст");
@@ -82,19 +102,24 @@ public class TaskB1 {
         for (int i = 0; i < k; i++) {
             System.out.printf("Введите количество элементов в списке %d: ", i + 1);
             int n = in.nextInt();
-            System.out.printf("Введите элемент №1 списка %d: ", i + 1);
-            ListNode head = new ListNode(in.nextInt());
-            ListNode current = head;
-            for (int j = 1; j < n; j++) {
-                System.out.printf("Введите элемент №%d списка %d: ", j + 1, i + 1);
-                current.next = new ListNode(in.nextInt());
-                current = current.next;
+            if (n > 0) {
+                System.out.printf("Введите элемент №1 списка %d: ", i + 1);
+                ListNode head = new ListNode(in.nextInt());
+                ListNode current = head;
+                for (int j = 1; j < n; j++) {
+                    System.out.printf("Введите элемент №%d списка %d: ", j + 1, i + 1);
+                    current.next = new ListNode(in.nextInt());
+                    current = current.next;
+                }
+                lists[i] = sortList(head);
+            } else {
+                lists[i] = null;
             };
-            lists[i] = head;
         };
 
         System.out.println("Результат: ");
         printList(mergeKLists(lists));
+        in.close();
     };
 
 };
