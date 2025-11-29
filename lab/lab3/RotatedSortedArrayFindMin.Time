@@ -1,0 +1,29 @@
+static int findMinimum(int[] array) {
+        int left = 0;
+        int right = array.length - 1;
+
+        if (array[left] < array[right]) {
+            return array[left];
+        }
+
+        while (right - left > 1) {
+            int mid = (left + right) / 2;
+            if (array[mid] > array[left]) {
+                left = mid;
+            } else {
+                right = mid;
+            }
+        }
+        return array[right];
+    }
+}
+Оценка сложности:
+Итерация 1: N элементов
+Итерация 2: N/2 элементов
+Итерация 3: N/4 элементов
+ ...
+Итерация k: N / 2^(k-1) элементов
+Поиск заканчивается, когда в отрезке остаётся 1 элемент:
+N / 2^(k-1) = 1  ⇒  2^(k-1) = N  ⇒  k-1 = log₂N  ⇒  k = log₂N + 1
+Число итераций растёт как log N, работа внутри каждой итерации O(1),
+поэтому общая временная сложность алгоритма — O(log N).
