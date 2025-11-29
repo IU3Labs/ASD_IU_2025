@@ -26,12 +26,9 @@ class MyArrayList<T> {
 
         data[size++] = value;
 
-        // “условный load factor”: насколько заполнен массив после добавления
-        double loadFactor = (data.length == 0) ? 0 : (double) size / data.length;
-
         System.out.printf(
-                "add(%d): size=%d, capacity=%d, load=%.2f%n",
-                value, size, data.length, loadFactor
+                "add(%d): size=%d, capacity=%d%n",
+                value, size, data.length
         );
     }
 
