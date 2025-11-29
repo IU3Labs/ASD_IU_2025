@@ -1,53 +1,48 @@
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 public class FreqFinder {
 
     public static void main(String[] args) {
+        int[] nums = inputMethods.inputArray();
+        int k = inputMethods.inputK();
 
-        int[] nums = {1,1,1,2,2,3,5,4,6,5,5,5,5};  // Исходный массив
-        int k = 3;                        // Сколько самых частых элементов нужно
+        int[] result = topK(nums, k);
 
-        int[] result = topK(nums, k);     // Вызов метода
-
-        System.out.println(Arrays.toString(result)); // Вывод результата
+        System.out.println(Arrays.toString(result));
     }
 
     public static int[] topK(int[] nums, int k) {
 
-        MergeClass.sort(Collections.singletonList(nums));                  // 1) сортируем массив  -> O(n log n)
-        int n = nums.length;
-        int[] values = new int[n];          // числа
-        int[] counts = new int[n];          // их частоты
-        int size = 0;                        // сколько разных чисел уже записано
-
-        // 2) считаем частоты подряд стоящих одинаковых чисел
-        for (int i = 0; i < n; ) {           // i движется вручную
-            int num = nums[i];              // текущее число
-            int count = 0;                 // его частота
-
-            while (i < n && nums[i] == num) { // считаем сколько раз оно подряд встречается
-                count++;
-                i++;                      // двигаем i
-            }
-            values[size] = num;              // записываем число
-            counts[size] = count;            // записываем частоту
-            size++;                          // увеличиваем число уникальных значений
+        // 1) считаем частоты через HashMap — O(n)
+        HashMap<Integer, Integer> freq = new HashMap<>();
+        for (int num : nums) {
+            freq.put(num, freq.getOrDefault(num, 0) + 1);
         }
 
-        // 3) выбираем k самых частых (обычный поиск максимума k раз)
+        // 2) превращаем в список пар [value, count]
+        List<int[]> list = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> e : freq.entrySet()) {
+            list.add(new int[]{ e.getKey(), e.getValue() });
+        }
+        // 3) сортируем
+        MergeClass.sort(list);
+
+        // 4) берем первые k значений (если k больше числа уникальных уменьшаем)
+        int m = list.size();
+        if (k > m) k = m;
+
         int[] result = new int[k];
-        for (int t = 0; t < k; t++) {        // выбираем по одному
-            int maxIndex = 0;                // индекс элемента с максимальной частотой
-
-            for (int i = 1; i < size; i++) { // ищем максимальную частоту
-                if (counts[i] > counts[maxIndex]) {
-                    maxIndex = i;
-                }
-            }
-            result[t] = values[maxIndex];    // записываем число в ответ
-            counts[maxIndex] = -1;           // "удаляем" чтобы не выбрать снова
+        for (int i = 0; i < k; i++) {
+            result[i] = list.get(i)[0]; // берем число (а не частоту)
         }
-        return result;                        // возвращаем k самых частых чисел
+
+        return result;
     }
 }
+/*
+ * Возвращает k наиболее часто встречающихся элементов массива nums.
+ * 1) HashMap для подсчёта частот O(n)
+ * 2) Конвертация в List<int[]> {value, count} O(m) где m = число уникальных
+ * 3) Сортировка этим же списком твоим MergeClass.sort O(n log n)
+ * 4) Возврат первых k элементов O(k) или O(n)
+ */

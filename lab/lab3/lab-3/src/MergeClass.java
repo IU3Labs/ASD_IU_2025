@@ -12,10 +12,8 @@ public class MergeClass {
     private static void mergeSort(List<int[]> list, int left, int right) {
         // Пока в диапазоне больше 1 элемента
         if (left < right) {
-
             // Находим середину
             int mid = (left + right) / 2;
-
             // Рекурсивно сортируем левую половину
             mergeSort(list, left, mid);
 

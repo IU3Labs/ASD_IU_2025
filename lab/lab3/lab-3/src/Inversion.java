@@ -5,7 +5,7 @@
 public class Inversion {
 
     public static void main(String[] args) {
-        int[] arr = {2, 4, 1, 3, 5, 6, 10, 4, 7, 9, 3, 2};     // Исходный массив
+        int[] arr = inputMethods.inputArray();     // Исходный массив
 
         System.out.println("Массив:");
         printArray(arr);                 // Красиво выводим массив
