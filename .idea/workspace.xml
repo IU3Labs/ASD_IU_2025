@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="200850ba-0d91-4c01-b12f-4f81510660ac" name="Changes" comment="исправление 22">
-      <change afterPath="$PROJECT_DIR$/lab/lab2/CircularQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab/lab2/LRUCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab/lab2/MainTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab/lab2/MinStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab/lab2/MultiLayeredQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab3/InversionIndex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab3/KMass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab/lab.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab/lab2/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab2/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab2/LRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab2/LRUCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue$QueueElement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue$QueueElement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue$SimpleQueue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue$SimpleQueue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +62,9 @@
   "keyToString": {
     "Application.BinarySearch.executor": "Run",
     "Application.CircularQueue.executor": "Run",
+    "Application.Demo.executor": "Run",
+    "Application.InversionDemo.executor": "Run",
+    "Application.LRUCache.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.MainTask.executor": "Run",
     "Application.MinStack.executor": "Run",
