@@ -171,7 +171,7 @@ public class CircularQueue {
         q.enqueue(0);
         System.out.print("После enqueue(7), enqueue(0): ");
         q.printQueue();
-        
+
         q.sort();
         System.out.print("После второго sort(): ");
         q.printQueue();

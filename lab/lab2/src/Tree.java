@@ -91,12 +91,12 @@ public class Tree {
         Tree pivot = node.right;
         node.right = pivot.left;
 
-        if (pivot.left != null){
+        if (pivot.left != null) {
             pivot.left.parent = node;
         }
 
         pivot.parent = node.parent;
-        if (node.parent == null){
+        if (node.parent == null) {
             node = root;
         } else if (node == node.parent.left) {
             node.parent.left = pivot;
@@ -107,6 +107,7 @@ public class Tree {
         pivot.left = node;
         node.parent = pivot;
     }
+
     /// совершаем "поворот", т.е. передвигаем наши элементы так, что дядя становится новым сыном,
     /// Дедушка становится новым папой, а старый папа становится дедушкой, при этом сын становится дядей.
     /// И перекрашиваем так, чтобы дед стал черным, папа стал красным

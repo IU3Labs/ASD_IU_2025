@@ -4,6 +4,7 @@ class Node {
     int key;
     int value;
     Node prev, next;
+
     Node(int key, int value) {
         this.key = key;
         this.value = value;
@@ -71,6 +72,7 @@ public class LRUCache {
             tail = node;
         }
     }
+
     // добавление нового элемента
     private void addToHead(Node node) {
         node.prev = null;
