@@ -8,17 +8,16 @@ public class SortByMask {
 
         if (arr == null || arr.length <= 1) return;
         int n = arr.length;
+
         /* Создаём массив индексов indexArray и заполняем его значениями 0--n-1.
            Каждый шаг цикла — O(1), выполняется n раз => O(n) времени.
            Доп. память: массив indexArray размера n => O(n).
            */
-
         int[] indexArray = new int[n];
         for (int i = 0; i < n; i++) indexArray[i] = i;
 
         /* Выделяем buffer длины n для слияния — это O(n) по памяти и O(1) по времени для выделения.
          */
-
         int[] buffer = new int[n];
         /*
         Рекуррентное соотношение: T(n) = 2 T(n/2) + Θ(n)
