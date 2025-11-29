@@ -108,17 +108,17 @@ public class UndoableStack<T> {
         System.out.println("Redoing: " + operation.getType());
 
         switch (operation.getType()) {
-            case PUSH:
+            case POP:
                 // Повтор push - добавляем элемент
-                elements.add(operation.getElement());
+                elements.add(operation.getPreviousState());
                 // Сохраняем в undo стек
                 undoStack.push(new Operation<>(Operation.Type.PUSH, operation.getElement()));
                 break;
 
-            case POP:
+            case PUSH:
                 // Повтор pop - удаляем последний элемент
                 if (!elements.isEmpty()) {
-                    T removed = elements.remove(elements.size() - 1);
+                    T removed = elements.removeLast();
                     // Сохраняем в undo стек
                     undoStack.push(new Operation<>(Operation.Type.POP, null, removed));
                 }

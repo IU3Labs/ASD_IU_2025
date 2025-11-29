@@ -152,24 +152,24 @@ public class UndoableDeque<T> {
         System.out.println("Redoing: " + operation.getType());
 
         switch (operation.getType()) {
-            case ADD_FIRST:
+            case REMOVE_FIRST:
                 elements.addFirst(operation.getElement());
                 undoStack.push(new Operation<>(Operation.Type.ADD_FIRST, operation.getElement()));
                 break;
 
-            case ADD_LAST:
+            case REMOVE_LAST:
                 elements.addLast(operation.getElement());
                 undoStack.push(new Operation<>(Operation.Type.ADD_LAST, operation.getElement()));
                 break;
 
-            case REMOVE_FIRST:
+            case ADD_FIRST:
                 if (!elements.isEmpty()) {
                     T removed = elements.removeFirst();
                     undoStack.push(new Operation<>(Operation.Type.REMOVE_FIRST, null, removed));
                 }
                 break;
 
-            case REMOVE_LAST:
+            case ADD_LAST:
                 if (!elements.isEmpty()) {
                     T removed = elements.removeLast();
                     undoStack.push(new Operation<>(Operation.Type.REMOVE_LAST, null, removed));
