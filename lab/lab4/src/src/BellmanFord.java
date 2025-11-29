@@ -36,9 +36,9 @@ public class BellmanFord {
         int V = 5; // количество вершин
 
         List<Edge> edges = new ArrayList<>();
-        edges.add(new Edge(0, 1, 6));
+        edges.add(new Edge(0, 1, -6));
         edges.add(new Edge(0, 2, 7));
-        edges.add(new Edge(1, 2, 8));
+        edges.add(new Edge(1, 2, -8));
         edges.add(new Edge(1, 3, 5));
         edges.add(new Edge(1, 4, -4));
         edges.add(new Edge(2, 3, -3));

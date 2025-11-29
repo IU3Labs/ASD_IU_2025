@@ -1,21 +1,24 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class BFSIterative {
 
-    public static boolean bfs(TreeNode root, int target) {
+    public static boolean bfsLevel(TreeNode root, int target) {
         if (root == null) return false;
 
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
+            int size = queue.size(); // количество узлов текущего уровня
 
-            if (node.val == target) return true;
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
 
-            if (node.left != null) queue.add(node.left);
-            if (node.right != null) queue.add(node.right);
+                if (node.val == target) return true;
+
+                if (node.left != null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
+            }
         }
 
         return false;
@@ -27,7 +30,7 @@ public class BFSIterative {
         root.right = new TreeNode(7);
         root.left.left = new TreeNode(1);
 
-        System.out.println(bfs(root, 7)); // true
-        System.out.println(bfs(root, 9)); // false
+        System.out.println(bfsLevel(root, 3)); // true
+        System.out.println(bfsLevel(root, 9)); // false
     }
 }
