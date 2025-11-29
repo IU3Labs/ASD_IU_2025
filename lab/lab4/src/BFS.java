@@ -5,49 +5,58 @@ import structures.Node;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class BFS {
 
-    public static <T> void recursiveTraverse(Node<T> root) {
+    public static <T> Node<T> recursiveSearch(Node<T> root, T searchValue) {
         if (root == null) {
-            return;
+            return null;
         };
-        Queue<Node> queue = new LinkedList<>();
+        Queue<Node<T>> queue = new LinkedList<>();
         queue.offer(root);
-        recTraverse(queue);
+        return recSearch(queue, searchValue);
     };
 
-    private static <T> void recTraverse(Queue<Node> queue) {
+    private static <T> Node<T> recSearch(Queue<Node<T>> queue, T searchValue) {
         if (queue.isEmpty()) {
-            return;
+            return null;
         };
         Node<T> currentNode = queue.poll();
-        System.out.print(currentNode.value + " ");
+
+        if (currentNode.value.equals(searchValue)) {
+            return currentNode;
+        }
 
         for (Node<T> child : currentNode.children) {
             queue.offer(child);
-        };
+        }
 
-        recTraverse(queue);
+        return recSearch(queue, searchValue);
     };
 
-    public static <T> void iterativeTraverse(Node<T> root) {
+    public static <T> Node<T> iterativeSearch(Node<T> root, T searchValue) {
         if (root == null) {
-            return;
+            return null;
         };
         Queue<Node<T>> queue = new LinkedList<>();
         queue.offer(root);
 
         while (!queue.isEmpty()) {
             Node<T> currentNode = queue.poll();
-            System.out.print(currentNode.value + " ");
+            if (currentNode.value.equals(searchValue)) {
+                return currentNode;
+            }
             for (Node<T> child : currentNode.children) {
                 queue.offer(child);
-            };
+            }
         };
+
+        return null;
     };
 
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
         Node<Integer> root = new Node<>(1);
         Node<Integer> node2 = new Node<>(2);
         Node<Integer> node3 = new Node<>(3);
@@ -64,10 +73,15 @@ public class BFS {
         node3.addChild(node7);
         node4.addChild(node8);
 
-        System.out.println("Рекурсивный обход в ширину:");
-        recursiveTraverse(root);
-        System.out.println("\nРекурсивный обход в ширину:");
-        iterativeTraverse(root);
+        System.out.print("Введите значение, которое нужно найти: ");
+        int searchValue = in.nextInt();
+
+        System.out.println("Рекурсивный поиск в ширину:");
+        Node<Integer> recResult = recursiveSearch(root, searchValue);
+        System.out.println(recResult != null ? "Найдено" : "Не найдено");
+        System.out.println("\nИтеративный поиск в ширину:");
+        Node<Integer> iterResult = iterativeSearch(root, searchValue);
+        System.out.println(iterResult != null ? "Найдено" : "Не найдено");
     };
 
 };

@@ -26,7 +26,6 @@ public class TaskB1 {
         };
         int amount = lists.length;
         int interval = 1;
-
         while (interval < amount) {
             for (int i = 0; i < amount - interval; i += interval * 2) {
                 lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
