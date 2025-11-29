@@ -5,6 +5,8 @@ import java.util.*;
 public class MergeLists {
     private static final Scanner scanner = new Scanner(System.in);
 
+
+
     private static LinkedList<Integer> mergeLists(LinkedList<Integer> first, LinkedList<Integer> second){
         LinkedList<Integer> mergedList = new LinkedList<Integer>();
 
@@ -30,7 +32,11 @@ public class MergeLists {
             return new LinkedList<>();
         }
 
-        ArrayList<LinkedList<Integer>> remainingLists = new ArrayList<>(lists);
+        for (LinkedList<Integer> list : lists) {
+            Collections.sort(list);
+        }
+
+            ArrayList<LinkedList<Integer>> remainingLists = new ArrayList<>(lists);
 
         while (remainingLists.size() > 1) { //Каждая итерация цикла сокращает число списков вдвое -> O(logK)
             ArrayList<LinkedList<Integer>> mergedLists = new ArrayList<>();

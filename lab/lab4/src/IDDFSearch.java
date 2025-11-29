@@ -24,7 +24,7 @@ public class IDDFSearch  {
             System.out.println("Глубина = " + limit);
 
             boolean found = depthFirstSearch(root, target, limit);
-            if (found) {
+            if (!found) {
                 System.out.println("Элемент не найден " + limit);
                 return true;
             }
