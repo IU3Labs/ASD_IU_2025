@@ -18,6 +18,7 @@ public class StrangeBinTask {
         scanner.close();
     }
 
+
     private static int[] readBinaryArray(Scanner scanner) {
         System.out.println("Введите число элементов массива:");
         int n = scanner.nextInt();
@@ -29,10 +30,12 @@ public class StrangeBinTask {
         return arr;
     }
 
+
     private static int readDivisor(Scanner scanner) {
         System.out.println("Введите делитель n:");
         return scanner.nextInt();
     }
+
 
     private static int[] convertPrefixesToDecimal(int[] binArr) {
         int n = binArr.length;
@@ -45,6 +48,7 @@ public class StrangeBinTask {
         return decimals;
     }
 
+
     private static boolean[] checkDivisibility(int[] decimals, int n) {
         boolean[] result = new boolean[decimals.length];
         for (int i = 0; i < decimals.length; i++) {
@@ -52,6 +56,7 @@ public class StrangeBinTask {
         }
         return result;
     }
+
 
     private static void printResults(boolean[] boolArr) {
         for (boolean b : boolArr) {

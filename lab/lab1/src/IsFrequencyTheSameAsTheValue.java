@@ -10,44 +10,46 @@ public class IsFrequencyTheSameAsTheValue {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int[] arr = Utils.readArray(scanner);
-        int[] arr_coin = checkCoincidence(arr);
-        printResults(arr_coin);
+        int[] coin = checkCoincidence(arr);
+        printResults(coin);
         scanner.close();
     }
 
-    private static int[] checkCoincidence(int arr[]) {
-        int num_of_elements = arr[0];
-        int arr_coin[] = new int[num_of_elements + 1];
-        arr_coin[0] = num_of_elements;
-        for (int i = 1; i <= num_of_elements; i++) {
-            arr_coin[i] = -1;
+
+    private static int[] checkCoincidence(int[] arr) {
+        int numofelements = arr[0];
+        int[] coin = new int[numofelements + 1];
+        coin[0] = numofelements;
+        for (int i = 1; i <= numofelements; i++) {
+            coin[i] = -1;
         }
 
-        for (int i = 1; i <= num_of_elements; i++) {
+        for (int i = 1; i <= numofelements; i++) {
             int num = arr[i];
             int total = 0;
-            for (int j = 1; j <= num_of_elements; j++) {
+            for (int j = 1; j <= numofelements; j++) {
                 if (arr[j] == num) {
                     total += 1;
                 }
             }
             if (total == num) {
-                arr_coin[i] = num;
+                coin[i] = num;
             }
         }
 
-        return arr_coin;
+        return coin;
     }
 
-    private static void printResults(int[] arr_coin) {
-        int max_value = -1;
 
-        for (int i = 1; i <= arr_coin[0]; i++) {
-            if (arr_coin[i] > max_value) {
-                max_value = arr_coin[i];
+    private static void printResults(int[] coin) {
+        int maxvalue = -1;
+
+        for (int i = 1; i <= coin[0]; i++) {
+            if (coin[i] > maxvalue) {
+                maxvalue = coin[i];
             }
         }
 
-        System.out.println(max_value);
+        System.out.println(maxvalue);
     }
 }

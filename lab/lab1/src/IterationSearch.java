@@ -6,9 +6,10 @@ public class IterationSearch {
         int[] arr = Utils.readArray(scanner);
         arr = Utils.quickSort(arr, 0, arr.length - 1);
         int target = takeTarget(scanner);
-        int target_index = iterationSearch(arr, target);
-        showResults(target, target_index);
+        int index = iterationSearch(arr, target);
+        showResults(target, index);
     }
+
 
     private static int iterationSearch(int[] arr, int target) {
         int left = 0;
@@ -29,6 +30,7 @@ public class IterationSearch {
         return -1;
     }
 
+
     private static int takeTarget(Scanner scanner) {
         int target;
         System.out.println("Введите искомую величину:");
@@ -36,11 +38,12 @@ public class IterationSearch {
         return target;
     }
 
-    private static void showResults(int target, int target_index) {
-        if (target_index == -1) {
+
+    private static void showResults(int target, int index) {
+        if (index == -1) {
             System.out.println("Число " + target + " не найдено:(");
         } else {
-            System.out.println("Число " + target + " найдено! Его индекс: " + target_index);
+            System.out.println("Число " + target + " найдено! Его индекс: " + index);
         }
     }
 }

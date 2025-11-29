@@ -8,15 +8,17 @@ public class RomanToArabic {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String roman = readString(scanner);
-        int arabic_value = convertRomanToArabic(roman);
-        printResult(arabic_value);
+        int arabicvalue = convertRomanToArabic(roman);
+        printResult(arabicvalue);
         scanner.close();
     }
+
 
     private static String readString(Scanner scanner) {
         System.out.println("Введите римское число");
         return scanner.nextLine();
     }
+
 
     private static int convertRomanToArabic(String roman) {
 
@@ -45,6 +47,7 @@ public class RomanToArabic {
         return total;
     }
 
+
     private static int getValue(char[] symbols, int[] values, char letter) {
 
         for (int i = 0; i <= symbols.length - 1; i++) {
@@ -55,11 +58,12 @@ public class RomanToArabic {
         return -1;
     }
 
-    private static void printResult(int arabic_value) {
-        if (arabic_value < 0) {
+
+    private static void printResult(int arabicvalue) {
+        if (arabicvalue < 0) {
             System.out.println("Введено некорректное число");
         } else {
-            System.out.println(arabic_value);
+            System.out.println(arabicvalue);
         }
     }
 }

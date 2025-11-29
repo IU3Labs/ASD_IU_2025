@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class IsogrammChecker {
 
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String input = readString(scanner);
@@ -15,10 +16,12 @@ public class IsogrammChecker {
         scanner.close();
     }
 
+
     public static String readString(Scanner scanner) {
         System.out.println("Введите строку:");
         return scanner.nextLine();
     }
+
 
     public static boolean isIsogram(String s) {
         s = s.toLowerCase();
@@ -33,6 +36,7 @@ public class IsogrammChecker {
         }
         return true;
     }
+
 
     public static void printResult(boolean result) {
         System.out.println(result);
