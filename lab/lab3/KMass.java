@@ -57,7 +57,7 @@ class Demo {
     public static void main(String[] args) {
         KMass solver = new KMass();
 
-        int[] testNumbers = {1, 1, 1, 2, 2, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 };
+        int[] testNumbers = {-1, -1, -1, -2, -2, -3, -4, -4, -4, -4, -4, -5, -5, -5, -5, -5 };
         List<Integer> result = solver.topKFrequent(testNumbers, TEST_K_VALUE);
 
         printResult(result);
