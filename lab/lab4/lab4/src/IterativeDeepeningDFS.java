@@ -8,8 +8,7 @@ public class IterativeDeepeningDFS {
 
         System.out.print(node.val + " "); // Отслеживаем посещенные узлы
 
-
-        if (node.val == target) { // достигли
+        if (node.val == target) { // достигли цели
             return true;
         }
 
@@ -28,18 +27,28 @@ public class IterativeDeepeningDFS {
         return false;
     }
 
-
     public static boolean iterativeDeepeningDFS(TreeNode root, int target) {
-        if (root == null) return false;
+        if (root == null) {
+            System.out.println("Дерево пустое");
+            return false;
+        }
 
         int depth = 0;
-        while (true) {
+        int maxDepth = 10; // Добавляем ограничение максимальной глубины
+
+        while (depth <= maxDepth) {
             System.out.println("\nПоиск на глубине: " + depth);
+            System.out.print("Посещенные узлы: ");
             if (depthLimitedSearch(root, target, depth)) {
+                System.out.println("\n Цель " + target + " найдена на глубине " + depth);
                 return true;
             }
+            System.out.println("\n Цель " + target + " не найдена на глубине " + depth);
             depth++; // Увеличиваем глубину для следующей итерации
         }
+
+        System.out.println("\n Цель " + target + " не найдена в пределах максимальной глубины " + maxDepth);
+        return false;
     }
 
     public static void main(String[] args) {
@@ -48,7 +57,7 @@ public class IterativeDeepeningDFS {
         TreeNode node2 = new TreeNode(2);
         TreeNode node3 = new TreeNode(3);
         TreeNode node4 = new TreeNode(4);
-        TreeNode node5 = new TreeNode(5);
+        TreeNode node5 = new TreeNode(100);
         TreeNode node6 = new TreeNode(6);
         TreeNode node7 = new TreeNode(7);
 
@@ -59,10 +68,30 @@ public class IterativeDeepeningDFS {
         node3.addChild(node6);
         node5.addChild(node7);
 
-        int target = 7;
-        System.out.println("Поиск значения " + target + " с помощью IDDFS:");
-        boolean found = iterativeDeepeningDFS(root, target);
-        System.out.println("\nРезультат: " + found);
+        // Тест 1: Поиск существующего значения
+        int target1 = 7;
 
+        System.out.println("ПОИСК ЗНАЧЕНИЯ " + target1);
+
+        boolean found1 = iterativeDeepeningDFS(root, target1);
+        System.out.println("\nФИН РЕЗ: " + (found1 ? "НАЙДЕНО" : "НЕ НАЙДЕНО"));
+
+
+        // Тест 2: Поиск несуществующего значения
+        int target2 = 9;
+
+        System.out.println("ПОИСК ЗНАЧЕНИЯ " + target2);
+
+        boolean found2 = iterativeDeepeningDFS(root, target2);
+        System.out.println("\nФИН РЕЗ: " + (found2 ? "НАЙДЕНО" : "НЕ НАЙДЕНО"));
+
+
+        // Тест 3: Поиск корневого значения
+        int target3 = 1;
+
+        System.out.println("ПОИСК ЗНАЧЕНИЯ " + target3);
+
+        boolean found3 = iterativeDeepeningDFS(root, target3);
+        System.out.println("\nФИН РЕЗ: " + (found3 ? "НАЙДЕНО" : "НЕ НАЙДЕНО"));
     }
 }
