@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class inputMethods {
+public class InputMethods {
 
     // Метод ввода массива
     public static int[] inputArray() {
