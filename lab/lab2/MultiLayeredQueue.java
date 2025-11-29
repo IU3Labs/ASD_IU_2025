@@ -32,8 +32,7 @@ public class MultiLayeredQueue {
                 System.out.print("Введите значение элемента: ");
                 int value = scan.nextInt();
 
-                System.out.print("Введите приоритет (0.."
-                        + (levels - 1) + " , где 0 - самый высокий): ");
+                System.out.print("Введите приоритет (0.." + (levels - 1) + " , где 0 - самый высокий): ");
                 int priority = scan.nextInt();
 
                 multiQueue.enqueue(value, priority);

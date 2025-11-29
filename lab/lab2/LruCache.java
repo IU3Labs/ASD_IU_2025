@@ -43,7 +43,7 @@ public class LruCache {
                 System.out.println("Результат get: " + result);
             }
         }
-
+        cache.printCache();
         scan.close();
     }
 }
@@ -142,5 +142,18 @@ class Cache {                               //само создание клас
 
         node.next = tail;
         tail.prev = node;
+    }
+    public void printCache() {
+        Node current = head.next;
+
+        if (current == tail) {
+            System.out.println("Кеш пуст.");
+            return;
+        }
+
+        while (current != tail) {
+            System.out.println("key = " + current.key + ", value = " + current.value);
+            current = current.next;
+        }
     }
 }
