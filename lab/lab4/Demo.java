@@ -10,7 +10,7 @@ public class Demo {
         graph.addEdge(3, 2, -2);
         graph.addEdge(3, 4, -10);
         graph.addEdge(5, 4, 7);
-        BellmanFordAlgorithm.findShortestPath(graph, 0, 4);
+        BellmanFord.findShortestPath(graph, 0, 4);
 
         System.out.println("\nПоиск в глубину");
         TreeNode leaf4 = new TreeNode(4);
