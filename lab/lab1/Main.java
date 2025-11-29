@@ -3,6 +3,7 @@ package lab1;
 import java.util.Scanner;
 public class Main {
 
+
     public static int binarySearchIterative(int[] arr, int target) {
         int left = 0;
         int right = arr.length - 1;
