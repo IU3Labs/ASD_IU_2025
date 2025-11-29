@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="200850ba-0d91-4c01-b12f-4f81510660ac" name="Changes" comment="исправление 22">
-      <change afterPath="$PROJECT_DIR$/lab/lab3/InversionIndex.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab/lab3/KMass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab4/BFS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab4/DFS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab/lab4/IDDFS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab/lab.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab/lab2/LRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab2/LRUCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue$QueueElement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue$QueueElement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue$SimpleQueue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue$SimpleQueue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/MultiLayeredQueue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab3/InversionIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab3/InversionIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab3/KMass.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab3/KMass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab/lab4/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/lab/lab4/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/Demo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab/InversionDemo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/InversionDemo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,9 +62,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.BFSDemo.executor": "Run",
     "Application.BinarySearch.executor": "Run",
     "Application.CircularQueue.executor": "Run",
+    "Application.DFSDemo.executor": "Run",
     "Application.Demo.executor": "Run",
+    "Application.IDDFSDemo.executor": "Run",
     "Application.InversionDemo.executor": "Run",
     "Application.LRUCache.executor": "Run",
     "Application.Main.executor": "Run",
@@ -75,7 +80,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "martynovso-2",
+    "git-widget-placeholder": "martynovso-3",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/seraf/OneDrive/Рабочий стол/ASD_IU_2025",
     "project.structure.last.edited": "Modules",

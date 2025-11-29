@@ -47,7 +47,7 @@ class InversionDemo {
     public static void main(String[] args) {
         InversionIndex counter = new InversionIndex();
 
-        int[] testArray = {2, 4, 1, 3, 5};
+        int[] testArray = {-2, -4, -1, -3, -5};
 
         System.out.println("Исходный массив: " + arrayToString(testArray));
 
