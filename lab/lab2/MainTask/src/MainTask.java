@@ -66,7 +66,7 @@ public class MainTask {
 
         int midIndex = COUNT / 2;
         long midId = (long) midIndex;
-        measure("ArrayList Get Mid", () -> arrayList.get(midIndex));
+        measure("ArrayList Get Mid ", () -> arrayList.get(midIndex));
         measure("LinkedList Get Mid", () -> linkedList.get(midIndex)); // Будет очень медленно
         measure("HashMap Get Mid", () -> hashMap.get(midId));
 
