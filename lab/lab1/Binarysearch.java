@@ -63,7 +63,6 @@ public class Binarysearch {
             else if (array[middle] > value) end = middle;
             else return middle;
         }
-
         return -1;
     }
 
