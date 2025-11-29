@@ -7,7 +7,7 @@ import java.util.Set;
 public class UniqueApp {
 
     public static void main(String[] args) {
-        int[] arr = {5, 3, 5, 2, 8, 2, 1};
+        int[] arr = {-5, -3, -5, -2, -1,-2,-3,-4,-5,-8, -2, -1};
 
         int[] unique = findUniqueSorted(arr);
 

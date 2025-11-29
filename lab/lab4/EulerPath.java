@@ -1,10 +1,11 @@
 import java.util.*;
-//5 В ориентированном графе найти эйлеров путь, проходящий через каждое ребро графа один раз.
+
 public class EulerPath {
 
-    static List<String> findEulerPath(Map<String, List<String>> graph) {
+    static List<String> findEulerPathWithTarget(Map<String, List<String>> graph, String target) {
         Stack<String> stack = new Stack<>();
         List<String> path = new ArrayList<>();
+        boolean[] foundTarget = {false}; // флаг, нашли ли вершину
 
         String start = graph.keySet().iterator().next();
         stack.push(start);
@@ -15,8 +16,11 @@ public class EulerPath {
 
         while (!stack.isEmpty()) {
             String v = stack.peek();
-            Iterator<String> it = iters.get(v);
+            if (v.equals(target)) {
+                foundTarget[0] = true; // нашли target
+            }
 
+            Iterator<String> it = iters.get(v);
             if (it.hasNext()) {
                 String to = it.next();
                 stack.push(to);
@@ -26,6 +30,7 @@ public class EulerPath {
         }
 
         Collections.reverse(path);
+        System.out.println("Target " + target + " found: " + foundTarget[0]);
         return path;
     }
 
@@ -35,7 +40,8 @@ public class EulerPath {
         graph.put("B", new ArrayList<>(List.of("C")));
         graph.put("C", new ArrayList<>(List.of("A")));
 
-        List<String> path = findEulerPath(graph);
+        String target = "E";
+        List<String> path = findEulerPathWithTarget(graph, target);
         System.out.println("Euler path: " + path);
     }
 }

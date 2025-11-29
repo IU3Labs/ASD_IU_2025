@@ -4,10 +4,10 @@ import java.util.Arrays;
 равенстве отсортируйте числа по возрастанию. Сложность: O(N log N).
 Докажите сложность.*/
 public class BitmaskApp {
-
+//не по маске b dsdjl
     public static void main(String[] args) {
         int[] arr = {7, 3, 12, 5};
-        int mask = 4;
+        Integer mask = 3;
 
         sortByMask(arr, mask);
 
@@ -18,7 +18,7 @@ public class BitmaskApp {
     }
 
     private static void sortByMask(int[] arr, int mask) {
-        Integer[] boxedArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
+        Integer[] boxedArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);//массив,поток,массив
         // Сортируем массив с помощью Arrays.sort
         Arrays.sort(boxedArr, (a, b) -> {
             // Применяем битовую маску к элементам
@@ -32,7 +32,11 @@ public class BitmaskApp {
 
             // Иначе сравниваем по значению после маски
             return Integer.compare(maskedA, maskedB);
+
         });
+        for (int i=0;i<arr.length;i++) {
+            arr[i] = boxedArr[i];
+        }
         // В среднем и в худшем случае: O(N log N)
         // N — количество элементов в массиве
         // Каждое сравнение выполняется за O(1) — операция & и сравнение чисел
@@ -42,8 +46,7 @@ public class BitmaskApp {
 /*
 Доказательство сложности:
 
-1. Сортировка массива с компаратором (объекты или лямбда-компаратор) 
-   в Java использует TimSort (гибрид быстрой сортировки и сортировки слиянием).
+1. Сортировка массива в Java использует TimSort (гибрид быстрой сортировки и сортировки слиянием).
 2. TimSort имеет сложность O(N log N) в среднем и худшем случае.
 3. Каждый вызов компаратора выполняется за O(1), т.к. битовая маска и сравнение чисел — константа.
 4. Следовательно, общая сложность сортировки: O(N log N).

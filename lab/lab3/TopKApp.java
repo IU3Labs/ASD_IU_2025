@@ -9,8 +9,8 @@ import java.util.PriorityQueue;
 public class TopKApp {
 
     public static void main(String[] args) {
-        int[] arr = {1, 1, 2, 3, 3, 3, 4};
-        int k = 2;
+        int[] arr = {-1, -1, -2, -3, -3, -3, 4};
+        int k = 3;
 
         int[] result = findTopK(arr, k);
 
@@ -28,7 +28,6 @@ public class TopKApp {
             freq.put(num, freq.getOrDefault(num, 0) + 1);
         }
         // Время: O(N), где N — размер массива
-        // Пространство: O(U), где U — количество уникальных элементов
 
         // 2. Создаём мин-кучу для хранения K самых частых элементов
         // Массив int[]{число, частота}
