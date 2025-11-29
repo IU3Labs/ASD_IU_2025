@@ -49,7 +49,7 @@ public class MainTask {
 
         measure("ArrayList Add End", () -> arrayList.add(newStudent));
         measure("LinkedList Add End", () -> linkedList.add(newStudent));
-        measure("HashSet Add", () -> hashSet.add(newStudent)); // У Set нет понятия "конец", просто добавление
+        measure("HashSet Add", () -> hashSet.add(newStudent));
         measure("HashMap Add", () -> hashMap.put(newStudent.id, newStudent));
 
         Student startStudent = new Student(COUNT + 2L, "Start");

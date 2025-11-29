@@ -1,69 +1,103 @@
 import java.util.*;
 
+/**
+ * LRU Cache - кэш с вытеснением на основе связанного списка и хеш-таблицы.
+ * Автоматически удаляет наименее недавно использованный элемент,
+ * когда кэш переполняется.
+ *
+ * Используется LinkedHashMap для отслеживания порядка доступа,
+ * что позволяет определить LRU элемент.
+ */
 public class LRUCache<K, V> {
     private final int capacity;
-    private final Map<K, Node> map;
-    private final Node head;
-    private final Node tail;
-
-    private class Node {
-        K key; V value;
-        Node prev, next;
-        Node(K key, V value) { this.key = key; this.value = value; }
-    }
+    // LinkedHashMap с accessOrder = true отслеживает порядок доступа
+    private LinkedHashMap<K, V> cache;
 
     public LRUCache(int capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Capacity должен быть > 0");
+        }
         this.capacity = capacity;
-        this.map = new HashMap<>();
-        this.head = new Node(null, null);
-        this.tail = new Node(null, null);
-        head.next = tail;
-        tail.prev = head;
+
+        // LinkedHashMap с переопределением removeEldestEntry для автоматического вытеснения
+        this.cache = new LinkedHashMap<K, V>(capacity, 0.75f, true) {
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+                // Удаляем элемент, если размер превышает capacity
+                return size() > capacity;
+            }
+        };
     }
 
+    /**
+     * Получение значения из кэша. Обновляет порядок доступа.
+     */
     public V get(K key) {
-        if (!map.containsKey(key)) return null;
-        Node node = map.get(key);
-        remove(node);
-        add(node);
-        return node.value;
+        return cache.get(key);
     }
 
+    /**
+     * Добавление или обновление значения в кэше
+     */
     public void put(K key, V value) {
-        if (map.containsKey(key)) {
-            remove(map.get(key));
-        }
-        if (map.size() == capacity) {
-            remove(head.next);
-        }
-        Node newNode = new Node(key, value);
-        add(newNode);
+        cache.put(key, value);
     }
 
-    private void add(Node node) {
-        map.put(node.key, node);
-        Node prevNode = tail.prev;
-        prevNode.next = node;
-        node.prev = prevNode;
-        node.next = tail;
-        tail.prev = node;
+    /**
+     * Удаление элемента из кэша
+     */
+    public void remove(K key) {
+        cache.remove(key);
     }
 
-    private void remove(Node node) {
-        map.remove(node.key);
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
+    public int size() {
+        return cache.size();
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    /**
+     * Печать содержимого кэша в порядке доступа
+     */
+    public void print() {
+        System.out.println("\n=== LRU Cache (Capacity: " + capacity + ", Size: " + size() + ") ===");
+        System.out.println("Порядок доступа (слева - самый старый, справа - самый новый):");
+        for (Map.Entry<K, V> entry : cache.entrySet()) {
+            System.out.print(entry.getKey() + ":" + entry.getValue() + " ");
+        }
+        System.out.println();
     }
 
     public static void main(String[] args) {
-        LRUCache<Integer, String> cache = new LRUCache<>(2);
-        cache.put(1, "A");
-        cache.put(2, "B");
-        System.out.println(cache.get(1));
-        cache.put(3, "C");
+        LRUCache<String, Integer> cache = new LRUCache<>(3);
 
-        System.out.println("Get 2: " + cache.get(2));
-        System.out.println("Get 1: " + cache.get(1));
-        System.out.println("Get 3: " + cache.get(3));
+        System.out.println("--- Добавление элементов в кэш ---");
+        cache.put("user1", 100);
+        cache.put("user2", 200);
+        cache.put("user3", 300);
+        cache.print();
+
+        System.out.println("\n--- Доступ к user1 (обновляет его позицию) ---");
+        cache.get("user1");
+        cache.print();
+
+        System.out.println("\n--- Добавление user4 (вытесняет LRU элемент user2) ---");
+        cache.put("user4", 400);
+        cache.print();
+
+        System.out.println("\n--- Добавление user5 (вытесняет LRU элемент user3) ---");
+        cache.put("user5", 500);
+        cache.print();
+
+        System.out.println("\n--- Доступ к user1 и user4 ---");
+        cache.get("user1");
+        cache.get("user4");
+        cache.print();
+
+        System.out.println("\n--- Добавление user6 (вытесняет LRU элемент user5) ---");
+        cache.put("user6", 600);
+        cache.print();
     }
 }
