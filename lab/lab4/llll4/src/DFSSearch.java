@@ -3,7 +3,7 @@ import java.util.*;
 public class DFSSearch {
     public static void main(String[] args) {
         TreeNode root = TreeUtil.buildTree();
-        int target = 5;
+        int target = 7;
         System.out.println("Рекурсивный DFS, найдено?: " + dfsRecursive(root, target));
         System.out.println("Итеративный DFS, найдено?: " + dfsIterative(root, target));
     }

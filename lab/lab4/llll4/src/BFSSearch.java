@@ -3,7 +3,7 @@ import java.util.*;
 public class BFSSearch {
     public static void main(String[] args) {
         TreeNode root = TreeUtil.buildTree();
-        int target = 5;
+        int target = 7;
         System.out.println("BFS по очереди, найдено?: " + bfsQueue(root, target));
         System.out.println("BFS по уровням, найдено?: " + bfsLevel(root, target));
     }
