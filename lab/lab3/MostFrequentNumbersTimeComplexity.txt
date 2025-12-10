@@ -1,0 +1,83 @@
+Функция countFrequencies:
+
+static ArrayList<Pair> countFrequencies(int[] sortedList) {
+    ArrayList<Pair> frequencies = new ArrayList<>();
+    int currentFrequency = 1;
+    for (int i = 0; i < sortedList.length; i++) {  // O(n)
+        if ((i < sortedList.length - 1 && sortedList[i] == sortedList[i + 1])) {
+            currentFrequency++;
+        } else {
+            frequencies.add(new Pair(sortedList[i], currentFrequency));
+            currentFrequency = 1;
+        }
+    }
+    return frequencies;
+}
+
+Один проход по массиву длины n → O(n)
+
+Выбор k элементов
+for (int i = 0; i < k; i++) {  // O(k)
+    mostFrequentNumbers[i] = frequencies.get(frequencies.size() - i - 1).number;
+}
+k операций - O(k)
+
+Быстрая сортировка
+static void quickSort(int[] list, int left, int right) {
+    if (left >= right) {
+        return;
+    }
+    int i = left, j = right;
+    int middle = list[left + (right - left) / 2];
+    while (i <= j) {
+        while (list[i] < middle) i++;
+        while (list[j] > middle) j--;
+        if (i <= j) {
+            int temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    quickSort(list, left, j);
+    quickSort(list, i, right);
+}
+
+T(n) = T(k) + T(n - k - 1) + O(n)
+T(k) - время для левой части (размер k)
+T(n - k - 1) - время для правой части
+O(n) - время разделения массива
+в основном массив делится пополам: T(n) = 2T(n/2) + O(n)
+
+глубина рекурсии: log n
+
+общая сложность: O(n)*O(log n) = O(n*log n)
+
+Сортировка по частоте
+
+static void quickSortByFrequency(ArrayList<Pair> list, int left, int right) {
+    if (left >= right) {
+        return;
+    }
+    int i = left, j = right;
+    int middle = list.get(left + (right - left) / 2).frequency;
+    while (i <= j) {
+        while (list.get(i).frequency < middle) i++;
+        while (list.get(j).frequency > middle) j--;
+        if (i <= j) {
+            Pair temp = list.get(i);
+            list.set(i, list.get(j));
+            list.set(j, temp);
+            i++;
+            j--;
+        }
+    }
+    quickSortByFrequency(list, left, j);
+    quickSortByFrequency(list, i, right);
+}
+
+аналогично как для быстрой сортировки, но для m элементов, при этом m <= n => O(m log m) ≤ O(n log n)
+
+T(n) = O(n log n)// быстрая сортировка + O(n)// частота + O(m log m) // сортировка по частоте + O(k)// выбор результата (где k ≤ n)
+T(n) = O(n log n) + O(n log n) + O(n) + O(k) = O(n log n)
