@@ -1,0 +1,26 @@
+static int findMinimum(int[] array) {
+    int left = 0;
+    int right = array.length - 1;
+
+    if (array[left] < array[right]) {
+        return array[left];
+    }
+
+    while (right - left > 1) {
+        int mid = (left + right) / 2;
+        if (array[mid] > array[left]) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+    return array[right];
+}
+
+Итерация 1: n элементов
+Итерация 2: n/2 элементов
+Итерация 3: n/4 элементов
+Итерация k: n/2^(k-1) элементов
+поиск завершается когда
+n/2^(k-1) = 1 => 2^(k-1) = n => k-1 = log₂n => k = log₂n + 1
+получается O(log n)
