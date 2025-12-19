@@ -1,0 +1,119 @@
+//циклическая очередь
+
+public class CircularQueue {
+    // массив для хранения элементов очереди
+    private int[] storage;
+    // начало очереди (откуда извлекаются элементы)
+    private int startPointer;
+    // конец очереди (куда добавляются элементы)
+    private int endPointer;
+    // максимальный размер внутреннего массива
+    private int maxSize;
+
+    public CircularQueue(int size) {
+        // добавляем +1 к запрошенному размеру, чтобы отличать полную очередь от пустой
+        this.maxSize = size + 1;
+        // создаем массив для хранения элементов
+        this.storage = new int[this.maxSize];
+        // инициализируем указатели - оба указывают на начало массива
+        this.startPointer = 0;
+        this.endPointer = 0;
+    }
+
+    //проверка очереди на пустоту
+    public boolean isBufferEmpty() {
+        // очередь пуста, когда указатели совпадают
+        return this.startPointer == this.endPointer;
+    }
+
+    //проверка на заполнение
+    public boolean isBufferFull() {
+        // очередь полна, когда следующий за endPointer элемент равен startPointer
+        return (this.endPointer + 1) % this.maxSize == this.startPointer;
+    }
+
+    //добавление элемента в конец
+    public void addToEnd(int elementValue) {
+        if (this.isBufferFull()) {
+            System.out.println("buffer is full");
+        } else {
+            // добавляем элемент в текущую позицию endPointer
+            this.storage[this.endPointer] = elementValue;
+            // перемещаем endPointer на следующую позицию (с учетом цикличности)
+            this.endPointer = (this.endPointer + 1) % this.maxSize;
+        }
+    }
+
+    //извлечение элемента из начала очереди
+    public int removeFromFront() {
+        if (this.isBufferEmpty()) {
+            System.out.println("buffer is empty");
+            return -1;
+        } else {
+            // сохраняем значение элемента для возврата
+            int extractedValue = this.storage[this.startPointer];
+            // перемещаем startPointer на следующую позицию (с учетом цикличности)
+            this.startPointer = (this.startPointer + 1) % this.maxSize;
+            return extractedValue;
+        }
+    }
+
+    //получение первого элемента
+    public int getFirstElement() {
+        if (this.isBufferEmpty()) {
+            System.out.println("buffer is empty");
+            return -1;
+        } else {
+            // возвращаем элемент на который указывает startPointer
+            return this.storage[this.startPointer];
+        }
+    }
+
+    //отображение информации об очереди
+    public void showContents() {
+        if (this.isBufferEmpty()) {
+            System.out.println("buffer is empty");
+        } else {
+            System.out.println("buffer: ");
+
+            // проходим по всем элементам от startPointer до endPointer
+            for(int currentIndex = this.startPointer; currentIndex != this.endPointer; currentIndex = (currentIndex + 1) % this.maxSize) {
+                // выводим значение текущего элемента
+                int element = this.storage[currentIndex];
+                System.out.print(element + " ");
+            }
+
+            System.out.println();
+            int startPointer = this.startPointer;
+            System.out.println("start " + startPointer + ", end: " + this.endPointer + ", fill level: " + this.calculateFillLevel() + "%");
+        }
+    }
+
+    private int calculateFillLevel() {
+        // вычисляем количество элементов в очереди
+        int elementsCount = (this.endPointer - this.startPointer + this.maxSize) % this.maxSize;
+        // доступная емкость (на 1 меньше максимального размера из-за зарезервированного места)
+        int availableSpace = this.maxSize - 1;
+        // вычисляем процент заполнения
+        return elementsCount * 100 / availableSpace;
+    }
+
+    //количество элементов в очереди
+    public int getElementCount() {
+        //формула для вычисления количества элементов в циклической очереди
+        return (this.endPointer - this.startPointer + this.maxSize) % this.maxSize;
+    }
+
+    //максимальная емкость
+    public int getMaxCapacity() {
+        //фактическая емкость на 1 меньше размера массива
+        return this.maxSize - 1;
+    }
+
+    //очистка
+    public void clearBuffer() {
+        this.startPointer = 0;
+        this.endPointer = 0;
+        System.out.println("buffer is cleared");
+    }
+}
