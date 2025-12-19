@@ -1,0 +1,138 @@
+import java.util.HashMap;
+
+public class HashMapCollisionDemo {
+    
+    // Класс с плохой реализацией hashCode для демонстрации коллизий
+    static class BadKey {
+        private final int id;
+        
+        public BadKey(int id) {
+            this.id = id;
+        }
+        
+        // Намеренно плохая реализация hashCode - всегда возвращает одно значение
+        @Override
+        public int hashCode() {
+            return 1; // Все объекты будут иметь одинаковый хэш-код!
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+            BadKey badKey = (BadKey) obj;
+            return id == badKey.id;
+        }
+        
+        @Override
+        public String toString() {
+            return "BadKey{" + id + "}";
+        }
+    }
+    
+    // Класс с нормальной реализацией hashCode
+    static class GoodKey {
+        private final int id;
+        
+        public GoodKey(int id) {
+            this.id = id;
+        }
+        
+        @Override
+        public int hashCode() {
+            return id; // Хороший хэш-код - уникальный для каждого объекта
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+            GoodKey goodKey = (GoodKey) obj;
+            return id == goodKey.id;
+        }
+        
+        @Override
+        public String toString() {
+            return "GoodKey{" + id + "}";
+        }
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("=== Демонстрация коллизий в HashMap ===\n");
+        
+        // 1. Демонстрация коллизий с BadKey
+        System.out.println("1. HashMap с BadKey (все объекты имеют одинаковый hashCode):");
+        HashMap<BadKey, String> badMap = new HashMap<>();
+        
+        // Добавляем несколько элементов с BadKey
+        for (int i = 0; i < 5; i++) {
+            BadKey key = new BadKey(i);
+            badMap.put(key, "Значение " + i);
+            System.out.println("Добавлен: " + key + " -> " + "Значение " + i);
+        }
+        
+        System.out.println("\nРазмер badMap: " + badMap.size());
+        System.out.println("Все элементы добавлены успешно, несмотря на одинаковый hashCode!");
+        
+        // 2. Показываем, как HashMap обрабатывает коллизии
+        System.out.println("\n2. Как HashMap обрабатывает коллизии:");
+        System.out.println("- Все BadKey попадают в один бакет (индекс в массиве)");
+        System.out.println("- Внутри бакета элементы хранятся как связный список");
+        System.out.println("- При большом количестве элементов список превращается в дерево");
+        
+        // 3. Влияние коллизий на производительность
+        System.out.println("\n3. Влияние коллизий на производительность:");
+        System.out.println("- Поиск в HashMap с коллизиями: O(n) в худшем случае");
+        System.out.println("- Поиск в нормальной HashMap: O(1) в среднем случае");
+        
+        // 4. Демонстрация с GoodKey (без коллизий)
+        System.out.println("\n4. HashMap с GoodKey (нормальные hashCode):");
+        HashMap<GoodKey, String> goodMap = new HashMap<>();
+        
+        for (int i = 0; i < 5; i++) {
+            GoodKey key = new GoodKey(i);
+            goodMap.put(key, "Значение " + i);
+            System.out.println("Добавлен: " + key + " (hashCode=" + key.hashCode() + ") -> Значение " + i);
+        }
+        
+        System.out.println("\nРазмер goodMap: " + goodMap.size());
+        
+        // 5. Демонстрация естественных коллизий с Integer
+        System.out.println("\n5. Естественные коллизии с Integer:");
+        HashMap<Integer, String> intMap = new HashMap<>();
+        
+        // Создаем коллизию: разные ключи, но одинаковый индекс в таблице
+        // Для HashMap размером 16: index = hashCode & (16-1)
+        
+        // Ключи, которые будут иметь коллизию при размере таблицы 16
+        int key1 = 0;
+        int key2 = 16; // 16 & 15 = 0, коллизия с key1
+        int key3 = 32; // 32 & 15 = 0, коллизия с key1 и key2
+        
+        intMap.put(key1, "Значение 0");
+        intMap.put(key2, "Значение 16");
+        intMap.put(key3, "Значение 32");
+        
+        System.out.println("Добавлены ключи: " + key1 + ", " + key2 + ", " + key3);
+        System.out.println("Их hashCode: " + key1 + ", " + key2 + ", " + key3);
+        System.out.println("При размере таблицы 16, все попадают в индекс 0");
+        System.out.println("Размер intMap: " + intMap.size());
+        
+        // 6. Тестирование поиска при коллизиях
+        System.out.println("\n6. Тестирование поиска:");
+        
+        // Поиск в badMap (с коллизиями)
+        long startTime = System.nanoTime();
+        String value = badMap.get(new BadKey(3));
+        long badMapTime = System.nanoTime() - startTime;
+        System.out.println("Поиск в badMap (с коллизиями): " + badMapTime + " наносекунд");
+        
+        // Поиск в goodMap (без коллизий)
+        startTime = System.nanoTime();
+        value = goodMap.get(new GoodKey(3));
+        long goodMapTime = System.nanoTime() - startTime;
+        System.out.println("Поиск в goodMap (без коллизий): " + goodMapTime + " наносекунд");
+        
+        System.out.println("\nВывод: коллизии ухудшают производительность HashMap!");
+    }
+}
