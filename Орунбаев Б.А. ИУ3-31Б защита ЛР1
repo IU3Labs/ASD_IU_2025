@@ -1,0 +1,91 @@
+import java.util.ArrayList;
+
+public class ToyBoxExample {
+    public static void main(String[] args) {
+        System.out.println("=== КОРОБКА ДЛЯ ИГРУШЕК ===\n");
+        
+        // 1. Покупаем новую коробку
+        System.out.println("1. КУПИЛИ НОВУЮ КОРОБКУ");
+        System.out.println("   Коробка рассчитана на 5 игрушек (capacity = 5)");
+        System.out.println("   Пока коробка пустая (size = 0)\n");
+        
+        ArrayList<String> toyBox = new ArrayList<>(5);
+        
+        // 2. Кладем игрушки в коробку
+        System.out.println("2. КЛАДЕМ ИГРУШКИ В КОРОБКУ");
+        
+        toyBox.add("Мяч");      // 1-я игрушка
+        toyBox.add("Кукла");    // 2-я игрушка  
+        toyBox.add("Машинка");  // 3-я игрушка
+        
+        System.out.println("   Положили 3 игрушки:");
+        System.out.println("   • Игрушек в коробке: " + toyBox.size() + " (size)");
+        System.out.println("   • Места в коробке: еще на 2 игрушки\n");
+        
+        // Показываем коробку
+        showBox(toyBox, 5);
+        
+        // 3. Добавляем еще игрушки
+        System.out.println("3. ДОБАВЛЯЕМ ЕЩЕ ИГРУШЕК");
+        
+        toyBox.add("Пазл");     // 4-я игрушка
+        toyBox.add("Кубики");   // 5-я игрушка
+        
+        System.out.println("   Положили еще 2 игрушки:");
+        System.out.println("   • Игрушек в коробке: " + toyBox.size() + " (size)");
+        System.out.println("   • Коробка заполнена полностью!\n");
+        
+        showBox(toyBox, 5);
+        
+        // 4. Пытаемся положить еще одну игрушку
+        System.out.println("4. ХОТИМ ПОЛОЖИТЬ ЕЩЕ ОДНУ ИГРУШКУ");
+        System.out.println("   Пытаемся положить 'Конструктор'...");
+        
+        toyBox.add("Конструктор"); // 6-я игрушка - МЕСТА НЕТ!
+        
+        System.out.println("   Коробка сама увеличивается!");
+        System.out.println("   Теперь в коробке: " + toyBox.size() + " игрушек");
+        System.out.println("   Коробка теперь вмещает примерно 7-8 игрушек\n");
+        
+        showBox(toyBox, 8);
+        
+        // 5. Заранее готовим большую коробку
+        System.out.println("5. ГОТОВИМ БОЛЬШУЮ КОРОБКУ");
+        System.out.println("   Знаем, что купим 20 игрушек");
+        
+        ArrayList<String> bigBox = new ArrayList<>();
+        System.out.println("   Берем обычную коробку (вмещает ~10 игрушек)");
+        
+        bigBox.ensureCapacity(20);
+        System.out.println("   Говорим: 'Сделай коробку на 20 игрушек!'");
+        System.out.println("   Теперь можно класть игрушки без проблем\n");
+        
+        // 6. Убираем пустое место
+        System.out.println("6. УБИРАЕМ ЛИШНЕЕ МЕСТО");
+        System.out.println("   Купили огромную коробку на 100 игрушек");
+        
+        ArrayList<String> hugeBox = new ArrayList<>(100);
+        hugeBox.add("Мячик");  // Только 1 игрушка
+        
+        System.out.println("   • Коробка на 100 игрушек");
+        System.out.println("   • Игрушка всего 1");
+        System.out.println("   • 99 мест пустуют - неэкономно!\n");
+        
+        hugeBox.trimToSize();
+        System.out.println("   Убрали лишнее место!");
+        System.out.println("   Теперь коробка ровно на 1 игрушку");
+    }
+    
+    // Показываем, что в коробке
+    private static void showBox(ArrayList<String> box, int boxSize) {
+        System.out.print("   Коробка: ");
+        for (int i = 0; i < boxSize; i++) {
+            if (i < box.size()) {
+                System.out.print("[И] ");  // Игрушка
+            } else {
+                System.out.print("[ ] ");  // Пусто
+            }
+        }
+        System.out.println("\n");
+    }
+}
