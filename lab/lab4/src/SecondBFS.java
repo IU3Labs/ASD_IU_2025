@@ -46,18 +46,16 @@ public class SecondBFS {
     }
 
     public static void main(String[] args) {
-        Node root = new Node(1);
-        Node n2 = new Node(2);
-        Node n3 = new Node(3);
-        Node n4 = new Node(4);
-        Node n5 = new Node(5);
+        Scanner scanner = new Scanner(System.in);
 
-        root.addChild(n2);
-        root.addChild(n3);
-        n2.addChild(n4);
-        n3.addChild(n5);
+        System.out.println("Tree building");
+        // Построение дерева через консольный ввод
+        Node root = BuildTree.buildTree(scanner);
 
-        int target = 3;
+        System.out.print("Input target value: ");
+        int target = scanner.nextInt();
+
+        // Поиск в ширину вторым способом (по уровням)
         Node result = findNode(root, target);
 
         if (result != null) {
@@ -65,5 +63,7 @@ public class SecondBFS {
         } else {
             System.out.println("Node " + target + " was not found.");
         }
+
+        scanner.close();
     }
 }
