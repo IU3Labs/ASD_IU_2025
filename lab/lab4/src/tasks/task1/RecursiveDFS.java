@@ -1,5 +1,8 @@
 package tasks.task1;
 
+import tasks.helper.TreeNode;
+
+
 public class RecursiveDFS {
 
     //Рекурсивный поиск узла по значению
