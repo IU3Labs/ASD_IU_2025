@@ -1,7 +1,7 @@
 import java.util.*;
 //1 В ориентированном взвешенном графе с отрицательными и
 //положительными весами ребер найти кратчайший путь между
-//двумя вершинами (Bellman--Ford algorithm).
+//двумя вершинами (Bellman--Ford algorithm ).
 public class BellmanFordAlgorithm {
 
     static class Graph {

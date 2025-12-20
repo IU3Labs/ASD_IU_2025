@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Graph {
 
     private final int vertices;
+
     private final ArrayList<ArrayList<Edge>> edgeList;
 
     public int getVertices() {

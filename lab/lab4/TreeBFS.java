@@ -1,7 +1,7 @@
 import java.util.ArrayDeque;
 
 //4 Реализовать поиск в дереве в ширину двумя способами.
-public class TreeBFS {
+public class TreeBFS  {
 
     // Итеративный поиск в ширину с использованием очереди
     public static TreeNode iterationSearch(TreeNode root, int target) {
