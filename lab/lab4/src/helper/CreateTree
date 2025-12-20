@@ -1,0 +1,154 @@
+package tasks.helper;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CreateTree {
+    public static TreeNode createTreeFromKeyboard(Scanner scanner) {
+
+        // Карта для быстрого поиска узлов по значению
+        Map<Integer, TreeNode> nodeMap = new HashMap<Integer, TreeNode>();
+
+        // Запрашиваем корневой узел
+        System.out.print("Введите значение корневого узла: ");
+        while (!scanner.hasNextInt()) {
+            System.out.println("Ошибка: введите целое число!");
+            scanner.next(); // Очистка некорректного ввода
+            System.out.print("Введите значение корневого узла: ");
+        }
+        int rootValue = scanner.nextInt();
+        TreeNode root = new TreeNode(rootValue);
+        nodeMap.put(rootValue, root);
+        System.out.println("Корневой узел " + rootValue + " создан");
+
+        // Запрашиваем структуру дерева
+        System.out.println("Вы можете добавлять дочерние узлы к существующим узлам.");
+        System.out.println("Для завершения ввода введите 'stop'");
+
+        boolean continueInput = true;
+        while (continueInput) {
+            System.out.println("\n----------------------------------");
+
+            // Показываем существующие узлы
+            System.out.println("Существующие узлы: " + nodeMap.keySet());
+
+            // Запрашиваем родительский узел
+            System.out.print("Введите значение родительского узла (или 'stop' для завершения): ");
+            if (scanner.hasNext("stop")) {
+                scanner.next(); // Читаем "stop"
+                continueInput = false;
+                continue;
+            }
+
+            while (!scanner.hasNextInt()) {
+                if (scanner.hasNext("stop")) {
+                    scanner.next();
+                    continueInput = false;
+                    break;
+                }
+                System.out.println("Ошибка: введите целое число или 'stop'!");
+                scanner.next();
+                System.out.print("Введите значение родительского узла: ");
+            }
+
+            if (!continueInput) break;
+
+            int parentValue = scanner.nextInt();
+
+            // Проверяем, существует ли родительский узел
+            if (!nodeMap.containsKey(parentValue)) {
+                System.out.println("Узел " + parentValue + " не найден. Пропускаем...");
+                continue;
+            }
+
+            TreeNode parentNode = nodeMap.get(parentValue);
+
+            // Запрашиваем дочерние узлы
+            System.out.println("Введите значения дочерних узлов для узла " + parentValue);
+            System.out.println("(вводите по одному значению, для завершения введите 'done')");
+
+            boolean addingChildren = true;
+            while (addingChildren) {
+                System.out.print("Введите значение дочернего узла (или 'done'): ");
+
+                if (scanner.hasNext("done")) {
+                    scanner.next(); // Читаем "done"
+                    addingChildren = false;
+                    continue;
+                }
+
+                if (!scanner.hasNextInt()) {
+                    System.out.println("Ошибка: введите целое число или 'done'!");
+                    scanner.next();
+                    continue;
+                }
+
+                int childValue = scanner.nextInt();
+
+                // Проверяем, не существует ли уже узел с таким значением
+                if (nodeMap.containsKey(childValue)) {
+                    System.out.println("Узел " + childValue + " уже существует. Значения должны быть уникальными!");
+                    continue;
+                }
+
+                // Создаем и добавляем дочерний узел
+                TreeNode childNode = new TreeNode(childValue);
+                parentNode.addChild(childNode);
+                nodeMap.put(childValue, childNode);
+                System.out.println("Узел " + childValue + " добавлен как потомок узла " + parentValue);
+            }
+        }
+
+        System.out.println("\nДерево успешно создано!");
+        System.out.println("Корневой узел: " + rootValue);
+        System.out.println("Всего узлов: " + nodeMap.size());
+        System.out.println("Максимальная глубина: " + calculateTreeDepth(root));
+
+        return root;
+    }
+    /**
+     * Вспомогательный метод для отображения дерева в виде древовидной структуры
+     */
+    public static void printTree(TreeNode node, String prefix, boolean isLast) {
+        System.out.print(prefix);
+        System.out.print(isLast ? "└── " : "├── ");
+        System.out.println(node.value);
+
+        String childPrefix = prefix + (isLast ? "    " : "│   ");
+
+        for (int i = 0; i < node.children.size(); i++) {
+            boolean lastChild = (i == node.children.size() - 1);
+            printTree(node.children.get(i), childPrefix, lastChild);
+        }
+    }
+
+    /**
+     * Вычисляет максимальную глубину дерева
+     * Глубина определяется как максимальное количество ребер от корня до самого дальнего листа
+     */
+    private static int calculateTreeDepth(TreeNode node) {
+        // Базовый случай: пустое поддерево имеет глубину 0
+        if (node == null) {
+            return 0;
+        }
+
+        // Если у узла нет потомков, его глубина = 0 (только сам узел)
+        if (node.children.isEmpty()) {
+            return 0;
+        }
+
+        // Вычисляем максимальную глубину среди всех дочерних поддеревьев
+        int maxChildDepth = 0;
+        for (TreeNode child : node.children) {
+            int childDepth = calculateTreeDepth(child);
+            if (childDepth > maxChildDepth) {
+                maxChildDepth = childDepth;
+            }
+        }
+
+        // Глубина текущего узла = максимальная глубина потомков + 1
+        return maxChildDepth + 1;
+    }
+
+}
