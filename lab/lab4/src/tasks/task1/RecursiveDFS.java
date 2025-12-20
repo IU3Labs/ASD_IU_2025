@@ -1,29 +1,6 @@
 package tasks.task1;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RecursiveDFS {
-
-    //Рекурсивный обход дерева в глубину
-    public static List<Integer> dfs(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        dfsHelper(root, result);
-        return result;
-    }
-
-    //Вспомогательный рекурсивный метод для обхода дерева
-    private static void dfsHelper(TreeNode node, List<Integer> result) {
-        // Базовый случай: достигнут конец ветки
-        if (node == null) return;
-
-        // посещаем узел до рекурсивных вызовов
-        result.add(node.value);
-
-        // Рекурсивно обходим всех детей слева направо
-        for (TreeNode child : node.children) {
-            dfsHelper(child, result);
-        }
-    }
 
     //Рекурсивный поиск узла по значению
     public static TreeNode search(TreeNode root, int target) {

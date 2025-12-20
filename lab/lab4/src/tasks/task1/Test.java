@@ -3,7 +3,8 @@
  */
 
 package tasks.task1;
-import java.util.List;
+
+import java.util.Scanner;
 
 public class Test {
 
@@ -42,29 +43,18 @@ public class Test {
         // Создаем тестовое дерево
         TreeNode root = createTestTree();
 
-        // Тест 1: Обход дерева
-        System.out.println("1. ОБХОД ДЕРЕВА:");
-        List<Integer> recursiveDFS = RecursiveDFS.dfs(root);
-        List<Integer> iterativeDFS = IterativeDFS.dfs(root);
-
-        System.out.println("Рекурсивный DFS: " + recursiveDFS);
-        System.out.println("Итеративный DFS: " + iterativeDFS);
-        System.out.println("Результаты совпадают: " + recursiveDFS.equals(iterativeDFS));
-
-        // Тест 2: Поиск элементов
-        System.out.println("\n2. ПОИСК ЭЛЕМЕНТОВ:");
-        testSearch(root, 6, "существующий элемент");
-        testSearch(root, 8, "элемент в глубине");
-        testSearch(root, 99, "несуществующий элемент");
-
+        System.out.print("Введите искомое значение: ");
+        Scanner sc = new Scanner(System.in);
+        int number = sc.nextInt();
+        testSearch(root, number);
+        sc.close();
     }
 
     // Тестирует поиск элемента обоими методами
-    private static void testSearch(TreeNode root, int target, String description) {
+    private static void testSearch(TreeNode root, int target) {
         TreeNode recursiveResult = RecursiveDFS.search(root, target);
         TreeNode iterativeResult = IterativeDFS.search(root, target);
-
-        System.out.println("Поиск " + description + " (" + target + "):");
+        System.out.println("Поиск " + " (" + target + "):");
         System.out.println("  Рекурсивный: " + recursiveResult);
         System.out.println("  Итеративный: " + iterativeResult);
         System.out.println("  Результаты совпадают: " +

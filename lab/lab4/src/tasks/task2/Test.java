@@ -3,7 +3,8 @@
  */
 
 package tasks.task2;
-import java.util.List;
+
+import java.util.Scanner;
 
 public class Test {
 
@@ -41,28 +42,19 @@ public class Test {
 
         TreeNode root = createTestTree();
 
-        // Тест 1: Обход дерева в ширину
-        System.out.println("1. ОБХОД ДЕРЕВА В ШИРИНУ:");
-        List<Integer> iterativeBFS = IterativeBFS.bfs(root);
-        List<Integer> recursiveBFS = RecursiveBFS.bfs(root);
-
-        System.out.println("Итеративный BFS: " + iterativeBFS);
-        System.out.println("Рекурсивный BFS: " + recursiveBFS);
-        System.out.println("Результаты совпадают: " + iterativeBFS.equals(recursiveBFS));
-
-        // Тест 2: Поиск элементов
-        System.out.println("\n2. ПОИСК ЭЛЕМЕНТОВ:");
-        testSearch(root, 6, "существующий элемент");
-        testSearch(root, 8, "элемент в глубине");
-        testSearch(root, 99, "несуществующий элемент");
+        System.out.print("Введите искомое значение: ");
+        Scanner sc = new Scanner(System.in);
+        int number = sc.nextInt();
+        testSearch(root, number);
+        sc.close();
 
     }
 
-    private static void testSearch(TreeNode root, int target, String description) {
+    private static void testSearch(TreeNode root, int target) {
         TreeNode iterativeResult = IterativeBFS.search(root, target);
         TreeNode recursiveResult = RecursiveBFS.search(root, target);
 
-        System.out.println("Поиск " + description + " (" + target + "):");
+        System.out.println("Поиск " + " (" + target + "):");
         System.out.println("  Итеративный: " + iterativeResult);
         System.out.println("  Рекурсивный: " + recursiveResult);
         System.out.println("  Результаты совпадают: " +

@@ -3,114 +3,175 @@
  */
 package tasks.task0;
 
-class TreeNode {
-    int data;          // Значение, хранящееся в узле
-    TreeNode leftChild;  // Ссылка на левого потомка
-    TreeNode rightChild; // Ссылка на правого потомка
 
+import java.util.Scanner;
 
-    TreeNode(int data) {
-        this.data = data;
-        // leftChild и rightChild автоматически инициализируются как null
-    }
-}
+class IterDepDFSearch {
 
-public class IterDepDFSearch {
+    public static TreeNode search(TreeNode root, int targetValue) {
+        // Если дерево пустое, сразу возвращаем null
+        if (root == null) {
+            return null;
+        }
 
-    public static TreeNode findNodeUsingIDDFS(TreeNode startNode, int searchValue) {
-        int currentMaxLevel = 0; // Текущая максимальная глубина поиска
-        TreeNode foundNode = null; // Переменная для хранения результата
+        int currentDepthLimit = 0; // Текущее ограничение глубины поиска
+        TreeNode foundNode = null;  // Переменная для хранения результата
 
-        // Бесконечный цикл, который прервется когда найден узел или достигнута максимальная глубина
-        while (foundNode == null) {
+        // Вычисляем максимальную глубину дерева для определения предела поиска
+        int maxTreeDepth = calculateTreeDepth(root);
+
+        // Постепенно увеличиваем глубину поиска пока не найдем узел
+        // или не превысим максимальную глубину дерева
+        while (foundNode == null && currentDepthLimit <= maxTreeDepth) {
+            System.out.println("Поиск на глубине: " + currentDepthLimit);
+
             // Выполняем поиск с ограничением по глубине
-            foundNode = searchWithDepthLimit(startNode, searchValue, currentMaxLevel);
+            foundNode = depthLimitedSearch(root, targetValue, currentDepthLimit);
 
-            // Проверяем, не превысили ли мы максимальную глубину дерева
-            // Если да, значит весь дерево проверено и узел не найден
-            if (currentMaxLevel > calculateMaxDepth(startNode)) {
-                break;
-            }
-
-            System.out.println("Поиск на глубине " + currentMaxLevel + " завершен");
-            currentMaxLevel++; // Увеличиваем глубину для следующей итерации
+            // Увеличиваем глубину для следующей итерации
+            currentDepthLimit++;
         }
 
         return foundNode;
     }
 
-    private static TreeNode searchWithDepthLimit(TreeNode currentNode, int searchValue, int remainingDepth) {
-        // Базовый случай: достигнут нулевой узел (конец ветки)
-        if (currentNode == null) {
-            return null;
+    /**
+     * Рекурсивный метод поиска с ограничением глубины
+     * Проверяет текущий узел и всех его потомков до указанной глубины
+     */
+    private static TreeNode depthLimitedSearch(TreeNode currentNode, int targetValue, int remainingDepth) {
+        // Выводим отладочную информацию о проверяемом узле
+        System.out.println("  Проверка узла: " + currentNode.value +
+                " (осталось глубины: " + remainingDepth + ")");
+
+        // Проверяем, совпадает ли значение текущего узла с искомым
+        if (currentNode.value == targetValue) {
+            return currentNode; // Узел найден!
         }
 
-        System.out.println("Проверяем узел: " + currentNode.data + " на глубине " + remainingDepth);
-
-        // Если нашли узел с искомым значением, возвращаем его
-        if (currentNode.data == searchValue) {
-            return currentNode;
-        }
-
-        // Если достигли предела глубины, прекращаем углубляться
+        // Если достигли предела глубины, не углубляемся дальше
         if (remainingDepth <= 0) {
             return null;
         }
 
-        // Рекурсивно ищем в левом поддереве с уменьшенной глубиной
-        TreeNode leftSearchResult = searchWithDepthLimit(currentNode.leftChild, searchValue, remainingDepth - 1);
+        // Рекурсивно проверяем всех дочерних узлов
+        // Порядок проверки: слева направо (в порядке добавления)
+        for (TreeNode childNode : currentNode.children) {
+            // Вызываем поиск для дочернего узла с уменьшенной глубиной
+            TreeNode result = depthLimitedSearch(childNode, targetValue, remainingDepth - 1);
 
-        // Если нашли в левом поддереве, сразу возвращаем результат
-        // Это обеспечивает поиск в глубину
-        if (leftSearchResult != null) {
-            return leftSearchResult;
+            // Если нашли узел в дочерней ветке, сразу возвращаем результат
+            if (result != null) {
+                return result;
+            }
         }
 
-        // Если в левом поддереве не нашли, ищем в правом
-        return searchWithDepthLimit(currentNode.rightChild, searchValue, remainingDepth - 1);
+        // Если ни текущий узел, ни его потомки не содержат искомое значение
+        return null;
     }
 
-    private static int calculateMaxDepth(TreeNode node) {
-        // Базовый случай: пустое дерево имеет глубину 0
+    /**
+     * Вычисляет максимальную глубину дерева
+     * Глубина определяется как максимальное количество ребер от корня до самого дальнего листа
+     */
+    private static int calculateTreeDepth(TreeNode node) {
+        // Базовый случай: пустое поддерево имеет глубину 0
         if (node == null) {
             return 0;
         }
 
-        // Рекурсивно вычисляем глубину левого и правого поддеревьев
-        int leftSubtreeDepth = calculateMaxDepth(node.leftChild);
-        int rightSubtreeDepth = calculateMaxDepth(node.rightChild);
+        // Если у узла нет потомков, его глубина = 0 (только сам узел)
+        if (node.children.isEmpty()) {
+            return 0;
+        }
 
-        // Глубина текущего дерева = максимальная глубина поддеревьев + 1 (текущий узел)
-        return Math.max(leftSubtreeDepth, rightSubtreeDepth) + 1;
+        // Вычисляем максимальную глубину среди всех дочерних поддеревьев
+        int maxChildDepth = 0;
+        for (TreeNode child : node.children) {
+            int childDepth = calculateTreeDepth(child);
+            if (childDepth > maxChildDepth) {
+                maxChildDepth = childDepth;
+            }
+        }
+
+        // Глубина текущего узла = максимальная глубина потомков + 1
+        return maxChildDepth + 1;
     }
 
-    static void main() {
+    /**
+     * Демонстрация работы алгоритма на примере
+     */
+    public static void main() {
+        System.out.println("_____ ДЕМОНСТРАЦИЯ IDDFS ДЛЯ ДЕРЕВА _____\n");
+
         // Создаем тестовое дерево:
-        //       10
-        //      /  \
-        //     20   30
-        //    / \     \
-        //   40  50    60
-        TreeNode rootNode = new TreeNode(10);
-        rootNode.leftChild = new TreeNode(20);
-        rootNode.rightChild = new TreeNode(30);
-        rootNode.leftChild.leftChild = new TreeNode(40);
-        rootNode.leftChild.rightChild = new TreeNode(50);
-        rootNode.rightChild.rightChild = new TreeNode(60);
+        // Уровень 0:         1
+        //                   /|\
+        // Уровень 1:       2 3 4
+        //                 /| | \
+        // Уровень 2:     5 6 7  8
+        //               /      / \
+        // Уровень 3:   9      10 11
+        //             /
+        // Уровень 4: 12
 
-        int valueToFind = 50;
-        TreeNode resultNode = findNodeUsingIDDFS(rootNode, valueToFind);
+        TreeNode root = new TreeNode(1);
 
-        if (resultNode != null) {
-            System.out.println("✓ Найден узел: " + resultNode.data);
-        } else {
-            System.out.println("✗ Узел со значением " + valueToFind + " не обнаружен");
+        TreeNode node2 = new TreeNode(2);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node4 = new TreeNode(4);
+        root.addChildren(node2, node3, node4);
+
+        TreeNode node5 = new TreeNode(5);
+        TreeNode node6 = new TreeNode(6);
+        node2.addChildren(node5, node6);
+
+        TreeNode node7 = new TreeNode(7);
+        node3.addChild(node7);
+
+        TreeNode node8 = new TreeNode(8);
+        node4.addChild(node8);
+
+        TreeNode node9 = new TreeNode(9);
+        node5.addChild(node9);
+
+        TreeNode node10 = new TreeNode(10);
+        TreeNode node11 = new TreeNode(11);
+        node8.addChildren(node10, node11);
+
+        TreeNode node12 = new TreeNode(12);
+        node9.addChild(node12);
+
+        // Выводим информацию о дереве
+        int maxDepth = calculateTreeDepth(root);
+        System.out.println("Дерево:");
+        System.out.println("Корневой узел: " + root.value);
+        System.out.println("Максимальная глубина: " + maxDepth);
+        System.out.println("Всего узлов: " + countNodes(root));
+
+        System.out.print("Введите искомое значение: ");
+        Scanner sc = new Scanner(System.in);
+        int number = sc.nextInt();
+        TreeNode result1 = search(root, number);
+        System.out.println("Результат: " +
+                (result1 != null ? "Найден узел " + result1.value : "Не найден"));
+        sc.close();
+
+
+    }
+
+    /**
+     * Вспомогательный метод для подсчета общего количества узлов в дереве
+     */
+    private static int countNodes(TreeNode node) {
+        if (node == null) {
+            return 0;
         }
 
-        System.out.println("\n--- Поиск несуществующего значения ---");
-        TreeNode missingResult = findNodeUsingIDDFS(rootNode, 99);
-        if (missingResult == null) {
-            System.out.println("✗ Ожидаемо: узел 99 не найден");
+        int count = 1; // Текущий узел
+        for (TreeNode child : node.children) {
+            count += countNodes(child);
         }
+        return count;
     }
 }
