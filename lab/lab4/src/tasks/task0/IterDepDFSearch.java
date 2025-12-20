@@ -2,6 +2,8 @@
  * Реализовать поиск в дереве (Iterative deepening depth-first search)
  */
 package tasks.task0;
+import tasks.helper.CreateTree;
+import tasks.helper.TreeNode;
 
 
 import java.util.Scanner;
@@ -98,59 +100,18 @@ class IterDepDFSearch {
         return maxChildDepth + 1;
     }
 
-    /**
-     * Демонстрация работы алгоритма на примере
-     */
+
     public static void main() {
         System.out.println("_____ ДЕМОНСТРАЦИЯ IDDFS ДЛЯ ДЕРЕВА _____\n");
+        Scanner sc = new Scanner(System.in);
 
-        // Создаем тестовое дерево:
-        // Уровень 0:         1
-        //                   /|\
-        // Уровень 1:       2 3 4
-        //                 /| | \
-        // Уровень 2:     5 6 7  8
-        //               /      / \
-        // Уровень 3:   9      10 11
-        //             /
-        // Уровень 4: 12
 
-        TreeNode root = new TreeNode(1);
-
-        TreeNode node2 = new TreeNode(2);
-        TreeNode node3 = new TreeNode(3);
-        TreeNode node4 = new TreeNode(4);
-        root.addChildren(node2, node3, node4);
-
-        TreeNode node5 = new TreeNode(5);
-        TreeNode node6 = new TreeNode(6);
-        node2.addChildren(node5, node6);
-
-        TreeNode node7 = new TreeNode(7);
-        node3.addChild(node7);
-
-        TreeNode node8 = new TreeNode(8);
-        node4.addChild(node8);
-
-        TreeNode node9 = new TreeNode(9);
-        node5.addChild(node9);
-
-        TreeNode node10 = new TreeNode(10);
-        TreeNode node11 = new TreeNode(11);
-        node8.addChildren(node10, node11);
-
-        TreeNode node12 = new TreeNode(12);
-        node9.addChild(node12);
-
-        // Выводим информацию о дереве
-        int maxDepth = calculateTreeDepth(root);
-        System.out.println("Дерево:");
-        System.out.println("Корневой узел: " + root.value);
-        System.out.println("Максимальная глубина: " + maxDepth);
-        System.out.println("Всего узлов: " + countNodes(root));
+        TreeNode root = null;
+        root = CreateTree.createTreeFromKeyboard(sc);
+        System.out.println("\nСтруктура созданного дерева:");
+        CreateTree.printTree(root, "", true);
 
         System.out.print("Введите искомое значение: ");
-        Scanner sc = new Scanner(System.in);
         int number = sc.nextInt();
         TreeNode result1 = search(root, number);
         System.out.println("Результат: " +
