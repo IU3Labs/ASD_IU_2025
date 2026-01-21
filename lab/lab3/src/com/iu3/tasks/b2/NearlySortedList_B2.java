@@ -32,27 +32,36 @@ public class NearlySortedList_B2 {
      * последовательно "выталкивать" правильные элементы через кучу.
      */
     static void nearlySorted(int[] arr, int k) {
-        int n = arr.length;
+        int n = arr.length;                      // O(1)
+
         // Куча будет содержать не более (k+1) элементов
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        // создание пустой кучи: O(1)
 
         // Заполняем первые (k+1) элементов
-        for (int i = 0; i <= k && i < n; i++) {
-            minHeap.add(arr[i]);
-        }
+        for (int i = 0; i <= k && i < n; i++) {  // каждая проверка условия: O(1),
+            // всего min(k+1, n) итераций → O(min(K, N))
+            minHeap.add(arr[i]);                 // add в кучу: O(log K) (размер ≤ K+1)
+        }                                        // цикл целиком: O(min(K, N) · log K)
 
-        int targetIndex = 0;
+        int targetIndex = 0;                     // O(1)
 
         // Обрабатываем оставшиеся элементы
-        for (int i = k + 1; i < n; i++) {
-            arr[targetIndex++] = minHeap.poll(); // извлекаем минимум
-            minHeap.add(arr[i]);                 // добавляем следующий элемент
-        }
+        for (int i = k + 1; i < n; i++) {        // каждая проверка условия: O(1),
+            // всего ≈ max(N − (K+1), 0) итераций
+            arr[targetIndex++] = minHeap.poll(); // poll минимум из кучи: O(log K)
+            minHeap.add(arr[i]);                 // add в кучу: O(log K)
+            // одна итерация цикла: O(log K)
+        }                                        // весь цикл: O((N − K) · log K) ≈ O(N log K)
 
         // Извлекаем оставшиеся элементы из кучи
-        while (!minHeap.isEmpty()) {
-            arr[targetIndex++] = minHeap.poll();
-        }
+        while (!minHeap.isEmpty()) {             // проверка условия: O(1) за итерацию,
+            // итераций ≤ K+1 → O(K)
+            arr[targetIndex++] = minHeap.poll(); // poll: O(log K)
+        }                                        // цикл: O(K · log K)
+
+        // ИТОГ для nearlySorted:
+        // доминирует обработка всех N элементов через кучу → O(N log K)
     }
 
     public static void main(String[] args) {

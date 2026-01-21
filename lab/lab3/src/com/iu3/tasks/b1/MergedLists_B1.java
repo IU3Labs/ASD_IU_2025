@@ -17,20 +17,22 @@ public class MergedLists_B1 {
      * Пространственная сложность: O(m + n) — создаётся новый список.
      */
     private static LinkedList<Integer> mergeTwoLists(LinkedList<Integer> list1, LinkedList<Integer> list2) {
-        LinkedList<Integer> merged = new LinkedList<>();
+        LinkedList<Integer> merged = new LinkedList<>();  // O(1)
 
-        while (!list1.isEmpty() && !list2.isEmpty()) {
-            if (list1.peek() <= list2.peek()) {
-                merged.add(list1.poll());
+        while (!list1.isEmpty() && !list2.isEmpty()) {  // проверка условия O(1) за итерацию,
+            // всего цикл O(m + n)
+            if (list1.peek() <= list2.peek()) { // peek() O(1), сравнение O(1)
+                merged.add(list1.poll());  // poll() O(1), add() O(1)
             } else {
-                merged.add(list2.poll());
+                merged.add(list2.poll()); // poll() O(1), add() O(1)
             }
         }
 
-        merged.addAll(list1);
-        merged.addAll(list2);
+        merged.addAll(list1);  // O(кол-во оставшихся в list1) ⊆ O(m + n)
+        merged.addAll(list2);  // O(кол-во оставшихся в list2) ⊆ O(m + n)
 
-        return merged;
+        return merged;                                            // O(1)
+        // ИТОГО для mergeTwoLists: O(m + n)
     }
 
     /**
@@ -38,45 +40,53 @@ public class MergedLists_B1 {
      * с использованием итеративного попарного слияния.
      * <p>
      * Временная сложность: O(N log K), где:
-     *   - N = общее количество элементов во всех K списках, — K = количество списков.
+     * - N = общее количество элементов во всех K списках, — K = количество списков.
      * <p>
      * ДОКАЗАТЕЛЬСТВО СЛОЖНОСТИ:
      * <p>
      * На каждом уровне итеративного слияния:
-     *   - Все N элементов участвуют ровно в одном вызове mergeTwoLists.
-     *   - Следовательно, работа на одном уровне = O(N).
+     * - Все N элементов участвуют ровно в одном вызове mergeTwoLists.
+     * - Следовательно, работа на одном уровне = O(N).
      * <p>
-     * Сколько уровней? 
-     *   - Изначально имеем K списков.
-     *   - На каждом уровне число списков уменьшается вдвое (попарное слияние).
-     *   - Количество уровней = ceil(log₂ K) = O(log K).
+     * Сколько уровней?
+     * - Изначально имеем K списков.
+     * - На каждом уровне число списков уменьшается вдвое (попарное слияние).
+     * - Количество уровней = ceil(log₂ K) = O(log K).
      * <p>
      * Общая сложность = (работа на уровне) × (число уровней) = O(N) × O(log K) = O(N log K).
      * <p>
      * Пространственная сложность: O(N) — для хранения результата и промежуточных списков.
      */
     private static LinkedList<Integer> mergeKLists(ArrayList<LinkedList<Integer>> lists) {
-        if (lists == null || lists.isEmpty()) {
-            return new LinkedList<>();
+        if (lists == null || lists.isEmpty()) { // O(1)
+            return new LinkedList<>();   // O(1)
         }
-
-        ArrayList<LinkedList<Integer>> current = new ArrayList<>(lists);
+        ArrayList<LinkedList<Integer>> current = new ArrayList<>(lists); // копирование ссылок O(K)
 
         // Количество итераций цикла = O(log K)
-        while (current.size() > 1) {
-            ArrayList<LinkedList<Integer>> nextRound = new ArrayList<>();
+        while (current.size() > 1) {  // проверка условия O(1) за уровень,
+            // уровней O(log K)
+            ArrayList<LinkedList<Integer>> nextRound = new ArrayList<>(); // O(1)
 
             // На каждой итерации обрабатываем все текущие списки попарно
-            for (int i = 0; i < current.size(); i += 2) {
-                LinkedList<Integer> left = current.get(i);
-                LinkedList<Integer> right = (i + 1 < current.size()) ? current.get(i + 1) : new LinkedList<>();
-                nextRound.add(mergeTwoLists(left, right)); // O(длина left + длина right)
+            for (int i = 0; i < current.size(); i += 2) {         // каждая проверка O(1),
+                // всего ~ current.size()/2 итераций на уровне
+                LinkedList<Integer> left = current.get(i);        // get() O(1)
+                LinkedList<Integer> right = (i + 1 < current.size()) // сравнение O(1)
+                        ? current.get(i + 1)  // get() O(1)
+                        : new LinkedList<>(); // конструктор O(1)
+
+                nextRound.add(mergeTwoLists(left, right));  // mergeTwoLists O(len(left)+len(right)),
+                // add() в ArrayList O(1)
+                // Суммарно по всему for на уровне:
+                // суммы длин всех left и right = N → O(N)
             }
 
-            current = nextRound;
+            current = nextRound; // O(1)
         }
 
-        return current.getFirst();
+        return current.getFirst();  // getFirst() O(1)
+        // ИТОГО для mergeKLists: один уровень O(N), уровней O(log K) → O(N log K)
     }
 
     public static void main(String[] args) {
